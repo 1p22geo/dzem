@@ -46,6 +46,7 @@ waveDefs = ExtResource("3_u1mbr")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=442033062]
 layer = 10
+visible = false
 
 [node name="TowerPanel" parent="UILayer" unique_id=1821714899 instance=ExtResource("4_tower")]
 layout_mode = 3
