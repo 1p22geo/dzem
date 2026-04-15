@@ -8,3 +8,4 @@ class_name TowerType
 @export var name:String
 @export var cost: int
 @export var range: int
+@export var fire_delay: float

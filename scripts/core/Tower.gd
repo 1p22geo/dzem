@@ -5,6 +5,7 @@ extends Tile
 
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
+var timer = 0
 
 
 func _ready() -> void:
@@ -13,8 +14,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var closestEnemy:Enemy = FindClosestEnemyToAttack()
-	AttackEnemy(closestEnemy)
+	timer+=delta
+	if timer > tower.fire_delay: 
+		timer = 0
+		var closestEnemy:Enemy = FindClosestEnemyToAttack()
+		AttackEnemy(closestEnemy)
 
 func FindClosestEnemyToAttack() -> Enemy:
 	if tower:
@@ -46,3 +50,4 @@ func AttackEnemy(enemy:Enemy) -> void:
 		if enemy == null:
 			return 
 		enemy.hp -= tower.damage
+		print("enemy attacked")

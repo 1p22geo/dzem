@@ -9,3 +9,4 @@ texture = ExtResource("2_grfkb")
 damage = 1.0
 name = "Test Tower"
 range = 150
+fire_delay = 1.0
