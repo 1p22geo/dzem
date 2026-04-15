@@ -5,6 +5,7 @@ class_name Enemy
 @export var type:EnemyType
 
 signal reached_base(enemy: Enemy)
+var hp:float;
 
 var target: Node2D
 
@@ -12,10 +13,13 @@ var target: Node2D
 func _ready() -> void:
 	if type != null:
 		$Sprite2D.texture = type.texture
+		hp = type.health;
+		
 
 	target = _find_base()
 	if target == null:
 		push_warning("Enemy: base target not found")
+
 
 
 func _process(delta: float) -> void:

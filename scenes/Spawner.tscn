@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://ctl27dic16wxy"]
 
 [ext_resource type="Script" uid="uid://dn4gmmxh4gdhb" path="res://scripts/core/Spawner.gd" id="1_5y6d2"]
+[ext_resource type="PackedScene" path="res://scenes/Enemy.tscn" id="2_enemy"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_qcsvw"]
 
 [node name="Spawner" type="Node2D" unique_id=1579113028]
 script = ExtResource("1_5y6d2")
+enemy_template = ExtResource("2_enemy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=662408580]
 texture = ExtResource("1_qcsvw")

@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/SettingsPanel.tscn" id="2_settings"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -63,58 +64,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 40)
 text = "Wyjdź"
 
-[node name="SettingsPanel" type="PanelContainer" parent="CenterContainer"]
+[node name="SettingsPanel" parent="CenterContainer" instance=ExtResource("2_settings")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/SettingsPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="SettingsTitle" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Ustawienia"
-horizontal_alignment = 1
-
-[node name="VolumeBox" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="VolumeLabel" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/VolumeBox"]
-layout_mode = 2
-custom_minimum_size = Vector2(100, 0)
-text = "Głośność"
-
-[node name="VolumeSlider" type="HSlider" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/VolumeBox"]
-unique_name_in_owner = true
-layout_mode = 2
-custom_minimum_size = Vector2(150, 0)
-min_value = 0.0
-max_value = 1.0
-step = 0.05
-value = 1.0
-
-[node name="FullscreenBox" type="HBoxContainer" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="FullscreenLabel" type="Label" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/FullscreenBox"]
-layout_mode = 2
-custom_minimum_size = Vector2(100, 0)
-text = "Pełny ekran"
-
-[node name="FullscreenCheck" type="CheckButton" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer/FullscreenBox"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="BackButton" type="Button" parent="CenterContainer/SettingsPanel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-custom_minimum_size = Vector2(200, 40)
-text = "Wróć"

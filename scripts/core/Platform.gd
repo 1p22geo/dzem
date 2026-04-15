@@ -1,4 +1,5 @@
 extends Tile
+class_name Platform
 
 @export var tower: TowerType
 
@@ -17,7 +18,7 @@ func _process(_delta: float) -> void:
 func place_tower(tower_type: TowerType) -> void:
 	tower = tower_type
 	has_tower = true
-	$Tower/Sprite2D.texture = tower.texture
+	$Tower/TowerSprite.texture = tower.texture
 	$Tower.tower = tower
 
 

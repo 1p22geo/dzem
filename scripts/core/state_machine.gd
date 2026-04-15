@@ -6,6 +6,7 @@ class_name StateMachine
 var current_state: State
 
 
+
 func _ready() -> void:
 	for child in get_children():
 		if child is State:
