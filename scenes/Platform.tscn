@@ -14,6 +14,6 @@ texture = ExtResource("3_wwpbi")
 [node name="Tower" type="Node2D" parent="." unique_id=1763446327]
 script = ExtResource("2_motb6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Tower" unique_id=1234438872]
+[node name="TowerSprite" type="Sprite2D" parent="Tower" unique_id=1234438872]
 scale = Vector2(0.30327868, 0.19202898)
 texture = ExtResource("4_o1scf")
