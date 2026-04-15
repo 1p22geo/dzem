@@ -17,7 +17,7 @@
 
 [node name="Platform" parent="tiles" unique_id=1084195734 instance=ExtResource("2_cnp4h")]
 top_level = true
-position = Vector2(125, 0)
+position = Vector2(853, 211)
 tower = ExtResource("2_ry3nc")
 
 [node name="Spawner" parent="tiles" unique_id=1579113028 node_paths=PackedStringArray("next") instance=ExtResource("3_nuvw0")]

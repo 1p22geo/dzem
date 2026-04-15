@@ -14,6 +14,7 @@ var distance = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("enemies")
 	if type != null:
 		$Sprite2D.texture = type.texture
 		hp = type.health;
