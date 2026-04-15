@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://0lp20hxng04" path="res://scripts/core/Tile.gd" id="2_r3gf4"]
 
 [node name="Tile" type="Node2D" unique_id=1954980730]
+script = ExtResource("2_r3gf4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=649040235]
 texture = ExtResource("1_vhibn")
-script = ExtResource("2_r3gf4")
