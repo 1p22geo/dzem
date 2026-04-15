@@ -7,3 +7,4 @@ class_name TowerType
 @export var damage: float
 @export var name:String
 @export var cost: int = 0
+@export var range: int
