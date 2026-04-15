@@ -7,7 +7,7 @@ var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
 
-@onready var projectile_scene:PackedScene = load("res://scenes/Projectile.tscn")
+@onready var projectile_scene:PackedScene = load("res://scenes/entities/Projectile.tscn")
 
 func _ready() -> void:
 	var scene_root := get_tree().current_scene

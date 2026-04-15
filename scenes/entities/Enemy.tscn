@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://u7gpcslf1xmy"]
+[gd_scene format=3 uid="uid://cohiqpndtgam"]
 
 [ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="2_55jtl"]
 [ext_resource type="Script" uid="uid://b3ejha5yyosj8" path="res://scripts/core/Enemy.gd" id="2_mpr68"]

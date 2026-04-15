@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Spawner
 
-@export var enemy_template: PackedScene = preload("res://scenes/Enemy.tscn")
+@export var enemy_template: PackedScene = preload("res://scenes/entities/Enemy.tscn")
 
 var tile_map: TileMapManager
 var base_position: Vector2
