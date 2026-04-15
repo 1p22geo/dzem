@@ -10,13 +10,14 @@ var hp: float
 var path: PackedVector2Array
 var path_index: int = 0
 var distance: float = 0.0
-
+var damage: float
 
 func _ready() -> void:
 	add_to_group("enemies")
 	if type != null:
 		$Sprite2D.texture = type.texture
 		hp = type.health
+		damage = type.damage
 
 
 func _process(delta: float) -> void:
@@ -26,6 +27,7 @@ func _process(delta: float) -> void:
 
 	if path.is_empty() or path_index >= path.size():
 		reached_base.emit(self)
+		GameManager.take_damage(damage)
 		queue_free()
 		return
 

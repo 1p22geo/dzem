@@ -19,15 +19,15 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/core/GameManager.gd"
 
-[physics]
-
-3d/physics_engine="Jolt Physics"
-
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1344
 window/stretch/mode="canvas_items"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
 
 [rendering]
 

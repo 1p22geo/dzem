@@ -11,7 +11,6 @@ func _ready() -> void:
 	for child in get_children():
 		if child is State:
 			child.Change.connect(_on_state_change)
-			print(child.name)
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state
@@ -31,8 +30,6 @@ func _on_state_change(from_state: State, new_state_name: String) -> void:
 	if from_state != current_state:
 		return
 	var new_state = get_node(new_state_name)
-	for c in get_children():
-		print(c)
 	if new_state == null or not new_state is State:
 		push_warning("StateMachine: state '%s' not found" % new_state_name)
 		return

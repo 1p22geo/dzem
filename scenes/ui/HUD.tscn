@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://co27h8gocrjrx"]
+
+[ext_resource type="Script" uid="uid://bfqkor1t4655e" path="res://scripts/ui/HUD.gd" id="1_hud"]
+
+[node name="HUD" type="PanelContainer" unique_id=1844565930]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -256.0
+offset_bottom = 72.0
+grow_horizontal = 2
+script = ExtResource("1_hud")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1700770666]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBox" type="HBoxContainer" parent="Margin" unique_id=1269631730]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HPSection" type="HBoxContainer" parent="Margin/HBox" unique_id=991926287]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HPIcon" type="Label" parent="Margin/HBox/HPSection" unique_id=921644706]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "HP:"
+
+[node name="HPBar" type="ProgressBar" parent="Margin/HBox/HPSection" unique_id=1978877646]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="Margin/HBox/HPSection" unique_id=848142582]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100 / 100"
+
+[node name="Sep1" type="VSeparator" parent="Margin/HBox" unique_id=137299901]
+layout_mode = 2
+
+[node name="ScalesSection" type="HBoxContainer" parent="Margin/HBox" unique_id=2049241873]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ScalesIcon" type="Label" parent="Margin/HBox/ScalesSection" unique_id=1062753677]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Luski:"
+
+[node name="ScalesLabel" type="Label" parent="Margin/HBox/ScalesSection" unique_id=219407483]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "100"
+
+[node name="Sep2" type="VSeparator" parent="Margin/HBox" unique_id=1968029691]
+layout_mode = 2
+
+[node name="WaveSection" type="HBoxContainer" parent="Margin/HBox" unique_id=1669713449]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="WaveIcon" type="Label" parent="Margin/HBox/WaveSection" unique_id=1204270744]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Fala:"
+
+[node name="WaveLabel" type="Label" parent="Margin/HBox/WaveSection" unique_id=1202222962]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "0 / 0"

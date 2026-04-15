@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://hi1s78l0h0a8"]
 
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
-[ext_resource type="PackedScene" uid="uid://ny51v2wqin1y" path="res://scenes/tiles/Platform.tscn" id="2_cnp4h"]
 [ext_resource type="Resource" uid="uid://djyhip8ve1kmi" path="res://resources/tower_defs/TestTower.tres" id="2_ry3nc"]
 [ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/tiles/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
@@ -12,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://4bb63vmhec1p" path="res://assets/tilemap.png" id="11_swakq"]
 [ext_resource type="Script" uid="uid://pgokkntkoywb" path="res://scripts/tiles/TileMapManager.gd" id="12_tilmgr"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TowerContextMenu.tscn" id="13_ctxmenu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="14_hud"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a2ovr"]
 texture = ExtResource("11_swakq")
@@ -98,26 +98,14 @@ waveDefs = ExtResource("3_u1mbr")
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=442033062]
 layer = 10
 
-[node name="LeftPanel" type="PanelContainer" parent="UILayer" unique_id=548046230]
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 256.0
-grow_vertical = 2
-
-[node name="VBox" type="VBoxContainer" parent="UILayer/LeftPanel" unique_id=730784799]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="UILayer/LeftPanel/VBox" unique_id=1754081154]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Sklep / Postac"
-horizontal_alignment = 1
+[node name="HUD" parent="UILayer" instance=ExtResource("14_hud")]
 
 [node name="RightPanel" type="PanelContainer" parent="UILayer" unique_id=2018495252]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 72.0
 offset_left = -256.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -147,11 +135,6 @@ tile_set = SubResource("TileSet_716mq")
 script = ExtResource("12_tilmgr")
 
 [node name="tiles" type="Node2D" parent="." unique_id=2032513428]
-
-[node name="Platform" parent="tiles" unique_id=1084195734 instance=ExtResource("2_cnp4h")]
-top_level = true
-position = Vector2(739, 688)
-tower = ExtResource("2_ry3nc")
 
 [node name="Spawner" parent="tiles" unique_id=1579113028 instance=ExtResource("3_nuvw0")]
 position = Vector2(230, 418)
