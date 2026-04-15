@@ -7,7 +7,7 @@ var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
 
-@onready var projectile:PackedScene = load("res://scenes/Projectile.tscn")
+@onready var projectile_scene:PackedScene = load("res://scenes/Projectile.tscn")
 
 func _ready() -> void:
 	controller = get_parent().get_parent().get_parent().get_node("EnemyController")
@@ -23,40 +23,37 @@ func _process(delta: float) -> void:
 
 func FindClosestEnemyToAttack() -> Enemy:
 	if tower:
-		var closestEnemy: Enemy;
-		var x_pos = tower_sprite.position.x
-		var y_pos = tower_sprite.position.y
+		var closestEnemy: Enemy
+		var tower_pos := tower_sprite.global_position
 		var min_diff = 10000000
 		for enemy in controller.activeEnemies:
-			var x_pos_enemy = enemy.position.x
-			var y_pos_enemy = enemy.position.y
-		
-			var x_diff = abs(x_pos - x_pos_enemy)
-			var y_diff = abs(y_pos - y_pos_enemy)
+			if not is_instance_valid(enemy):
+				continue
+			if enemy.hp <= 0:
+				continue
+
+			var diff = tower_pos.distance_to(enemy.global_position)
 			
-			var diff = sqrt(x_diff*x_diff + y_diff*y_diff)
-			
-			if diff < min_diff && diff <= tower.range:
+			if diff < min_diff && diff <= tower.attackRange:
 				min_diff = diff
 				closestEnemy = enemy
-		if (controller.activeEnemies.size() > 0):
-			print("enemy found")
-			return closestEnemy
-		else:
-			return null
+		return closestEnemy
 	return null
 		
 func AttackEnemy(enemy:Enemy) -> void:
 	if tower:
 		if enemy == null:
 			return
+		if not is_instance_valid(enemy):
+			return
+		if enemy.hp <= 0:
+			return
 			
-		var projectile:Projectile = projectile.instantiate()
-		projectile.damage = tower.damage
-		projectile.speed = tower.projectile_speed
-		projectile.target = enemy
-		projectile.get_node("Sprite2D").texture = tower.projectile_texture
-		projectile.global_position = global_position
-		projectile.z_index = 1
-		get_parent().get_parent().get_parent().add_child(projectile)
-		print("projectile launched")
+		var spawned_projectile:Projectile = projectile_scene.instantiate()
+		spawned_projectile.damage = tower.damage
+		spawned_projectile.speed = tower.projectile_speed
+		spawned_projectile.target = enemy
+		spawned_projectile.get_node("Sprite2D").texture = tower.projectile_texture
+		spawned_projectile.global_position = global_position
+		spawned_projectile.z_index = 1
+		get_parent().get_parent().get_parent().add_child(spawned_projectile)

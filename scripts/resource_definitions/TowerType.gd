@@ -9,5 +9,5 @@ class_name TowerType
 @export var damage: float
 @export var name:String
 @export var cost: int
-@export var range: int
+@export var attackRange: int
 @export var fire_delay: float
