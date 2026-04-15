@@ -2,26 +2,28 @@ extends Node2D
 
 class_name Enemy
 
-@export var type:EnemyType
+@export var type: EnemyType
 
 signal reached_base(enemy: Enemy)
-var hp:float;
+var hp: float
 
-var current_tile:Road
+var path: PackedVector2Array
+var path_index: int = 0
+var distance: float = 0.0
 
-var target: Node2D
-var distance = 0;
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if type != null:
 		$Sprite2D.texture = type.texture
-		hp = type.health;
-		
+		hp = type.health
+
 
 func _process(delta: float) -> void:
-	target = current_tile.next
-	if target == null:
+	if hp <= 0:
+		queue_free()
+		return
+
+	if path.is_empty() or path_index >= path.size():
 		reached_base.emit(self)
 		queue_free()
 		return
@@ -30,12 +32,11 @@ func _process(delta: float) -> void:
 	if type != null:
 		speed = type.speed
 
-	global_position = global_position.move_toward(target.global_position, speed * delta)
-	distance += speed+delta
+	var target_pos := path[path_index]
+	global_position = global_position.move_toward(
+		target_pos, speed * delta
+	)
+	distance += speed * delta
 
-	if global_position.distance_to(target.global_position) <= 4.0:
-		current_tile = target
-		
-	if hp <= 0:
-		queue_free()
-		print("enemy killed")
+	if global_position.distance_to(target_pos) <= 4.0:
+		path_index += 1

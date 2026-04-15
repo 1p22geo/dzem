@@ -1,14 +1,8 @@
-extends Road
-
+extends Node2D
+class_name Base
 
 var enemies: Array[Enemy] = []
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("base")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass

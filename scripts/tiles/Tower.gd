@@ -10,7 +10,10 @@ var timer = 0
 @onready var projectile_scene:PackedScene = load("res://scenes/Projectile.tscn")
 
 func _ready() -> void:
-	controller = get_parent().get_parent().get_parent().get_node("EnemyController")
+	var scene_root := get_tree().current_scene
+	controller = scene_root.find_child(
+		"EnemyController", true, false
+	) as EnemyController
 	tower_sprite = get_node("TowerSprite")
 
 

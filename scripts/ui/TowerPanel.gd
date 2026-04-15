@@ -16,7 +16,8 @@ func _build_tower_buttons() -> void:
 	var list: VBoxContainer = %TowerList
 	for tower_type in tower_types:
 		var btn = Button.new()
-		btn.custom_minimum_size = Vector2(0, 60)
+		btn.custom_minimum_size = Vector2(0, 100)
+		btn.add_theme_font_size_override("font_size", 24)
 		btn.text = "%s\n%d łusek" % [tower_type.name, tower_type.cost]
 		btn.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		if tower_type.texture:
@@ -56,7 +57,9 @@ func _on_scales_changed(_new_scales: int) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
+	if event is InputEventMouseButton \
+		and event.button_index == MOUSE_BUTTON_RIGHT \
+		and event.is_pressed():
 		if GameManager.selected_tower:
 			GameManager.deselect_tower()
 			get_viewport().set_input_as_handled()
