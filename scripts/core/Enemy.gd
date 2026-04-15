@@ -13,6 +13,7 @@ var distance: float = 0.0
 
 
 func _ready() -> void:
+	add_to_group("enemies")
 	if type != null:
 		$Sprite2D.texture = type.texture
 		hp = type.health

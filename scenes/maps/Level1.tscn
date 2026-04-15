@@ -89,6 +89,31 @@ sources/1 = SubResource("TileSetAtlasSource_a2ovr")
 
 [node name="Level1" type="Node2D" unique_id=2039127057]
 
+[node name="tiles" type="Node2D" parent="." unique_id=2032513428]
+
+[node name="Platform" parent="tiles" unique_id=1084195734 instance=ExtResource("2_cnp4h")]
+top_level = true
+position = Vector2(853, 211)
+tower = ExtResource("2_ry3nc")
+
+[node name="Spawner" parent="tiles" unique_id=1579113028 node_paths=PackedStringArray("next") instance=ExtResource("3_nuvw0")]
+next = NodePath("../Road")
+
+[node name="Base" parent="tiles" unique_id=674030061 instance=ExtResource("8_ydmy2")]
+position = Vector2(250, 250)
+
+[node name="Road" parent="tiles" unique_id=1564369831 node_paths=PackedStringArray("next") instance=ExtResource("5_l2ejl")]
+position = Vector2(0, 125)
+next = NodePath("../Road2")
+
+[node name="Road2" parent="tiles" unique_id=2083991129 node_paths=PackedStringArray("next") instance=ExtResource("5_l2ejl")]
+position = Vector2(0, 250)
+next = NodePath("../Road3")
+
+[node name="Road3" parent="tiles" unique_id=1106805475 node_paths=PackedStringArray("next") instance=ExtResource("5_l2ejl")]
+position = Vector2(125, 250)
+next = NodePath("../Base")
+
 [node name="EnemyController" type="Node" parent="." unique_id=1550518633 node_paths=PackedStringArray("spawner")]
 unique_name_in_owner = true
 script = ExtResource("2_80hdt")
