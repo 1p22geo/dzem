@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
 [ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
+[ext_resource type="Resource" uid="uid://scxxwlbcc0d8" path="res://resources/level_defs/Level1Waves.tres" id="3_u1mbr"]
 
 [node name="Level1" type="Node2D" unique_id=2039127057]
 
@@ -23,6 +24,7 @@ position = Vector2(125, 0)
 [node name="EnemyController" type="Node" parent="." unique_id=1550518633]
 unique_name_in_owner = true
 script = ExtResource("2_80hdt")
+waveDefs = ExtResource("3_u1mbr")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=679574837]
 layer = 10
