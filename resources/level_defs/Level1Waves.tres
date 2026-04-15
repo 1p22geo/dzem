@@ -7,6 +7,6 @@
 [resource]
 script = ExtResource("1_vtv8u")
 waves = Array[ExtResource("2_xys1k")]([ExtResource("3_tcwmm"), ExtResource("3_tcwmm")])
-preparation_time = 4.0
+preparation_time = 1.0
 initial_coins = 100
 metadata/_custom_type_script = "uid://b8hytavd0u53f"
