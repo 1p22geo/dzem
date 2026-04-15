@@ -16,4 +16,6 @@ func Enter() -> void:
 func Update(delta: float) -> void:
 	timer -= delta
 	if timer <= 0.0:
+		timer = 0.0
 		Change.emit(self, "WaitingForWaveState")
+		return
