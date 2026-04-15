@@ -8,4 +8,6 @@ script = ExtResource("1_1utgd")
 texture = ExtResource("2_vfune")
 speed = 1.0
 name = "Test Enemy"
+health = 1.0
+damage = 1.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

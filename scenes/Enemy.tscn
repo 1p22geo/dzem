@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cohiqpndtgam"]
 
+[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="2_55jtl"]
 [ext_resource type="Script" uid="uid://b3ejha5yyosj8" path="res://scripts/core/Enemy.gd" id="2_mpr68"]
 
 [node name="Enemy" type="Node2D" unique_id=359241579]
 script = ExtResource("2_mpr68")
+type = ExtResource("2_55jtl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1988892969]
 scale = Vector2(0.5, 0.5)
