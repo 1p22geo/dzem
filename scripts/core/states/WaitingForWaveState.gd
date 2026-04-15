@@ -10,6 +10,7 @@ func _ready() -> void:
 
 
 func Enter() -> void:
+	print("state")
 	var wave: Wave = controller.waveDefs.waves[controller.wave_no]
 	timer = wave.start_delay
 
