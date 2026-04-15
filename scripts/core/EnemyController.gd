@@ -1,5 +1,7 @@
 extends Node
 
+class_name EnemyController
+
 @export var spawner: Spawner
 @export var waveDefs: Waves
 
@@ -9,6 +11,8 @@ var enemies_spawned: int = 0
 var state: StateMachine
 
 var activeEnemies:Array[Enemy] = []
+
+
 
 func prepare_states() -> void:
 	var sm = StateMachine.new()
@@ -33,3 +37,4 @@ func prepare_states() -> void:
 
 func _ready() -> void:
 	prepare_states()
+	
