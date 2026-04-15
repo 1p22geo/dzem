@@ -11,7 +11,6 @@ func _process(_delta: float) -> void:
 	pass
 
 
-# Called when the node enters the scene tree for the first time.
-func _input(event):
-	if event is InputEventMouseButton and event.is_pressed():
-		print(event)
+#func _input(event):
+#	if event is InputEventMouseButton and event.is_pressed():
+#		print(event)

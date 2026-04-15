@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://hi1s78l0h0a8"]
 
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
-[ext_resource type="PackedScene" uid="uid://ny51v2wqin1y" path="res://scenes/Platform.tscn" id="2_cnp4h"]
+[ext_resource type="PackedScene" uid="uid://ny51v2wqin1y" path="res://scenes/tiles/Platform.tscn" id="2_cnp4h"]
 [ext_resource type="Resource" uid="uid://djyhip8ve1kmi" path="res://resources/tower_defs/TestTower.tres" id="2_ry3nc"]
-[ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/Spawner.tscn" id="3_nuvw0"]
+[ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/tiles/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
 [ext_resource type="Resource" uid="uid://scxxwlbcc0d8" path="res://resources/level_defs/Level1Waves.tres" id="3_u1mbr"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TowerPanel.tscn" id="4_tower"]
-[ext_resource type="PackedScene" uid="uid://bpau7tcvfigcc" path="res://scenes/Road.tscn" id="5_l2ejl"]
-[ext_resource type="PackedScene" uid="uid://ktgw261ix4om" path="res://scenes/Base.tscn" id="8_ydmy2"]
+[ext_resource type="PackedScene" uid="uid://bpau7tcvfigcc" path="res://scenes/tiles/Road.tscn" id="5_l2ejl"]
+[ext_resource type="PackedScene" uid="uid://ktgw261ix4om" path="res://scenes/tiles/Base.tscn" id="8_ydmy2"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="9_l2ejl"]
 
 [node name="Level1" type="Node2D" unique_id=2039127057]
