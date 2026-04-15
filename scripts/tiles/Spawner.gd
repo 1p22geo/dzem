@@ -26,6 +26,7 @@ func spawn_enemy(enemy: EnemyType) -> Enemy:
 		return null
 
 	child.type = enemy
+	child.current_tile = self
 	get_parent().get_parent().add_child(child)
 	child.global_position = global_position
 	return child
