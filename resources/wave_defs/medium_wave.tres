@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="Wave" format=3 uid="uid://dkcv3whmf77pa"]
+[gd_resource type="Resource" script_class="Wave" format=3 uid="uid://dkcv3wh02lp5"]
 
-[ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/FastEnemy.tres" id="1_lud0q"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="1_lud0q"]
 [ext_resource type="Script" uid="uid://l6lxydt36pwr" path="res://scripts/resource_definitions/Wave.gd" id="1_yu6i6"]
 
 [resource]
 script = ExtResource("1_yu6i6")
-start_delay = 1.0
+start_delay = 2.0
 enemy_type = ExtResource("1_lud0q")
 delay_between_enemies = 0.5
 enemy_count = 10
