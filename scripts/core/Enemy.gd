@@ -35,6 +35,9 @@ func _process(delta: float) -> void:
 	if global_position.distance_to(target.global_position) <= 4.0:
 		reached_base.emit(self)
 		queue_free()
+	if hp <= 0:
+		queue_free()
+		print("enemy killed")
 
 
 func _find_base() -> Node2D:
