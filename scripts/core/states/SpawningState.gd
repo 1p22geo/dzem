@@ -21,11 +21,18 @@ func Update(delta: float) -> void:
 		return
 	timer = 0.0
 
+	if controller.spawner == null:
+		push_warning("SpawningState: controller.spawner is null")
+		return
+
+	if controller.wave_no >= controller.waveDefs.waves.size():
+		return
+
 	var wave: Wave = controller.waveDefs.waves[controller.wave_no]
 
 	if controller.enemies_spawned < wave.enemy_count:
-		print(controller.spawner)
-		controller.spawner.spawn_enemy(wave.enemy_type)
+		var enemy = controller.spawner.spawn_enemy(wave.enemy_type)
+		controller.register_enemy(enemy)
 		controller.enemies_spawned += 1
 		timer = wave.delay_between_enemies
 	else:

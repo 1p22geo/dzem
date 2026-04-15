@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 func _on_state_change(from_state: State, new_state_name: String) -> void:
 	if from_state != current_state:
 		return
+
 	var new_state = get_node(new_state_name)
 	for c in get_children():
 		print(c)

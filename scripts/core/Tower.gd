@@ -12,7 +12,6 @@ func _ready() -> void:
 	tower_sprite = get_node("TowerSprite")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var closestEnemy:Enemy = FindClosestEnemyToAttack()
 	AttackEnemy(closestEnemy)
@@ -46,4 +45,4 @@ func AttackEnemy(enemy:Enemy) -> void:
 	if tower:
 		if enemy == null:
 			return 
-		enemy.hp -= tower.demage
+		enemy.hp -= tower.damage

@@ -36,5 +36,21 @@ func prepare_states() -> void:
 
 
 func _ready() -> void:
+	if spawner == null:
+		var scene_root := get_tree().current_scene
+		if scene_root != null:
+			spawner = scene_root.find_child("Spawner", true, false) as Spawner
+
 	prepare_states()
-	
+
+
+func register_enemy(enemy: Enemy) -> void:
+	if enemy == null:
+		return
+
+	activeEnemies.append(enemy)
+	enemy.tree_exited.connect(_on_enemy_removed.bind(enemy))
+
+
+func _on_enemy_removed(enemy: Enemy) -> void:
+	activeEnemies.erase(enemy)
