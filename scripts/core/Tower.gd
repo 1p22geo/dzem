@@ -45,4 +45,4 @@ func AttackEnemy(enemy:Enemy) -> void:
 	if tower:
 		if enemy == null:
 			return 
-		enemy.hp -= tower.demage
+		enemy.hp -= tower.damage
