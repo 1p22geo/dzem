@@ -1,4 +1,5 @@
 extends Tile
+class_name Platform
 
 @export var tower:TowerType
 

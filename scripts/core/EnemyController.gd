@@ -10,6 +10,8 @@ var state: StateMachine
 
 var activeEnemies:Array[Enemy] = []
 
+
+
 func prepare_states() -> void:
 	var sm = StateMachine.new()
 	sm.name = "StateMachine"
@@ -33,3 +35,4 @@ func prepare_states() -> void:
 
 func _ready() -> void:
 	prepare_states()
+	

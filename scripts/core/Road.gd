@@ -1,8 +1,6 @@
-extends Road
+extends Tile
 
-
-var enemies: Array[Enemy] = []
-
+class_name Road
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
