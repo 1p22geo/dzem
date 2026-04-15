@@ -8,4 +8,5 @@ script = ExtResource("1_yu6i6")
 start_delay = 12.0
 enemy_type = ExtResource("1_lud0q")
 delay_between_enemies = 0.5
+enemy_count = 10
 metadata/_custom_type_script = "uid://l6lxydt36pwr"
