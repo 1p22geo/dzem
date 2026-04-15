@@ -11,7 +11,6 @@ func _ready() -> void:
 
 func Enter() -> void:
 	timer = controller.waveDefs.preparation_time
-	print(timer)
 
 func Update(delta: float) -> void:
 	timer -= delta

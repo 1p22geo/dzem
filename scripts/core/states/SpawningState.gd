@@ -24,7 +24,6 @@ func Update(delta: float) -> void:
 	var wave: Wave = controller.waveDefs.waves[controller.wave_no]
 
 	if controller.enemies_spawned < wave.enemy_count:
-		print(controller.spawner)
 		controller.spawner.spawn_enemy(wave.enemy_type)
 		controller.enemies_spawned += 1
 		timer = wave.delay_between_enemies
