@@ -11,8 +11,12 @@ var wave_no = 0;
 func _ready() -> void:
 	pass # Replace with function body.
 
+func should_wave_begin() -> bool:
+	var next_wave_time = waveDefs.preparation_time
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	time += delta
+	
 	
