@@ -7,7 +7,7 @@ var controller:EnemyController;
 var tower_sprite:Sprite2D;
 
 func _ready() -> void:
-	controller = get_parent().get_parent().get_node("EnemyController")
+	controller = get_parent().get_parent().get_parent().get_node("EnemyController")
 	tower_sprite = get_node("TowerSprite")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
