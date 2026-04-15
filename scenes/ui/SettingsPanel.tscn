@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dwsni7gitwbbw"]
+
+[ext_resource type="Script" uid="uid://hq8vjtl1fbkr" path="res://scripts/ui/SettingsPanel.gd" id="1_settings"]
+
+[node name="SettingsPanel" type="PanelContainer" unique_id=1537091076]
+script = ExtResource("1_settings")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2069639949]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=719655840]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SettingsTitle" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1713258518]
+layout_mode = 2
+text = "Ustawienia"
+horizontal_alignment = 1
+
+[node name="VolumeBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1480758592]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/VolumeBox" unique_id=1423171615]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Głośność"
+
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VolumeBox" unique_id=114005897]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="FullscreenBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=307932961]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="MarginContainer/VBoxContainer/FullscreenBox" unique_id=425566207]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Pełny ekran"
+
+[node name="FullscreenCheck" type="CheckButton" parent="MarginContainer/VBoxContainer/FullscreenBox" unique_id=1985132395]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=613223226]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Wróć"

@@ -18,6 +18,7 @@ func Update(delta: float) -> void:
 	timer -= delta
 	if timer > 0.0:
 		return
+	timer = 0.0
 
 	var wave: Wave = controller.waveDefs.waves[controller.wave_no]
 
@@ -29,3 +30,4 @@ func Update(delta: float) -> void:
 		controller.wave_no += 1
 		if controller.wave_no < controller.waveDefs.waves.size():
 			Change.emit(self, "WaitingForWaveState")
+			return
