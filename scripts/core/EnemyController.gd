@@ -1,6 +1,7 @@
 extends Node
 
 @export var spawner:Spawner;
+@export var waveDefs: Waves;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
