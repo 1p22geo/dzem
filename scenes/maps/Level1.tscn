@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://hi1s78l0h0a8"]
 
-[ext_resource type="PackedScene" uid="uid://bryc7pjhy46bq" path="res://scenes/Tile.tscn" id="1_ctvf8"]
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
-[ext_resource type="PackedScene" uid="uid://ny51v2wqin1y" path="res://scenes/Platform.tscn" id="2_cnp4h"]
+[ext_resource type="PackedScene" uid="uid://ny51v2wqin1y" path="res://scenes/tiles/Platform.tscn" id="2_cnp4h"]
 [ext_resource type="Resource" uid="uid://djyhip8ve1kmi" path="res://resources/tower_defs/TestTower.tres" id="2_ry3nc"]
-[ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/Spawner.tscn" id="3_nuvw0"]
+[ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/tiles/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
 [ext_resource type="Resource" uid="uid://scxxwlbcc0d8" path="res://resources/level_defs/Level1Waves.tres" id="3_u1mbr"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TowerPanel.tscn" id="4_tower"]
-[ext_resource type="PackedScene" uid="uid://ktgw261ix4om" path="res://scenes/Base.tscn" id="8_ydmy2"]
+[ext_resource type="PackedScene" uid="uid://bpau7tcvfigcc" path="res://scenes/tiles/Road.tscn" id="5_l2ejl"]
+[ext_resource type="PackedScene" uid="uid://ktgw261ix4om" path="res://scenes/tiles/Base.tscn" id="8_ydmy2"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="9_l2ejl"]
 [ext_resource type="Texture2D" uid="uid://4bb63vmhec1p" path="res://assets/tilemap.png" id="11_swakq"]
 
@@ -60,15 +60,27 @@ sources/1 = SubResource("TileSetAtlasSource_a2ovr")
 visible = false
 
 [node name="Platform" parent="tiles" unique_id=1084195734 instance=ExtResource("2_cnp4h")]
+top_level = true
+position = Vector2(125, 0)
 tower = ExtResource("2_ry3nc")
 
-[node name="Tile2" parent="tiles" unique_id=1954980730 instance=ExtResource("1_ctvf8")]
-position = Vector2(0, 125)
-
-[node name="Spawner" parent="tiles" unique_id=1579113028 instance=ExtResource("3_nuvw0")]
+[node name="Spawner" parent="tiles" unique_id=1579113028 node_paths=PackedStringArray("next") instance=ExtResource("3_nuvw0")]
+next = NodePath("../Road")
 
 [node name="Base" parent="tiles" unique_id=674030061 instance=ExtResource("8_ydmy2")]
-position = Vector2(125, 125)
+position = Vector2(250, 250)
+
+[node name="Road" parent="tiles" unique_id=1564369831 node_paths=PackedStringArray("next") instance=ExtResource("5_l2ejl")]
+position = Vector2(0, 125)
+next = NodePath("../Road2")
+
+[node name="Road2" parent="tiles" unique_id=2083991129 node_paths=PackedStringArray("next") instance=ExtResource("5_l2ejl")]
+position = Vector2(0, 250)
+next = NodePath("../Road3")
+
+[node name="Road3" parent="tiles" unique_id=1106805475 node_paths=PackedStringArray("next") instance=ExtResource("5_l2ejl")]
+position = Vector2(125, 250)
+next = NodePath("../Base")
 
 [node name="EnemyController" type="Node" parent="." unique_id=1550518633 node_paths=PackedStringArray("spawner")]
 unique_name_in_owner = true

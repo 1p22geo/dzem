@@ -7,7 +7,10 @@ class_name Enemy
 signal reached_base(enemy: Enemy)
 var hp:float;
 
+var current_tile:Road
+
 var target: Node2D
+var distance = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,14 +19,11 @@ func _ready() -> void:
 		hp = type.health;
 		
 
-	target = _find_base()
-	if target == null:
-		push_warning("Enemy: base target not found")
-
-
-
 func _process(delta: float) -> void:
+	target = current_tile.next
 	if target == null:
+		reached_base.emit(self)
+		queue_free()
 		return
 
 	var speed := 0.0
@@ -31,23 +31,11 @@ func _process(delta: float) -> void:
 		speed = type.speed
 
 	global_position = global_position.move_toward(target.global_position, speed * delta)
+	distance += speed+delta
 
 	if global_position.distance_to(target.global_position) <= 4.0:
-		reached_base.emit(self)
+		current_tile = target
+		
+	if hp <= 0:
 		queue_free()
-
-
-func _find_base() -> Node2D:
-	var base_group := get_tree().get_first_node_in_group("base")
-	if base_group is Node2D:
-		return base_group
-
-	var root := get_tree().current_scene
-	if root == null:
-		return null
-
-	var base_node := root.find_child("Base", true, false)
-	if base_node is Node2D:
-		return base_node
-
-	return null
+		print("enemy killed")

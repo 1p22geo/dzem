@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ktgw261ix4om"]
 
-[ext_resource type="Script" uid="uid://wy3051dqhrtx" path="res://scripts/core/Base.gd" id="1_bd46k"]
+[ext_resource type="Script" uid="uid://wy3051dqhrtx" path="res://scripts/tiles/Base.gd" id="1_bd46k"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_j2xnf"]
 
 [node name="Base" type="Node2D" unique_id=674030061]

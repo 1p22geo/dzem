@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cgqpg3bl07ghk"]
+[gd_scene format=3 uid="uid://ny51v2wqin1y"]
 
-[ext_resource type="Script" path="res://scripts/core/Platform.gd" id="1_axdvg"]
-[ext_resource type="Script" path="res://scripts/core/Tower.gd" id="2_motb6"]
+[ext_resource type="Script" uid="uid://dwsi0ikuowv6s" path="res://scripts/tiles/Platform.gd" id="1_axdvg"]
+[ext_resource type="Script" uid="uid://cd232hq41u81b" path="res://scripts/tiles/Tower.gd" id="2_motb6"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_wwpbi"]
 [ext_resource type="Texture2D" uid="uid://dmx1js61dcdpd" path="res://rybak.jpg" id="4_o1scf"]
 
