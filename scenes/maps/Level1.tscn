@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://hi1s78l0h0a8"]
+
+[ext_resource type="PackedScene" uid="uid://bryc7pjhy46bq" path="res://scenes/Tile.tscn" id="1_ctvf8"]
+
+[node name="Level1" type="Node2D" unique_id=2039127057]
+
+[node name="Tile2" parent="." unique_id=1954980730 instance=ExtResource("1_ctvf8")]
+position = Vector2(0, 125)
+
+[node name="Tile" parent="." unique_id=532154126 instance=ExtResource("1_ctvf8")]
+
+[node name="Tile3" parent="." unique_id=1788177838 instance=ExtResource("1_ctvf8")]
+position = Vector2(125, 125)
+
+[node name="Tile4" parent="." unique_id=423888694 instance=ExtResource("1_ctvf8")]
+position = Vector2(125, 0)
