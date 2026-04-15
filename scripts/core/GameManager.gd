@@ -3,6 +3,8 @@ extends Node
 signal hp_changed(new_hp: int)
 signal scales_changed(new_scales: int)
 signal game_over
+signal tower_selected(tower_type: TowerType)
+signal tower_deselected
 
 @export var max_hp: int = 100
 var _hp: int = max_hp
@@ -57,3 +59,16 @@ func spend_scales(amount: int) -> bool:
 
 func can_afford(amount: int) -> bool:
 	return _scales >= amount
+
+
+var selected_tower: TowerType = null
+
+
+func select_tower(tower_type: TowerType) -> void:
+	selected_tower = tower_type
+	tower_selected.emit(tower_type)
+
+
+func deselect_tower() -> void:
+	selected_tower = null
+	tower_deselected.emit()
