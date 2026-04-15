@@ -1,6 +1,7 @@
 extends Node
 class_name State
 
+@warning_ignore("unused_signal")
 signal Change(state: State, new_state_name: String)
 
 func Enter():
