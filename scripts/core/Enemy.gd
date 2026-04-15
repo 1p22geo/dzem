@@ -10,6 +10,7 @@ var hp:float;
 var current_tile:Road
 
 var target: Node2D
+var distance = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +31,7 @@ func _process(delta: float) -> void:
 		speed = type.speed
 
 	global_position = global_position.move_toward(target.global_position, speed * delta)
+	distance += speed+delta
 
 	if global_position.distance_to(target.global_position) <= 4.0:
 		current_tile = target
