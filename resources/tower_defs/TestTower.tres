@@ -1,11 +1,14 @@
 [gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://djyhip8ve1kmi"]
 
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="1_0g120"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_rgt4p"]
 [ext_resource type="Texture2D" uid="uid://dmx1js61dcdpd" path="res://rybak.jpg" id="2_grfkb"]
 
 [resource]
 script = ExtResource("1_0g120")
 texture = ExtResource("2_grfkb")
+projectile_texture = ExtResource("1_rgt4p")
+projectile_speed = 180.0
 damage = 1.0
 name = "Test Tower"
 range = 150

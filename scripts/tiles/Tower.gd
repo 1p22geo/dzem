@@ -7,6 +7,7 @@ var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
 
+@onready var projectile:PackedScene = load("uid://c7tdsm07l0w3v")
 
 func _ready() -> void:
 	controller = get_parent().get_parent().get_parent().get_node("EnemyController")
@@ -48,6 +49,14 @@ func FindClosestEnemyToAttack() -> Enemy:
 func AttackEnemy(enemy:Enemy) -> void:
 	if tower:
 		if enemy == null:
-			return 
-		enemy.hp -= tower.damage
-		print("enemy attacked")
+			return
+			
+		var projectile:Projectile = projectile.instantiate()
+		projectile.damage = tower.damage
+		projectile.speed = tower.projectile_speed
+		projectile.target = enemy
+		projectile.get_node("Sprite2D").texture = tower.projectile_texture
+		projectile.global_position = global_position
+		projectile.z_index = 1
+		get_parent().get_parent().get_parent().add_child(projectile)
+		print("projectile launched")

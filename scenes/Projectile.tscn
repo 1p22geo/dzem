@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c7tdsm07l0w3v"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_dprbf"]
+[ext_resource type="Script" uid="uid://7whumxo5sxb0" path="res://scripts/core/Projectile.gd" id="1_vihyi"]
+
+[node name="Projectile" type="Node2D" unique_id=119001797]
+script = ExtResource("1_vihyi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1327327337]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_dprbf")
