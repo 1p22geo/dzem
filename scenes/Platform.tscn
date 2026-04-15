@@ -1,11 +1,13 @@
-[gd_scene format=3 uid="uid://cgqpg3bl07ghk"]
+[gd_scene format=3 uid="uid://dea3ojoqh712r"]
 
-[ext_resource type="Texture2D" uid="uid://dmx1js61dcdpd" path="res://rybak.jpg" id="1_axdvg"]
+[ext_resource type="Script" uid="uid://dwsi0ikuowv6s" path="res://scripts/core/Platform.gd" id="1_axdvg"]
+[ext_resource type="Script" uid="uid://cd232hq41u81b" path="res://scripts/core/Tower.gd" id="2_motb6"]
 
 [node name="Platform" type="Node2D" unique_id=1084195734]
+script = ExtResource("1_axdvg")
 
 [node name="Tower" type="Node2D" parent="." unique_id=1763446327]
+script = ExtResource("2_motb6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tower" unique_id=1234438872]
 scale = Vector2(0.30327868, 0.19202898)
-texture = ExtResource("1_axdvg")
