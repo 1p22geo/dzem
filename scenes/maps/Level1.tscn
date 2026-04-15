@@ -16,15 +16,17 @@
 [node name="tiles" type="Node2D" parent="." unique_id=2032513428]
 
 [node name="Platform" parent="tiles" unique_id=1084195734 instance=ExtResource("2_cnp4h")]
+position = Vector2(469, 94)
 tower = ExtResource("2_ry3nc")
 
 [node name="Tile2" parent="tiles" unique_id=1954980730 instance=ExtResource("1_ctvf8")]
-position = Vector2(0, 125)
+position = Vector2(559, 329)
 
 [node name="Spawner" parent="tiles" unique_id=1579113028 instance=ExtResource("3_nuvw0")]
+position = Vector2(670, 156)
 
 [node name="Base" parent="tiles" unique_id=674030061 instance=ExtResource("8_ydmy2")]
-position = Vector2(125, 125)
+position = Vector2(228, 204)
 
 [node name="EnemyController" type="Node" parent="." unique_id=1550518633 node_paths=PackedStringArray("spawner")]
 unique_name_in_owner = true
@@ -34,6 +36,7 @@ waveDefs = ExtResource("3_u1mbr")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=442033062]
 layer = 10
+visible = false
 
 [node name="TowerPanel" parent="UILayer" unique_id=1821714899 instance=ExtResource("4_tower")]
 layout_mode = 3
