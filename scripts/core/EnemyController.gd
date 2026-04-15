@@ -1,29 +1,31 @@
 extends Node
 
-@export var spawner:Spawner;
-@export var waveDefs: Waves;
+@export var spawner: Spawner
+@export var waveDefs: Waves
 
-var time:float = 0;
-var wave_time:float = 0;
-var enemy_time:float = 0;
+var wave_no: int = 0
+var enemies_spawned: int = 0
 
-var wave_no = 0;
-var enemies_spawned = 0;
-
-var state : #TODO
+var state: StateMachine
 
 
-
-func progress_waves() -> void:
-	pass
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var sm = StateMachine.new()
+	sm.name = "StateMachine"
 
+	var prep = PreparationState.new()
+	prep.name = "PreparationState"
+	sm.add_child(prep)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	time += delta
-	
-	
+	var waiting = WaitingForWaveState.new()
+	waiting.name = "WaitingForWaveState"
+	sm.add_child(waiting)
+
+	var spawning = SpawningState.new()
+	spawning.name = "SpawningState"
+	sm.add_child(spawning)
+
+	sm.initial_state = prep
+	add_child(sm)
+	state = sm
+

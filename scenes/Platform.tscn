@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dea3ojoqh712r"]
+[gd_scene format=3 uid="uid://ny51v2wqin1y"]
 
 [ext_resource type="Script" uid="uid://dwsi0ikuowv6s" path="res://scripts/core/Platform.gd" id="1_axdvg"]
 [ext_resource type="Script" uid="uid://cd232hq41u81b" path="res://scripts/core/Tower.gd" id="2_motb6"]

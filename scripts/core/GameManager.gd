@@ -4,7 +4,7 @@ signal hp_changed(new_hp: int)
 signal scales_changed(new_scales: int)
 signal game_over
 
-@export var max_hp: int = 20
+@export var max_hp: int = 100
 var _hp: int = max_hp
 var _scales: int = 100
 
