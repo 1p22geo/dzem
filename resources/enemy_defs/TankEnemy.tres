@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource("1_1utgd")
 texture = ExtResource("2_vfune")
-speed = 50.0
-name = "Tank Enemy"
-health = 3.0
-damage = 0.8
+speed = 0.4
+name = "Sum"
+health = 250.0
+armor = 0.0
+prize = 50
+damage = 2.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

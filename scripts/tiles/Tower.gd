@@ -8,20 +8,20 @@ var tower_sprite:Sprite2D;
 var timer = 0
 var selected: bool = false
 
-@onready var projectile_scene:PackedScene = load("res://scenes/entities/Projectile.tscn")
+@onready var projectile_scene:PackedScene = load("res://scenes/Projectile.tscn")
 
 func _ready() -> void:
 	var scene_root := get_tree().current_scene
-	controller = scene_root.find_child(
-		"EnemyController", true, false
-	) as EnemyController
-	tower_sprite = get_node("TowerSprite")
-	GameManager.placed_tower_selected.connect(
-		_on_placed_tower_selected
-	)
-	GameManager.placed_tower_deselected.connect(
-		_on_placed_tower_deselected
-	)
+	if scene_root != null:
+		controller = scene_root.find_child(
+			"EnemyController", true, false
+		) as EnemyController
+	if has_node("TowerSprite"):
+		tower_sprite = get_node("TowerSprite")
+	if not GameManager.placed_tower_selected.is_connected(_on_placed_tower_selected):
+		GameManager.placed_tower_selected.connect(_on_placed_tower_selected)
+	if not GameManager.placed_tower_deselected.is_connected(_on_placed_tower_deselected):
+		GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
 
 
 func _on_placed_tower_selected(t: Node2D) -> void:
@@ -46,6 +46,8 @@ func _draw() -> void:
 
 
 func _process(delta: float) -> void:
+	if tower == null or controller == null or tower_sprite == null:
+		return
 	timer+=delta
 	if timer > tower.fire_delay: 
 		timer = 0
@@ -53,7 +55,7 @@ func _process(delta: float) -> void:
 		AttackEnemy(closestEnemy)
 
 func FindClosestEnemyToAttack() -> Enemy:
-	if tower:
+	if tower and controller:
 		var closestEnemy: Enemy
 		var tower_pos := tower_sprite.global_position
 		var min_diff = 10000000
@@ -78,6 +80,9 @@ func AttackEnemy(enemy:Enemy) -> void:
 		if not is_instance_valid(enemy):
 			return
 		if enemy.hp <= 0:
+			return
+		if projectile_scene == null:
+			push_warning("Tower projectile scene could not be loaded")
 			return
 			
 		var spawned_projectile:Projectile = projectile_scene.instantiate()

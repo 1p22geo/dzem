@@ -31,7 +31,13 @@ func _process(delta: float) -> void:
 		if enemy.hp <= 0:
 			continue
 		if global_position.distance_to(enemy.global_position) <= 4.0:
-			enemy.hp -= damage
+			var enemy_armor: float = 0.0
+			if enemy.type != null:
+				enemy_armor = enemy.type.armor
+			var final_damage: float = damage - enemy_armor
+			if final_damage < 1.0:
+				final_damage = 1.0
+			enemy.hp -= final_damage
 			queue_free()
 			return
 
