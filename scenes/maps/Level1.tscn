@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
 [ext_resource type="Resource" uid="uid://scxxwlbcc0d8" path="res://resources/level_defs/Level1Waves.tres" id="3_u1mbr"]
+[ext_resource type="PackedScene" uid="uid://ktgw261ix4om" path="res://scenes/Base.tscn" id="8_ydmy2"]
 
 [node name="Level1" type="Node2D" unique_id=2039127057]
 
@@ -18,11 +19,11 @@ tower = ExtResource("2_ry3nc")
 [node name="Tile2" parent="tiles" unique_id=1954980730 instance=ExtResource("1_ctvf8")]
 position = Vector2(0, 125)
 
-[node name="Tile3" parent="tiles" unique_id=1788177838 instance=ExtResource("1_ctvf8")]
-position = Vector2(125, 125)
-
-[node name="Tile4" parent="tiles" unique_id=423888694 instance=ExtResource("1_ctvf8")]
+[node name="Spawner" parent="tiles" unique_id=1579113028 instance=ExtResource("3_nuvw0")]
 position = Vector2(125, 0)
+
+[node name="Base" parent="tiles" unique_id=674030061 instance=ExtResource("8_ydmy2")]
+position = Vector2(125, 125)
 
 [node name="EnemyController" type="Node" parent="." unique_id=1550518633]
 unique_name_in_owner = true
@@ -36,7 +37,3 @@ visible = false
 [node name="PauseMenu" parent="UILayer" unique_id=95059361 instance=ExtResource("3_pause")]
 
 [node name="PauseMenu2" parent="UILayer" unique_id=1393244542 instance=ExtResource("3_pause")]
-
-[node name="Spawner" parent="." unique_id=1579113028 instance=ExtResource("3_nuvw0")]
-unique_name_in_owner = true
-position = Vector2(125, 0)

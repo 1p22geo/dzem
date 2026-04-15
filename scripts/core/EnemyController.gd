@@ -28,4 +28,3 @@ func _ready() -> void:
 	sm.initial_state = prep
 	add_child(sm)
 	state = sm
-
