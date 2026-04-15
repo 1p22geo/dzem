@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bryc7pjhy46bq" path="res://scenes/Tile.tscn" id="1_ctvf8"]
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
+[ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/Spawner.tscn" id="3_nuvw0"]
+[ext_resource type="Resource" uid="uid://scxxwlbcc0d8" path="res://resources/level_defs/Level1Waves.tres" id="3_u1mbr"]
 
 [node name="Level1" type="Node2D" unique_id=2039127057]
 
@@ -19,10 +21,16 @@ position = Vector2(125, 125)
 [node name="Tile4" parent="tiles" unique_id=423888694 instance=ExtResource("1_ctvf8")]
 position = Vector2(125, 0)
 
-[node name="EnemyController" type="Node" parent="." unique_id=1550518633]
+[node name="EnemyController" type="Node" parent="." unique_id=1550518633 node_paths=PackedStringArray("spawner")]
+unique_name_in_owner = true
 script = ExtResource("2_80hdt")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 10
 
 [node name="PauseMenu" parent="UILayer" instance=ExtResource("3_pause")]
+spawner = NodePath("../Spawner")
+waveDefs = ExtResource("3_u1mbr")
+
+[node name="Spawner" parent="." unique_id=1579113028 instance=ExtResource("3_nuvw0")]
+unique_name_in_owner = true
