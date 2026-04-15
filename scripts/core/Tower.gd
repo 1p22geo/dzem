@@ -5,14 +5,17 @@ extends Tile
 
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
+var atack_radius: int
 
 func _ready() -> void:
 	controller = get_parent().get_parent().get_parent().get_node("EnemyController")
 	tower_sprite = get_node("TowerSprite")
+	atack_radius = 150
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var closestEnemy:Enemy = FindClosestEnemyToAttack()
+	AttackEnemy(closestEnemy)
 
 func FindClosestEnemyToAttack() -> Enemy:
 	var closestEnemy: Enemy;
@@ -28,14 +31,17 @@ func FindClosestEnemyToAttack() -> Enemy:
 		
 		var diff = sqrt(x_diff*x_diff + y_diff*y_diff)
 		
-		if diff < min_diff:
+		if diff < min_diff && diff <= atack_radius:
 			min_diff = diff
 			closestEnemy = enemy
 	if (controller.activeEnemies.size() > 0):
+		print("enemy found")
 		return closestEnemy
 	else:
 		return null
 		
 func AttackEnemy(enemy:Enemy) -> void:
-	pass
+	if enemy == null:
+		return 
+	enemy.hp -= 10
 	
