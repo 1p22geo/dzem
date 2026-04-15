@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Waves" format=3 uid="uid://scxxwlbcc0d8"]
+
+[ext_resource type="Script" uid="uid://b8hytavd0u53f" path="res://scripts/resource_definitions/Waves.gd" id="1_cqexv"]
+
+[resource]
+script = ExtResource("1_cqexv")
+metadata/_custom_type_script = "uid://b8hytavd0u53f"
