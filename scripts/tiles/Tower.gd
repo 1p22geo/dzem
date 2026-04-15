@@ -7,7 +7,7 @@ var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
 
-@onready var projectile:PackedScene = load("uid://c7tdsm07l0w3v")
+@onready var projectile:PackedScene = load("res://scenes/Projectile.tscn")
 
 func _ready() -> void:
 	controller = get_parent().get_parent().get_parent().get_node("EnemyController")
