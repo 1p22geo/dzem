@@ -1,5 +1,7 @@
 extends Node
 
+class_name EnemyController
+
 @export var spawner: Spawner
 @export var waveDefs: Waves
 

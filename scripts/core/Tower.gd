@@ -2,11 +2,25 @@ extends Tile
 
 @export var tower:TowerType
 
-# Called when the node enters the scene tree for the first time.
+
+var controller:EnemyController;
+
+
 func _ready() -> void:
-	pass # Replace with function body.
+	controller = get_parent().get_parent().get_node("EnemyController")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func FindClosestEnemyToAttack() -> Enemy:
+	var closestEnemy: Enemy;
+	for enemy in controller.activeEnemies:
+		var x_pos = enemy.position.x
+		var y_pos = enemy.position.y
+		var x_diff = abs(x_pos - )
+		
+		
+	return closestEnemy
+	
