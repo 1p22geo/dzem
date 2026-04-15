@@ -6,3 +6,4 @@ class_name Wave
 
 @export var enemy_type: EnemyType;
 @export var delay_between_enemies: float;
+@export var enemy_count: int;

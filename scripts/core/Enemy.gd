@@ -1,10 +1,16 @@
 extends Sprite2D
 
+@export var type:EnemyType
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$Sprite2D.texture = type.texture
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# TODO: chodzenie
+	# TODO: zadawanie damage'a
+	# TODO: odbieranie damage'a
+	# TODO: cała kurwa reszta
+	
 	pass

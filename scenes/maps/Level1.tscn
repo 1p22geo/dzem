@@ -29,6 +29,7 @@ layer = 10
 visible = false
 
 [node name="PauseMenu" parent="UILayer" unique_id=95059361 instance=ExtResource("3_pause")]
+[node name="PauseMenu" parent="UILayer" unique_id=1393244542 instance=ExtResource("3_pause")]
 
 [node name="Spawner" parent="." unique_id=1579113028 instance=ExtResource("3_nuvw0")]
 unique_name_in_owner = true
