@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="9_l2ejl"]
 [ext_resource type="Texture2D" uid="uid://4bb63vmhec1p" path="res://assets/tilemap.png" id="11_swakq"]
 [ext_resource type="Script" uid="uid://pgokkntkoywb" path="res://scripts/tiles/TileMapManager.gd" id="12_tilmgr"]
+[ext_resource type="PackedScene" path="res://scenes/ui/TowerContextMenu.tscn" id="13_ctxmenu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a2ovr"]
 texture = ExtResource("11_swakq")
@@ -134,6 +135,8 @@ horizontal_alignment = 1
 size_flags_vertical = 3
 tower_types = Array[ExtResource("9_l2ejl")]([ExtResource("2_ry3nc")])
 
+[node name="TowerContextMenu" parent="UILayer" unique_id=868620507 instance=ExtResource("13_ctxmenu")]
+
 [node name="PauseMenu" parent="UILayer" unique_id=95059361 instance=ExtResource("3_pause")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=497601702]
@@ -155,4 +158,3 @@ position = Vector2(230, 418)
 
 [node name="Base" parent="tiles" unique_id=674030061 instance=ExtResource("8_ydmy2")]
 position = Vector2(1533, 420)
-

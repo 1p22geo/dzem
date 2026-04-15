@@ -110,22 +110,33 @@ func has_tower(cell: Vector2i) -> bool:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton:
 		return
-	if not event.is_pressed() or event.button_index != MOUSE_BUTTON_LEFT:
+	if not event.is_pressed():
 		return
-	if not GameManager.selected_tower:
+	if event.button_index != MOUSE_BUTTON_LEFT:
 		return
 
 	var mouse_local := to_local(get_global_mouse_position())
 	var cell := local_to_map(mouse_local)
 
-	if not is_platform(cell):
-		return
+	# Click on a placed tower → select it
 	if has_tower(cell):
+		GameManager.select_placed_tower(towers[cell])
+		get_viewport().set_input_as_handled()
 		return
 
-	var selected := GameManager.selected_tower
-	if GameManager.spend_scales(selected.cost):
-		place_tower(cell, selected)
+	# Click elsewhere → deselect placed tower
+	if GameManager.selected_placed_tower:
+		GameManager.deselect_placed_tower()
+
+	# Place a new tower on platform
+	if not GameManager.selected_tower:
+		return
+	if not is_platform(cell):
+		return
+
+	var sel := GameManager.selected_tower
+	if GameManager.spend_scales(sel.cost):
+		place_tower(cell, sel)
 		GameManager.deselect_tower()
 		get_viewport().set_input_as_handled()
 

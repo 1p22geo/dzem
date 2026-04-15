@@ -6,6 +6,7 @@ extends Tile
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
+var selected: bool = false
 
 @onready var projectile_scene:PackedScene = load("res://scenes/entities/Projectile.tscn")
 
@@ -15,6 +16,33 @@ func _ready() -> void:
 		"EnemyController", true, false
 	) as EnemyController
 	tower_sprite = get_node("TowerSprite")
+	GameManager.placed_tower_selected.connect(
+		_on_placed_tower_selected
+	)
+	GameManager.placed_tower_deselected.connect(
+		_on_placed_tower_deselected
+	)
+
+
+func _on_placed_tower_selected(t: Node2D) -> void:
+	selected = (t == self)
+	queue_redraw()
+
+
+func _on_placed_tower_deselected() -> void:
+	selected = false
+	queue_redraw()
+
+
+func _draw() -> void:
+	if not selected or not tower:
+		return
+	var radius := float(tower.attackRange)
+	draw_circle(Vector2.ZERO, radius, Color(0, 0, 0, 0.25))
+	draw_arc(
+		Vector2.ZERO, radius, 0, TAU, 64,
+		Color(1, 1, 1, 0.6), 3.0
+	)
 
 
 func _process(delta: float) -> void:
@@ -59,4 +87,4 @@ func AttackEnemy(enemy:Enemy) -> void:
 		spawned_projectile.get_node("Sprite2D").texture = tower.projectile_texture
 		spawned_projectile.global_position = global_position
 		spawned_projectile.z_index = 1
-		get_parent().get_parent().get_parent().add_child(spawned_projectile)
+		get_tree().current_scene.add_child(spawned_projectile)

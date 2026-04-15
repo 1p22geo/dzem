@@ -5,6 +5,8 @@ signal scales_changed(new_scales: int)
 signal game_over
 signal tower_selected(tower_type: TowerType)
 signal tower_deselected
+signal placed_tower_selected(tower_node: Node2D)
+signal placed_tower_deselected
 
 @export var max_hp: int = 100
 var _hp: int = max_hp
@@ -72,3 +74,21 @@ func select_tower(tower_type: TowerType) -> void:
 func deselect_tower() -> void:
 	selected_tower = null
 	tower_deselected.emit()
+
+
+var selected_placed_tower: Node2D = null
+
+
+func select_placed_tower(tower_node: Node2D) -> void:
+	if selected_placed_tower == tower_node:
+		return
+	deselect_placed_tower()
+	deselect_tower()
+	selected_placed_tower = tower_node
+	placed_tower_selected.emit(tower_node)
+
+
+func deselect_placed_tower() -> void:
+	if selected_placed_tower:
+		selected_placed_tower = null
+		placed_tower_deselected.emit()
