@@ -5,12 +5,20 @@ extends Tile
 
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
-var atack_radius: int
+var range: int
+var cost: int 
+var texture: Texture
+var demage: int
+var tower_name: String
 
 func _ready() -> void:
 	controller = get_parent().get_parent().get_parent().get_node("EnemyController")
 	tower_sprite = get_node("TowerSprite")
-	atack_radius = 150
+	range = tower.range
+	cost = tower.cost
+	demage = tower.demage
+	tower_name = tower.name
+	texture = tower.texture
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -31,7 +39,7 @@ func FindClosestEnemyToAttack() -> Enemy:
 		
 		var diff = sqrt(x_diff*x_diff + y_diff*y_diff)
 		
-		if diff < min_diff && diff <= atack_radius:
+		if diff < min_diff && diff <= range:
 			min_diff = diff
 			closestEnemy = enemy
 	if (controller.activeEnemies.size() > 0):
@@ -43,5 +51,5 @@ func FindClosestEnemyToAttack() -> Enemy:
 func AttackEnemy(enemy:Enemy) -> void:
 	if enemy == null:
 		return 
-	enemy.hp -= 10
+	enemy.hp -= demage
 	
