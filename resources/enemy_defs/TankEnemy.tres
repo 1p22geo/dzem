@@ -9,7 +9,6 @@ texture = ExtResource("2_vfune")
 speed = 0.4
 name = "Sum"
 health = 250.0
-armor = 0.0
 prize = 50
 damage = 2.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

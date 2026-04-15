@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Wave" format=3 uid="uid://dkcv3wh02lp7"]
 
-[ext_resource type="Resource" uid="uid://cgfjljtye8h89" path="res://resources/enemy_defs/StrongEnemy.tres" id="1_lud0q"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8iaa" path="res://resources/enemy_defs/StrongEnemy.tres" id="1_lud0q"]
 [ext_resource type="Script" uid="uid://l6lxydt36pwr" path="res://scripts/resource_definitions/Wave.gd" id="1_yu6i6"]
 
 [resource]
