@@ -1,4 +1,4 @@
-extends Node2D
+extends Tile
 
 class_name Spawner
 
