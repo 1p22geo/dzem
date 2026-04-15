@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://cdoxoajgu1tf8"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_x2oih"]
+[ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_lqr8s"]
+
+[resource]
+script = ExtResource("2_lqr8s")
+projectile_texture = ExtResource("1_x2oih")
+projectile_speed = 150.0
+damage = 1.0
+name = "RangeTower"
+cost = 50
+attackRange = 500
+fire_delay = 1.5
