@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bryc7pjhy46bq" path="res://scenes/Tile.tscn" id="1_ctvf8"]
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
-[ext_resource type="PackedScene" uid="uid://dea3ojoqh712r" path="res://scenes/Platform.tscn" id="2_cnp4h"]
+[ext_resource type="PackedScene" uid="uid://ny51v2wqin1y" path="res://scenes/Platform.tscn" id="2_cnp4h"]
 [ext_resource type="Resource" uid="uid://djyhip8ve1kmi" path="res://resources/tower_defs/TestTower.tres" id="2_ry3nc"]
 [ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]

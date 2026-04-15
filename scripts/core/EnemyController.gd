@@ -8,8 +8,9 @@ var enemies_spawned: int = 0
 
 var state: StateMachine
 
+var activeEnemies:Array[Enemy] = []
 
-func _ready() -> void:
+func prepare_states() -> void:
 	var sm = StateMachine.new()
 	sm.name = "StateMachine"
 
@@ -28,3 +29,7 @@ func _ready() -> void:
 	sm.initial_state = prep
 	add_child(sm)
 	state = sm
+
+
+func _ready() -> void:
+	prepare_states()
