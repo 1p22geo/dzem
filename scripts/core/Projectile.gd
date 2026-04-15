@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		var target_vector := target.global_position - global_position
 		if target_vector != Vector2.ZERO:
 			flight_direction = target_vector.normalized()
-	elif flight_direction == Vector2.ZERO:
+	else:
 		queue_free()
 		return
 
