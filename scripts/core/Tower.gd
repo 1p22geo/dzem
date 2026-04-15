@@ -35,4 +35,7 @@ func FindClosestEnemyToAttack() -> Enemy:
 		return closestEnemy
 	else:
 		return null
+		
+func AttackEnemy(enemy:Enemy) -> void:
+	enemy.hp
 	
