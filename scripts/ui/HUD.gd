@@ -8,6 +8,10 @@ extends Control
 @onready var magic_label: Label = $MagicPanel/MagicRow/MagicLabel
 @onready var magic_purify_button: Button = $MagicPanel/MagicRow/MagicPurifyButton
 @onready var magic_message_label: Label = $MagicMessage
+@onready var success_icon: TextureRect = $MagicPanel/MagicRow/SuccessIcon
+@onready var success_label: Label = $MagicPanel/MagicRow/SuccessLabel
+@onready var rebellion_icon: TextureRect = $MagicPanel/MagicRow/RebellionIcon
+@onready var rebellion_label: Label = $MagicPanel/MagicRow/RebellionLabel
 
 
 var magic_message_time_left: float = 0.0
@@ -23,6 +27,11 @@ func _ready() -> void:
 	flash_rect.color = Color(1, 0, 0, 0) # Start transparent red
 	flash_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(flash_rect)
+
+	if success_icon:
+		success_icon.texture = load("res://assets/icons/h.png")
+	if rebellion_icon:
+		rebellion_icon.texture = load("res://assets/icons/rebelia.png")
 
 	GameManager.hp_changed.connect(_on_hp_changed)
 	GameManager.scales_changed.connect(_on_scales_changed)
@@ -144,22 +153,46 @@ func _update_magic_label() -> void:
 
 	var cd_left := GameManager.get_magic_cooldown_left()
 	var cd_total := GameManager.magic_cooldown
-	var rebellion_percent := int(round(GameManager.get_magic_rebellion_chance() * 100.0))
+	var rebellion_chance := GameManager.get_magic_rebellion_chance()
+	var rebellion_percent := int(round(rebellion_chance * 100.0))
+	var success_percent := 100 - rebellion_percent
 	var freeze_left := GameManager.get_tower_freeze_left()
-	var rebellion_suffix := " | Rebelia: %d%%" % rebellion_percent
-	var purify_suffix := " | R uspokój: %d" % GameManager.get_magic_purify_cost()
+
 	if magic_purify_button:
 		magic_purify_button.disabled = not GameManager.can_purify_magic()
-	if freeze_left > 0.0:
-		rebellion_suffix = " | Wieże stop: %.1fs" % freeze_left
+
+	# Update icon labels
+	if success_label:
+		success_label.text = "%d%%" % success_percent
+	if rebellion_label:
+		rebellion_label.text = "%d%%" % rebellion_percent
+
+	# Tooltips with detailed info
+	var purify_cost := GameManager.get_magic_purify_cost()
+	if success_icon:
+		success_icon.tooltip_text = "Szansa powodzenia magii: %d%%" % success_percent
+	if success_label:
+		success_label.tooltip_text = "Szansa powodzenia magii: %d%%" % success_percent
+	if rebellion_icon:
+		if freeze_left > 0.0:
+			rebellion_icon.tooltip_text = "Wieże zablokowane: %.1fs" % freeze_left
+		else:
+			rebellion_icon.tooltip_text = "Szansa buntu: %d%% | R uspokój: %d łusek" % [rebellion_percent, purify_cost]
+	if rebellion_label:
+		if freeze_left > 0.0:
+			rebellion_label.tooltip_text = "Wieże zablokowane: %.1fs" % freeze_left
+		else:
+			rebellion_label.tooltip_text = "Szansa buntu: %d%% | R uspokój: %d łusek" % [rebellion_percent, purify_cost]
+
+	# Main label - simplified
 	if cd_left > 0.0:
-		magic_label.text = "Q Magia (%d): CD %.1f/%.1fs%s%s" % [GameManager.magic_cost, cd_left, cd_total, rebellion_suffix, purify_suffix]
+		magic_label.text = "Q Magia (%d): CD %.1f/%.1fs" % [GameManager.magic_cost, cd_left, cd_total]
 		magic_label.modulate = Color(0.7, 0.7, 0.9, 1.0)
 	elif GameManager.can_afford(GameManager.magic_cost):
-		magic_label.text = "Q Magia (%d): GOTOWA | CD %.1fs%s%s" % [GameManager.magic_cost, cd_total, rebellion_suffix, purify_suffix]
+		magic_label.text = "Q Magia (%d): GOTOWA" % GameManager.magic_cost
 		magic_label.modulate = Color(0.7, 1.0, 0.85, 1.0)
 	else:
-		magic_label.text = "Q Magia (%d): BRAK LUSEK | CD %.1fs%s%s" % [GameManager.magic_cost, cd_total, rebellion_suffix, purify_suffix]
+		magic_label.text = "Q Magia (%d): BRAK" % GameManager.magic_cost
 		magic_label.modulate = Color(1.0, 0.7, 0.7, 1.0)
 
 func _update_hud() -> void:

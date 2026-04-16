@@ -7,6 +7,7 @@ var current_tower: Node2D = null
 @onready var range_label: Label = $Margin/VBox/RangeLabel
 @onready var damage_label: Label = $Margin/VBox/DamageLabel
 @onready var capacity_label: Label = $Margin/VBox/CapacityLabel
+@onready var total_damage_label: Label = $Margin/VBox/TotalDamageLabel
 @onready var empty_nets_btn: Button = $Margin/VBox/EmptyNetsButton
 @onready var upgrade_list: VBoxContainer = $Margin/VBox/UpgradeList
 @onready var upgrade_label: Label = $Margin/VBox/UpgradeLabel
@@ -57,6 +58,7 @@ func _show(tower_node: Tower) -> void:
 		
 	range_label.text = "Zasieg: %d" % int(current_range)
 	damage_label.text = "Obrazenia: %d" % int(current_damage)
+	total_damage_label.text = "Zadano: %d dmg" % int(tower_node.total_damage_dealt)
 	
 	if tower_node.has_method("get_capacity"):
 		var cap := tower_node.get_capacity()

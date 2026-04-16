@@ -51,8 +51,10 @@ func _process(delta: float) -> void:
 			if final_damage < 1.0:
 				final_damage = 1.0
 			enemy.take_damage(final_damage)
-			if enemy.hp <= 0 and is_instance_valid(parent_tower):
-				parent_tower.on_enemy_killed()
+			if is_instance_valid(parent_tower):
+				parent_tower.total_damage_dealt += final_damage
+				if enemy.hp <= 0:
+					parent_tower.on_enemy_killed()
 			remove_projectile()
 			return
 

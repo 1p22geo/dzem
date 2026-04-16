@@ -25,6 +25,7 @@ var active_projectiles = []
 var applied_upgrades: Array[TowerUpgrade] = []
 var current_capacity: int = 0
 
+var total_damage_dealt: float = 0.0
 var _sweep_alpha: float = 0.0
 var _sweep_dir: Vector2 = Vector2.RIGHT
 var _sweep_half_angle: float = 0.0
@@ -323,6 +324,7 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 				final_damage = 1.0
 			
 			enemy.take_damage(final_damage)
+			total_damage_dealt += final_damage
 			if enemy.hp <= 0:
 				on_enemy_killed()
 			hit_count += 1

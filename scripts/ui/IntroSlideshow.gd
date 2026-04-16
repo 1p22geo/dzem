@@ -134,7 +134,7 @@ func _show_slide(index: int) -> void:
 			rect.texture = tex
 			rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			rect.custom_minimum_size = Vector2(300, 160)
+			rect.custom_minimum_size = Vector2(450, 250)
 			icon_row.add_child(rect)
 	else:
 		icon_row.visible = false
