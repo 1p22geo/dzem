@@ -10,7 +10,6 @@
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_sum"]
 frames = 4
-speed_scale = 0.8
 frame_0/texture = ExtResource("4_f0")
 frame_1/texture = ExtResource("5_f1")
 frame_1/duration = 1.0

@@ -15,7 +15,7 @@
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_weg"]
 frames = 11
-speed_scale = 1.4
+speed_scale = 8.0
 frame_0/texture = ExtResource("2_f0")
 frame_1/texture = ExtResource("3_f1")
 frame_1/duration = 1.0
