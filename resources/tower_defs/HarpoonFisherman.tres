@@ -9,8 +9,8 @@ load_path = "res://.godot/imported/rangedF.png-1d00d5a48ec91efe516318bacfd4e675.
 
 [sub_resource type="Resource" id="SubResource_dmg1"]
 script = ExtResource("3_ow65o")
-name = "Ciężkie strzały"
-description = "Zwiększa obrażenia o 50"
+name = "Większy Harpun"
+description = "Zwiększa obrażenia o 25 i Cappacity o 2"
 cost = 150
 sell_value_bonus = 75
 damage_add = 50.0
@@ -49,7 +49,7 @@ projectile_speed = 1000.0
 damage = 50.0
 name = "Harpoon Angler"
 cost = 250
-attackRange = 352
+attackRange = 384
 fire_delay = 3.0
 max_projectiles = 1
 upgrades = Array[ExtResource("3_ow65o")]([SubResource("SubResource_dmg1"), SubResource("SubResource_dmg2"), SubResource("SubResource_cap1"), SubResource("SubResource_cap2")])
