@@ -69,6 +69,7 @@ func _ready() -> void:
 	_setup_empty_button()
 	
 	audio_stream_player = get_node("AttackAudioFX")
+	audio_stream_player.bus = "SFX"
 	
 	if tower.is_melee:
 		audio_stream_player.stream = meleeAttackAudio
