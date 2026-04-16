@@ -38,19 +38,24 @@ func _process(delta: float) -> void:
 	if _flash_time > 0.0:
 		_flash_time -= delta
 		if _flash_time <= 0.0:
-			$Sprite2D.modulate = Color.WHITE
+			_flash_time = 0.0
+			_update_modulate()
 		else:
 			var t := _flash_time / FLASH_DURATION
 			if t > 0.5:
 				$Sprite2D.modulate = FLASH_COLOR
 			else:
-				$Sprite2D.modulate = FLASH_COLOR.lerp(Color.WHITE, 1.0 - (t * 2.0))
+				var target_color := _get_target_color()
+				$Sprite2D.modulate = FLASH_COLOR.lerp(target_color, 1.0 - (t * 2.0))
 
 	if slow_time_left > 0.0:
 		slow_time_left -= delta
 		if slow_time_left <= 0.0:
 			slow_time_left = 0.0
 			slow_multiplier = 1.0
+			_update_modulate()
+		else:
+			_update_modulate()
 
 	if hp <= 0:
 		if not prize_granted:
@@ -88,6 +93,17 @@ func _process(delta: float) -> void:
 
 	if global_position.distance_to(target_pos) <= 4.0:
 		path_index += 1
+
+
+func _update_modulate() -> void:
+	if _flash_time <= 0.0:
+		$Sprite2D.modulate = _get_target_color()
+
+
+func _get_target_color() -> Color:
+	if slow_time_left > 0.0:
+		return Color(0.6, 0.8, 1.0, 1.0) # Blueish slow tint
+	return Color.WHITE
 
 
 func take_damage(amount: float) -> void:
