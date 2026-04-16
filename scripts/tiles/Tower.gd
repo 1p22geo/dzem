@@ -193,6 +193,12 @@ func FindClosestEnemyToAttack() -> Enemy:
 	return null
 
 
+func on_enemy_killed() -> void:
+	current_capacity = mini(current_capacity + 1, get_capacity())
+	if selected:
+		GameManager.placed_tower_selected.emit(self)
+
+
 func MeleeAttack(target_enemy: Enemy) -> void:
 	if target_enemy == null:
 		return
@@ -229,13 +235,11 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 			var final_damage: float = damage - enemy_armor
 			if final_damage < 1.0:
 				final_damage = 1.0
+			
 			enemy.hp -= final_damage
+			if enemy.hp <= 0:
+				on_enemy_killed()
 			hit_count += 1
-	if hit_count > 0:
-		current_capacity = mini(current_capacity + 1, get_capacity())
-		# Re-emit selection to update UI if selected
-		if selected:
-			GameManager.placed_tower_selected.emit(self)
 	print("[MELEE SWEEP] hit ", hit_count, " enemies, angle=", rad_to_deg(half_angle * 2), "°, range=", attack_range)
 
 
@@ -260,7 +264,3 @@ func AttackEnemy(enemy:Enemy) -> void:
 		spawned_projectile.z_index = 1
 		active_projectiles.append(spawned_projectile)
 		get_tree().current_scene.add_child(spawned_projectile)
-		
-		current_capacity = mini(current_capacity + 1, get_capacity())
-		if selected:
-			GameManager.placed_tower_selected.emit(self)
