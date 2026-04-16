@@ -12,3 +12,5 @@ class_name TowerType
 @export var attackRange: int
 @export var fire_delay: float
 @export var max_projectiles: int
+@export var is_melee: bool = false
+@export var sweep_angle: float = 120.0

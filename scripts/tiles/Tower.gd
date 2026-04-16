@@ -12,6 +12,10 @@ var selected: bool = false
 
 var active_projectiles = []
 
+var _sweep_alpha: float = 0.0
+var _sweep_dir: Vector2 = Vector2.RIGHT
+var _sweep_half_angle: float = 0.0
+var _sweep_radius: float = 0.0
 
 @onready var projectile_scene:PackedScene = load("res://scenes/entities/Projectile.tscn")
 
@@ -51,6 +55,8 @@ func _on_placed_tower_deselected() -> void:
 
 
 func _draw() -> void:
+	if _sweep_alpha > 0.0:
+		_draw_sweep()
 	if not selected or not tower:
 		return
 	var radius := float(tower.attackRange)
@@ -61,14 +67,39 @@ func _draw() -> void:
 	)
 
 
+func _draw_sweep() -> void:
+	var center_angle := _sweep_dir.angle()
+	var half := _sweep_half_angle
+	var r := _sweep_radius
+	var segments := 24
+	var color_fill := Color(1.0, 0.7, 0.1, _sweep_alpha * 0.55)
+	var color_edge := Color(1.0, 0.95, 0.4, _sweep_alpha * 0.9)
+
+	var points: PackedVector2Array = [Vector2.ZERO]
+	for i in range(segments + 1):
+		var angle := center_angle - half + (2.0 * half * float(i) / float(segments))
+		points.append(Vector2(cos(angle), sin(angle)) * r)
+	draw_colored_polygon(points, color_fill)
+	draw_arc(Vector2.ZERO, r, center_angle - half, center_angle + half, segments, color_edge, 4.0)
+
+
 func _process(delta: float) -> void:
 	if tower == null or controller == null or tower_sprite == null:
 		return
-	timer+=delta
-	if timer > tower.fire_delay: 
+	if _sweep_alpha > 0.0:
+		_sweep_alpha -= delta * 1.5
+		if _sweep_alpha <= 0.0:
+			_sweep_alpha = 0.0
+		queue_redraw()
+
+	timer += delta
+	if timer > tower.fire_delay:
 		timer = 0
 		var closestEnemy:Enemy = FindClosestEnemyToAttack()
-		AttackEnemy(closestEnemy)
+		if tower.is_melee:
+			MeleeAttack(closestEnemy)
+		else:
+			AttackEnemy(closestEnemy)
 
 func FindClosestEnemyToAttack() -> Enemy:
 	if tower and controller:
@@ -88,7 +119,44 @@ func FindClosestEnemyToAttack() -> Enemy:
 				closestEnemy = enemy
 		return closestEnemy
 	return null
-		
+
+
+func MeleeAttack(target_enemy: Enemy) -> void:
+	if target_enemy == null:
+		return
+	if not is_instance_valid(target_enemy):
+		return
+
+	var tower_pos := tower_sprite.global_position
+	var dir_to_target := (target_enemy.global_position - tower_pos).normalized()
+	var half_angle := deg_to_rad(tower.sweep_angle * 0.5)
+
+	_sweep_dir = dir_to_target
+	_sweep_half_angle = half_angle
+	_sweep_radius = float(tower.attackRange)
+	_sweep_alpha = 1.0
+	queue_redraw()
+
+	for enemy in controller.activeEnemies:
+		if not is_instance_valid(enemy):
+			continue
+		if enemy.hp <= 0:
+			continue
+		var to_enemy := enemy.global_position - tower_pos
+		var dist := to_enemy.length()
+		if dist > tower.attackRange:
+			continue
+		var angle_diff := absf(dir_to_target.angle_to(to_enemy.normalized()))
+		if angle_diff <= half_angle:
+			var enemy_armor: float = 0.0
+			if enemy.type != null:
+				enemy_armor = enemy.type.armor
+			var final_damage: float = tower.damage - enemy_armor
+			if final_damage < 1.0:
+				final_damage = 1.0
+			enemy.hp -= final_damage
+
+
 func AttackEnemy(enemy:Enemy) -> void:
 	if tower:
 		if enemy == null:
