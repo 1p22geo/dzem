@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://pgokkntkoywb" path="res://scripts/tiles/TileMapManager.gd" id="12_tilmgr"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TowerContextMenu.tscn" id="13_ctxmenu"]
 [ext_resource type="PackedScene" uid="uid://co27h8gocrjrx" path="res://scenes/ui/HUD.tscn" id="14_hud"]
-[ext_resource type="Script" uid="uid://cdpaswblgg26y" path="res://scripts/ui/StartWaveButton.gd" id="16_startbtn"]
+[ext_resource type="Script" path="res://scripts/ui/StartWaveButton.gd" id="16_startbtn"]
 [ext_resource type="Texture2D" uid="uid://b13qa6oo7y67r" path="res://assets/icons/play.svg" id="17_playicon"]
 [ext_resource type="Texture2D" uid="uid://1b0x2kvp1axo" path="res://assets/icons/pause.svg" id="18_pauseicon"]
 [ext_resource type="PackedScene" path="res://scenes/ui/GameOverScreen.tscn" id="19_gameover"]

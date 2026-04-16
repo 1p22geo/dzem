@@ -4,11 +4,15 @@ class_name Tower
 
 @export var tower:TowerType
 
+var animationMeleeRef := load("res://scenes/animations/AnimationMelee.tscn")
+var animationRangeRef := load("res://scenes/animations/AnimationRange.tscn")
 
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
 var selected: bool = false
+var animation_player: AnimationPlayer
+var sprite: Sprite2D
 
 var active_projectiles = []
 var applied_upgrades: Array[TowerUpgrade] = []
@@ -18,6 +22,7 @@ var _sweep_alpha: float = 0.0
 var _sweep_dir: Vector2 = Vector2.RIGHT
 var _sweep_half_angle: float = 0.0
 var _sweep_radius: float = 0.0
+
 
 @onready var projectile_scene:PackedScene = load("res://scenes/entities/Projectile.tscn")
 
@@ -33,7 +38,34 @@ func _ready() -> void:
 	GameManager.placed_tower_deselected.connect(
 		_on_placed_tower_deselected
 	)
-	tower_sprite.hframes = 7
+	
+	
+	tower_sprite.hframes = 9
+	
+	tower_sprite.visible = false
+	
+	# dodawanie animacji
+	if tower.is_melee:
+		animation_player = animationMeleeRef.instantiate()
+	else:
+		animation_player = animationRangeRef.instantiate()
+		
+	self.add_child(animation_player)
+	
+	animation_player.name = "PlayerAnimation"
+	
+	print_tree_pretty()
+	
+	sprite = get_node("PlayerAnimation/Sprite2D")
+	sprite.z_index = 100
+	sprite.hframes = 9
+	print(sprite.texture)
+	
+	animation_player = get_node("PlayerAnimation")
+	sprite.position = self.position
+	animation_player.play("idle")
+	print("powinno odpalic")
+	
 	if scene_root != null:
 		controller = scene_root.find_child(
 			"EnemyController", true, false
@@ -45,6 +77,8 @@ func _ready() -> void:
 	if not GameManager.placed_tower_deselected.is_connected(_on_placed_tower_deselected):
 		GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
 
+	
+	
 
 func get_damage() -> float:
 	var total := tower.damage
@@ -154,6 +188,7 @@ func _draw_sweep() -> void:
 
 
 func _process(delta: float) -> void:
+	
 	if tower == null or controller == null or tower_sprite == null:
 		return
 	if _sweep_alpha > 0.0:

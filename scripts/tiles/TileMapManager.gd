@@ -7,6 +7,7 @@ var astar: AStarGrid2D
 var towers: Dictionary = {}  # Vector2i -> Node2D (Tower)
 
 
+
 func _ready() -> void:
 	_classify_tiles()
 	_setup_pathfinding()
