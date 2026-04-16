@@ -44,6 +44,33 @@ func _ready() -> void:
 	prepare_states()
 	
 	GameManager.scales = waveDefs.initial_coins
+	if not GameManager.magic_burst_casted.is_connected(_on_magic_burst_casted):
+		GameManager.magic_burst_casted.connect(_on_magic_burst_casted)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_Q:
+			GameManager.cast_magic()
+
+
+func _on_magic_burst_casted(damage: float, slow_multiplier: float, slow_duration: float) -> void:
+	for enemy in activeEnemies:
+		if not is_instance_valid(enemy):
+			continue
+		if enemy.hp <= 0:
+			continue
+
+		var enemy_armor: float = 0.0
+		if enemy.type != null:
+			enemy_armor = enemy.type.armor
+
+		var final_damage: float = damage - enemy_armor
+		if final_damage < 1.0:
+			final_damage = 1.0
+
+		enemy.hp = maxf(1.0, enemy.hp - final_damage)
+		enemy.apply_magic_slow(slow_multiplier, slow_duration)
 
 
 func register_enemy(enemy: Enemy) -> void:

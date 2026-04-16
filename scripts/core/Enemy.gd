@@ -14,6 +14,8 @@ var damage: float
 var prize: int = 0
 var prize_granted: bool = false
 const TILE_SIZE := 125.0
+var slow_multiplier: float = 1.0
+var slow_time_left: float = 0.0
 
 @onready var fish_prefab:PackedScene = load("res://scenes/entities/Enemy.tscn")
 @onready var explosion_scene:PackedScene = load("res://scenes/effects/ExplosionEffect.tscn")
@@ -28,6 +30,12 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if slow_time_left > 0.0:
+		slow_time_left -= delta
+		if slow_time_left <= 0.0:
+			slow_time_left = 0.0
+			slow_multiplier = 1.0
+
 	if hp <= 0:
 		if not prize_granted:
 			GameManager.add_scales(prize)
@@ -54,7 +62,7 @@ func _process(delta: float) -> void:
 
 	var speed := 0.0
 	if type != null:
-		speed = type.speed * TILE_SIZE
+		speed = type.speed * TILE_SIZE * slow_multiplier
 
 	var target_pos := path[path_index]
 	global_position = global_position.move_toward(
@@ -70,3 +78,12 @@ func _spawn_explosion() -> void:
 	var fx := explosion_scene.instantiate()
 	fx.global_position = global_position
 	get_tree().current_scene.add_child(fx)
+func apply_magic_slow(multiplier: float, duration: float) -> void:
+	if multiplier <= 0.0:
+		return
+
+	if multiplier < slow_multiplier:
+		slow_multiplier = multiplier
+
+	if duration > slow_time_left:
+		slow_time_left = duration

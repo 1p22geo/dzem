@@ -25,23 +25,13 @@ var empty_button: TextureButton
 
 func _ready() -> void:
 	var scene_root := get_tree().current_scene
-	controller = scene_root.find_child(
-		"EnemyController", true, false
-	) as EnemyController
-	tower_sprite = get_node("TowerSprite")
-	GameManager.placed_tower_selected.connect(
-		_on_placed_tower_selected
-	)
-	GameManager.placed_tower_deselected.connect(
-		_on_placed_tower_deselected
-	)
-	tower_sprite.hframes = 7
 	if scene_root != null:
 		controller = scene_root.find_child(
 			"EnemyController", true, false
 		) as EnemyController
 	if has_node("TowerSprite"):
 		tower_sprite = get_node("TowerSprite")
+		tower_sprite.hframes = 7
 	if not GameManager.placed_tower_selected.is_connected(_on_placed_tower_selected):
 		GameManager.placed_tower_selected.connect(_on_placed_tower_selected)
 	if not GameManager.placed_tower_deselected.is_connected(_on_placed_tower_deselected):
