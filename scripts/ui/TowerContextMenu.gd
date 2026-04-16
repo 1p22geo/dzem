@@ -17,6 +17,21 @@ func _ready() -> void:
 	sell_btn.pressed.connect(_on_sell)
 	GameManager.placed_tower_selected.connect(_show)
 	GameManager.placed_tower_deselected.connect(_hide)
+	GameManager.scales_changed.connect(_on_scales_changed)
+
+
+func _on_scales_changed(_new_scales: int) -> void:
+	if not visible or current_tower == null:
+		return
+	_update_upgrade_buttons()
+
+
+func _update_upgrade_buttons() -> void:
+	for child in upgrade_list.get_children():
+		if child is Button:
+			var upg: TowerUpgrade = child.get_meta("upgrade")
+			if upg:
+				child.disabled = not GameManager.can_afford(upg.cost)
 
 
 func _show(tower_node: Node2D) -> void:
@@ -50,6 +65,7 @@ func _show(tower_node: Node2D) -> void:
 			var btn := Button.new()
 			btn.text = "%s ($%d)" % [upg.name, upg.cost]
 			btn.tooltip_text = upg.description
+			btn.set_meta("upgrade", upg)
 			btn.disabled = not GameManager.can_afford(upg.cost)
 			btn.pressed.connect(func(): tower_node.apply_upgrade(upg))
 			upgrade_list.add_child(btn)
