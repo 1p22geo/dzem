@@ -19,15 +19,15 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/core/GameManager.gd"
 
-[gui]
-
-theme/custom="res://resources/ui/default_theme.tres"
-
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1344
 window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom="res://resources/ui/default_theme.tres"
 
 [physics]
 

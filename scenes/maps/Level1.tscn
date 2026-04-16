@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://hi1s78l0h0a8"]
 
-[ext_resource type="Script" uid="uid://lt88rl0op6fe" path="res://scripts/Level1.gd" id="1_ayrwv"]
+[ext_resource type="Script" uid="uid://lt88rl0op6fe" path="res://scripts/levels/Level1.gd" id="1_ayrwv"]
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
 [ext_resource type="Resource" uid="uid://djyhip8ve1kmi" path="res://resources/tower_defs/TestTower.tres" id="2_ry3nc"]
 [ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/tiles/Spawner.tscn" id="3_nuvw0"]
