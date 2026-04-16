@@ -1,0 +1,296 @@
+[gd_resource type="Resource" script_class="Waves" format=3 uid="uid://b8xpuomma4xej"]
+
+[ext_resource type="Script" uid="uid://b8hytavd0u53f" path="res://scripts/resource_definitions/Waves.gd" id="1_p7qij"]
+[ext_resource type="Script" uid="uid://l6lxydt36pwr" path="res://scripts/resource_definitions/Wave.gd" id="2_xpgx3"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="3_c3rgc"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/FastEnemy.tres" id="4_cf4cq"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8iaa" path="res://resources/enemy_defs/StrongEnemy.tres" id="5_nnkr4"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h88" path="res://resources/enemy_defs/TankEnemy.tres" id="6_hoehg"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h8a" path="res://resources/enemy_defs/EliteEnemy.tres" id="7_gjcf0"]
+
+[sub_resource type="Resource" id="Resource_jfsab"]
+script = ExtResource("2_xpgx3")
+start_delay = 1.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.3
+enemy_count = 6
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_hrclk"]
+script = ExtResource("2_xpgx3")
+start_delay = 20.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.3
+enemy_count = 8
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_h70g7"]
+script = ExtResource("2_xpgx3")
+start_delay = 20.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.3
+enemy_count = 10
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_kc8e4"]
+script = ExtResource("2_xpgx3")
+start_delay = 20.0
+enemy_type = ExtResource("4_cf4cq")
+delay_between_enemies = 0.8
+enemy_count = 8
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_ya7fw"]
+script = ExtResource("2_xpgx3")
+start_delay = 15.0
+enemy_type = ExtResource("5_nnkr4")
+delay_between_enemies = 1.5
+enemy_count = 4
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_d8au5"]
+script = ExtResource("2_xpgx3")
+start_delay = 15.0
+enemy_type = ExtResource("5_nnkr4")
+delay_between_enemies = 1.5
+enemy_count = 10
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_vci53"]
+script = ExtResource("2_xpgx3")
+start_delay = 10.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.3
+enemy_count = 20
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_nv71o"]
+script = ExtResource("2_xpgx3")
+start_delay = 10.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.3
+enemy_count = 30
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_3xeip"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("6_hoehg")
+delay_between_enemies = 2.0
+enemy_count = 1
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_mmjk4"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("6_hoehg")
+delay_between_enemies = 2.0
+enemy_count = 3
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_affm3"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("4_cf4cq")
+delay_between_enemies = 0.7
+enemy_count = 20
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_iec8s"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("4_cf4cq")
+delay_between_enemies = 0.7
+enemy_count = 25
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_i23sb"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("4_cf4cq")
+delay_between_enemies = 0.7
+enemy_count = 30
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_c1kdh"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("5_nnkr4")
+delay_between_enemies = 1.2
+enemy_count = 15
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_ingcb"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("5_nnkr4")
+delay_between_enemies = 1.2
+enemy_count = 20
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_u3cxn"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("5_nnkr4")
+delay_between_enemies = 1.2
+enemy_count = 25
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_xlorb"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("7_gjcf0")
+delay_between_enemies = 3.5
+enemy_count = 2
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_8b15c"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("7_gjcf0")
+delay_between_enemies = 3.5
+enemy_count = 5
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_3hkdn"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("6_hoehg")
+delay_between_enemies = 1.8
+enemy_count = 6
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_pk6jk"]
+script = ExtResource("2_xpgx3")
+start_delay = 9.0
+enemy_type = ExtResource("6_hoehg")
+delay_between_enemies = 1.8
+enemy_count = 10
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_g1ydl"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.2
+enemy_count = 60
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_ktgbt"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.2
+enemy_count = 70
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_wpw5s"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.2
+enemy_count = 80
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_wicyx"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("4_cf4cq")
+delay_between_enemies = 0.6
+enemy_count = 40
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_m2bl2"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("4_cf4cq")
+delay_between_enemies = 0.5
+enemy_count = 45
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_51mov"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("4_cf4cq")
+delay_between_enemies = 0.45
+enemy_count = 50
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_qsoid"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("5_nnkr4")
+delay_between_enemies = 1.0
+enemy_count = 30
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_q0mar"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("5_nnkr4")
+delay_between_enemies = 1.0
+enemy_count = 40
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_oclnw"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("7_gjcf0")
+delay_between_enemies = 2.8
+enemy_count = 8
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_4015d"]
+script = ExtResource("2_xpgx3")
+start_delay = 7.0
+enemy_type = ExtResource("7_gjcf0")
+delay_between_enemies = 2.8
+enemy_count = 12
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_cv01n"]
+script = ExtResource("2_xpgx3")
+start_delay = 5.0
+enemy_type = ExtResource("3_c3rgc")
+delay_between_enemies = 0.15
+enemy_count = 150
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_ekhab"]
+script = ExtResource("2_xpgx3")
+start_delay = 5.0
+enemy_type = ExtResource("4_cf4cq")
+delay_between_enemies = 0.3
+enemy_count = 70
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_kwbua"]
+script = ExtResource("2_xpgx3")
+start_delay = 5.0
+enemy_type = ExtResource("6_hoehg")
+delay_between_enemies = 1.0
+enemy_count = 20
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_rki0y"]
+script = ExtResource("2_xpgx3")
+start_delay = 5.0
+enemy_type = ExtResource("6_hoehg")
+delay_between_enemies = 1.0
+enemy_count = 28
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_bbar3"]
+script = ExtResource("2_xpgx3")
+start_delay = 5.0
+enemy_type = ExtResource("7_gjcf0")
+delay_between_enemies = 1.8
+enemy_count = 30
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[resource]
+script = ExtResource("1_p7qij")
+waves = Array[ExtResource("2_xpgx3")]([SubResource("Resource_jfsab"), SubResource("Resource_hrclk"), SubResource("Resource_h70g7"), SubResource("Resource_kc8e4"), SubResource("Resource_ya7fw"), SubResource("Resource_d8au5"), SubResource("Resource_vci53"), SubResource("Resource_nv71o"), SubResource("Resource_3xeip"), SubResource("Resource_mmjk4"), SubResource("Resource_affm3"), SubResource("Resource_iec8s"), SubResource("Resource_i23sb"), SubResource("Resource_c1kdh"), SubResource("Resource_ingcb"), SubResource("Resource_u3cxn"), SubResource("Resource_xlorb"), SubResource("Resource_8b15c"), SubResource("Resource_3hkdn"), SubResource("Resource_pk6jk"), SubResource("Resource_g1ydl"), SubResource("Resource_ktgbt"), SubResource("Resource_wpw5s"), SubResource("Resource_wicyx"), SubResource("Resource_m2bl2"), SubResource("Resource_51mov"), SubResource("Resource_qsoid"), SubResource("Resource_q0mar"), SubResource("Resource_oclnw"), SubResource("Resource_4015d"), SubResource("Resource_cv01n"), SubResource("Resource_ekhab"), SubResource("Resource_kwbua"), SubResource("Resource_rki0y"), SubResource("Resource_bbar3")])
+preparation_time = 1.0
+initial_coins = 250
+metadata/_custom_type_script = "uid://b8hytavd0u53f"

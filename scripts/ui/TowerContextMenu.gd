@@ -140,6 +140,7 @@ func _on_sell() -> void:
 		sell_price = int(current_tower.tower.cost * 0.7)
 		
 	GameManager.add_scales(sell_price)
+
 	var scene_root := get_tree().current_scene
 	var tile_map := scene_root.find_child(
 		"TileMapLayer", true, false

@@ -208,8 +208,15 @@ func _process(delta: float) -> void:
 	
 	if tower == null or controller == null or tower_sprite == null:
 		return
+	
 	if GameManager.is_towers_frozen():
+		if sprite:
+			sprite.modulate = Color(0.5, 0.7, 1.0, 1.0) # Blueish tint
 		return
+	else:
+		if sprite:
+			sprite.modulate = Color.WHITE
+
 	if _sweep_alpha > 0.0:
 		_sweep_alpha -= delta * 1.5
 		if _sweep_alpha <= 0.0:
@@ -314,7 +321,7 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 			if final_damage < 1.0:
 				final_damage = 1.0
 			
-			enemy.hp -= final_damage
+			enemy.take_damage(final_damage)
 			if enemy.hp <= 0:
 				on_enemy_killed()
 			hit_count += 1
@@ -338,7 +345,10 @@ func AttackEnemy(enemy:Enemy) -> void:
 		spawned_projectile.speed = get_projectile_speed()
 		spawned_projectile.target = enemy
 		spawned_projectile.parent_tower = self
-		spawned_projectile.get_node("Sprite2D").texture = tower.projectile_texture
+		if tower.projectile_texture:
+			spawned_projectile.get_node("Sprite2D").texture = tower.projectile_texture
+		else:
+			spawned_projectile.get_node("Sprite2D").visible = false
 		spawned_projectile.global_position = global_position
 		spawned_projectile.origin_pos = global_position
 		spawned_projectile.max_range = get_range()

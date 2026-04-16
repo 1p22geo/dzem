@@ -10,7 +10,6 @@
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_sum"]
 frames = 4
-speed_scale = 0.8
 frame_0/texture = ExtResource("4_f0")
 frame_1/texture = ExtResource("5_f1")
 frame_1/duration = 1.0
@@ -24,7 +23,7 @@ script = ExtResource("1_1utgd")
 texture = SubResource("AnimatedTexture_sum")
 speed = 0.4
 name = "Sum"
-health = 250.0
+health = 280.0
 prize = 30
 damage = 20.0
 spawnedEnemies = Array[ExtResource("1_1utgd")]([ExtResource("2_jfc50"), ExtResource("3_pyjji"), ExtResource("3_pyjji"), ExtResource("3_pyjji"), ExtResource("2_jfc50")])
