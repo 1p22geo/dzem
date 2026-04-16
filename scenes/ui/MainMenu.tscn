@@ -89,8 +89,8 @@ theme_override_constants/separation = 16
 
 [node name="LogoArea" type="Control" parent="CenterContainer/MainButtons" unique_id=1636116949]
 unique_name_in_owner = true
-layout_mode = 2
 custom_minimum_size = Vector2(800, 500)
+layout_mode = 2
 
 [node name="FishSprite" type="TextureRect" parent="CenterContainer/MainButtons/LogoArea" unique_id=561724467]
 unique_name_in_owner = true
@@ -154,12 +154,13 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="RevealSFX" type="AudioStreamPlayer" parent="."]
+[node name="RevealSFX" type="AudioStreamPlayer" parent="." unique_id=103700008]
 unique_name_in_owner = true
 stream = ExtResource("19_reveal")
 volume_db = 3.0
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=760342993]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamPlaylist_ayd4e")
 volume_db = -5.0
+bus = &"BG"
