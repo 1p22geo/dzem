@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://eehi5ic1240w"]
+[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://crm6d7boy3c0f"]
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_xwo6k"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_eobtj"]
