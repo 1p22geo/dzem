@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_xwo6k"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_eobtj"]
-[ext_resource type="Script" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="3_ow65o"]
+[ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="3_ow65o"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2oih"]
 load_path = "res://.godot/imported/rangedF.png-1d00d5a48ec91efe516318bacfd4e675.ctex"
