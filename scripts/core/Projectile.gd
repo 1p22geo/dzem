@@ -14,9 +14,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func remove_projectile() -> void:
-	var index = parent_tower.active_projectiles.find(self)
-	if index >= 0:
-		parent_tower.active_projectiles.remove_at(index)
+	if is_instance_valid(parent_tower):
+		var index := parent_tower.active_projectiles.find(self)
+		if index >= 0:
+			parent_tower.active_projectiles.remove_at(index)
 	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
