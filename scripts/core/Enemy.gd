@@ -16,6 +16,7 @@ var prize_granted: bool = false
 const TILE_SIZE := 125.0
 
 @onready var fish_prefab:PackedScene = load("res://scenes/entities/Enemy.tscn")
+@onready var explosion_scene:PackedScene = load("res://scenes/effects/ExplosionEffect.tscn")
 
 func _ready() -> void:
 	add_to_group("enemies")
@@ -41,6 +42,7 @@ func _process(delta: float) -> void:
 				var controller:EnemyController = get_parent().get_node("EnemyController")
 				controller.register_enemy(fish)
 				get_parent().add_child(fish)
+		_spawn_explosion()
 		queue_free()
 		return
 
@@ -62,3 +64,9 @@ func _process(delta: float) -> void:
 
 	if global_position.distance_to(target_pos) <= 4.0:
 		path_index += 1
+
+
+func _spawn_explosion() -> void:
+	var fx := explosion_scene.instantiate()
+	fx.global_position = global_position
+	get_tree().current_scene.add_child(fx)
