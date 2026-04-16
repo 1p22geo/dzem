@@ -16,6 +16,9 @@ var prize_granted: bool = false
 const TILE_SIZE := 125.0
 var slow_multiplier: float = 1.0
 var slow_time_left: float = 0.0
+var _flash_time: float = 0.0
+const FLASH_DURATION := 0.35
+const FLASH_COLOR := Color(10.0, 1.0, 1.0, 1.0)
 
 @onready var fish_prefab:PackedScene = load("res://scenes/entities/Enemy.tscn")
 @onready var explosion_scene:PackedScene = load("res://scenes/effects/ExplosionEffect.tscn")
@@ -32,6 +35,17 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if _flash_time > 0.0:
+		_flash_time -= delta
+		if _flash_time <= 0.0:
+			$Sprite2D.modulate = Color.WHITE
+		else:
+			var t := _flash_time / FLASH_DURATION
+			if t > 0.5:
+				$Sprite2D.modulate = FLASH_COLOR
+			else:
+				$Sprite2D.modulate = FLASH_COLOR.lerp(Color.WHITE, 1.0 - (t * 2.0))
+
 	if slow_time_left > 0.0:
 		slow_time_left -= delta
 		if slow_time_left <= 0.0:
@@ -74,6 +88,13 @@ func _process(delta: float) -> void:
 
 	if global_position.distance_to(target_pos) <= 4.0:
 		path_index += 1
+
+
+func take_damage(amount: float) -> void:
+	hp -= amount
+	if hp > 0:
+		_flash_time = FLASH_DURATION
+		$Sprite2D.modulate = FLASH_COLOR
 
 
 func _spawn_explosion() -> void:

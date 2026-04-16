@@ -76,7 +76,9 @@ func _on_magic_burst_casted(damage: float, slow_multiplier: float, slow_duration
 		if final_damage < 1.0:
 			final_damage = 1.0
 
-		enemy.hp = maxf(1.0, enemy.hp - final_damage)
+		enemy.take_damage(final_damage)
+		if enemy.hp <= 0:
+			enemy.hp = 1.0
 		enemy.apply_magic_slow(slow_multiplier, slow_duration)
 
 

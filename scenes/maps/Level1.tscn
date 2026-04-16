@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://hi1s78l0h0a8"]
 
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
-[ext_resource type="Resource" uid="uid://djyhip8ve1kmi" path="res://resources/tower_defs/TestTower.tres" id="2_ry3nc"]
 [ext_resource type="Resource" uid="uid://64keoivo8yne" path="res://resources/level_defs/Level1WavesVlad.tres" id="3_ayrwv"]
 [ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/tiles/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
@@ -179,7 +178,7 @@ layout_mode = 2
 [node name="TowerPanel" parent="UILayer/RightPanel/VBox" unique_id=1821714899 instance=ExtResource("4_tower")]
 layout_mode = 2
 size_flags_vertical = 3
-tower_types = Array[ExtResource("9_l2ejl")]([ExtResource("2_ry3nc"), ExtResource("6_716mq"), ExtResource("7_tllq5"), ExtResource("9_ayrwv")])
+tower_types = Array[ExtResource("9_l2ejl")]([ExtResource("6_716mq"), ExtResource("7_tllq5"), ExtResource("9_ayrwv")])
 
 [node name="StartWaveButton" type="Button" parent="UILayer" unique_id=82627304]
 anchors_preset = 3
