@@ -17,12 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://borqxp0inhuja" path="res://assets/main-menu/fih-animation/0010.png" id="15_f10"]
 [ext_resource type="Texture2D" uid="uid://o0ff0hlvqa27" path="res://assets/main-menu/fih-animation/0011.png" id="16_f11"]
 [ext_resource type="Texture2D" uid="uid://da253qegdhp7m" path="res://assets/main-menu/fih-animation/0012.png" id="17_f12"]
-<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://kxunpoeinar7" path="res://assets/sounds/music/jazz_start.mp3" id="18_music"]
 [ext_resource type="AudioStream" uid="uid://bje8ieo0i2wm" path="res://assets/sounds/sfx/sampl 27-samples2.wav" id="19_reveal"]
-=======
-[ext_resource type="AudioStream" uid="uid://kxunpoeinar7" path="res://assets/sounds/music/jazz_start.mp3" id="18_0oadh"]
->>>>>>> cbbad7201fa6cf1427e25132bfaac496ecc7d76b
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_fish"]
 frames = 13
@@ -56,7 +52,7 @@ frame_12/duration = 1.0
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ayd4e"]
 fade_time = 1.0
 stream_count = 1
-stream_0 = ExtResource("18_0oadh")
+stream_0 = ExtResource("18_music")
 
 [node name="MainMenu" type="Control" unique_id=1289338016]
 layout_mode = 3
@@ -91,22 +87,13 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 16
 
-<<<<<<< HEAD
-[node name="LogoArea" type="Control" parent="CenterContainer/MainButtons"]
-unique_name_in_owner = true
-layout_mode = 2
-=======
 [node name="LogoArea" type="Control" parent="CenterContainer/MainButtons" unique_id=1636116949]
->>>>>>> cbbad7201fa6cf1427e25132bfaac496ecc7d76b
-custom_minimum_size = Vector2(800, 500)
-layout_mode = 2
-
-<<<<<<< HEAD
-[node name="FishSprite" type="TextureRect" parent="CenterContainer/MainButtons/LogoArea"]
 unique_name_in_owner = true
-=======
+layout_mode = 2
+custom_minimum_size = Vector2(800, 500)
+
 [node name="FishSprite" type="TextureRect" parent="CenterContainer/MainButtons/LogoArea" unique_id=561724467]
->>>>>>> cbbad7201fa6cf1427e25132bfaac496ecc7d76b
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -123,12 +110,8 @@ texture = SubResource("AnimatedTexture_fish")
 expand_mode = 1
 stretch_mode = 5
 
-<<<<<<< HEAD
-[node name="TitleImage" type="TextureRect" parent="CenterContainer/MainButtons/LogoArea"]
-unique_name_in_owner = true
-=======
 [node name="TitleImage" type="TextureRect" parent="CenterContainer/MainButtons/LogoArea" unique_id=1871604709]
->>>>>>> cbbad7201fa6cf1427e25132bfaac496ecc7d76b
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -171,7 +154,6 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-<<<<<<< HEAD
 [node name="RevealSFX" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("19_reveal")
@@ -179,11 +161,5 @@ volume_db = 3.0
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("18_music")
-volume_db = -5.0
-=======
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=350553687]
 stream = SubResource("AudioStreamPlaylist_ayd4e")
-volume_db = 18.827
-autoplay = true
->>>>>>> cbbad7201fa6cf1427e25132bfaac496ecc7d76b
+volume_db = -5.0
