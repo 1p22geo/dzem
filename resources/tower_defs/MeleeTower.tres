@@ -53,15 +53,9 @@ texture = SubResource("AtlasTexture_jknit")
 projectile_texture = ExtResource("1_oc2vy")
 projectile_speed = 2000.0
 damage = 15.0
-<<<<<<< HEAD
 name = "MaleeTower"
 cost = 140
 attackRange = 84
-=======
-name = "Podbierak"
-cost = 150
-attackRange = 96
->>>>>>> 40795c1db69e2d6c6f4d768c90a26d9658e00851
 fire_delay = 1.0
 max_projectiles = 1
 is_melee = true

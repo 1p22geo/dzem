@@ -46,13 +46,8 @@ texture = ExtResource("3_eobtj")
 projectile_texture = ExtResource("1_xwo6k")
 projectile_speed = 1000.0
 damage = 50.0
-<<<<<<< HEAD
 name = "Harpoon Angler"
 cost = 200
-=======
-name = "Harpun"
-cost = 250
->>>>>>> 40795c1db69e2d6c6f4d768c90a26d9658e00851
 attackRange = 384
 fire_delay = 3.0
 max_projectiles = 1
