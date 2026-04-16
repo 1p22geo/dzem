@@ -11,34 +11,40 @@ region = Rect2(0, 0, 1280, 160)
 
 [sub_resource type="Resource" id="SubResource_dmg1"]
 script = ExtResource("4_upg")
-name = "Ostry jak brzytwa"
-description = "Zwiększa obrażenia o 5"
+name = "Szeroki zamach"
+description = "Zwiększa obrażenia o 5 i Cappacity o 20"
+cost = 110
+sell_value_bonus = 90
 damage_add = 5.0
+capacity_add = 20
 
 [sub_resource type="Resource" id="SubResource_dmg2"]
 script = ExtResource("4_upg")
-name = "Mistrz"
-description = "Zwiększa obrażenia o kolejne 10"
-cost = 100
-sell_value_bonus = 50
+name = "Tytanowy sprzęt"
+description = "Zwiększa obrażenia o kolejne 10 i cappacity o 40"
+cost = 280
+sell_value_bonus = 220
 damage_add = 10.0
+capacity_add = 40
 prerequisites = Array[ExtResource("4_upg")]([SubResource("SubResource_dmg1")])
 
 [sub_resource type="Resource" id="SubResource_cap1"]
 script = ExtResource("4_upg")
-name = "Większe sieci"
-description = "Zwiększa pojemność o 10"
-cost = 40
-sell_value_bonus = 20
-capacity_add = 10
+name = "Zwiększona kondycja"
+description = "Zwiększa prędkość ataku o 0,2 sek i Range o 0,2 kratki"
+cost = 90
+sell_value_bonus = 60
+range_add = 13
+fire_delay_mult = 0.8
 
 [sub_resource type="Resource" id="SubResource_cap2"]
 script = ExtResource("4_upg")
-name = "Przemysłowe sieci"
-description = "Zwiększa pojemność o kolejne 20"
-cost = 80
-sell_value_bonus = 40
-capacity_add = 20
+name = "Lata treningu"
+description = "Zwiększa prędkość ataku o kolejne 0,3 sek i Range o 0,3 kratki"
+cost = 180
+sell_value_bonus = 120
+range_add = 20
+fire_delay_mult = 0.7
 prerequisites = Array[ExtResource("4_upg")]([SubResource("SubResource_cap1")])
 
 [resource]
