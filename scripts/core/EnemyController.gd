@@ -42,6 +42,8 @@ func _ready() -> void:
 			spawner = scene_root.find_child("Spawner", true, false) as Spawner
 
 	prepare_states()
+	
+	GameManager.scales = waveDefs.initial_coins
 
 
 func register_enemy(enemy: Enemy) -> void:

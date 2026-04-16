@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://hi1s78l0h0a8"]
 
-[ext_resource type="Script" uid="uid://lt88rl0op6fe" path="res://scripts/levels/Level1.gd" id="1_ayrwv"]
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
 [ext_resource type="Resource" uid="uid://djyhip8ve1kmi" path="res://resources/tower_defs/TestTower.tres" id="2_ry3nc"]
 [ext_resource type="Resource" uid="uid://64keoivo8yne" path="res://resources/level_defs/Level1WavesVlad.tres" id="3_ayrwv"]
@@ -144,7 +143,6 @@ custom_data_layer_0/type = 4
 sources/1 = SubResource("TileSetAtlasSource_a2ovr")
 
 [node name="Level1" type="Node2D" unique_id=2039127057]
-script = ExtResource("1_ayrwv")
 
 [node name="EnemyController" type="Node" parent="." unique_id=1550518633 node_paths=PackedStringArray("spawner")]
 unique_name_in_owner = true
