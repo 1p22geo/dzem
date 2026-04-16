@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_1utgd"]
 [ext_resource type="Texture2D" uid="uid://di1cjvamg4chd" path="res://assets/jesiotr-frames/jesiotr-frame0000.png" id="2_lck1n"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8iaa" path="res://resources/enemy_defs/StrongEnemy.tres" id="2_lqqkt"]
 [ext_resource type="Texture2D" uid="uid://dwb0h55c35q5q" path="res://assets/jesiotr-frames/jesiotr-frame0001.png" id="3_lqqkt"]
 [ext_resource type="Texture2D" uid="uid://c5ri1a5b50d6h" path="res://assets/jesiotr-frames/jesiotr-frame0002.png" id="4_mfnds"]
 [ext_resource type="Texture2D" uid="uid://dnx4x4qsbmx8d" path="res://assets/jesiotr-frames/jesiotr-frame0003.png" id="5_aiyum"]
@@ -24,10 +25,11 @@ frame_4/duration = 0.8
 [resource]
 script = ExtResource("1_1utgd")
 texture = SubResource("AnimatedTexture_8mpyn")
-speed = 0.3
+speed = 0.4
 name = "Jesiotr Zachodni"
 health = 400.0
 armor = 10.0
-prize = 50
+prize = 25
 damage = 35.0
+spawnedEnemies = Array[ExtResource("1_1utgd")]([ExtResource("2_lqqkt"), ExtResource("2_lqqkt")])
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

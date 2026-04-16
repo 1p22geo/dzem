@@ -38,6 +38,6 @@ texture = SubResource("AnimatedTexture_ryba")
 speed = 1.0
 name = "Płotka"
 health = 20.0
-prize = 6
+prize = 5
 damage = 2.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

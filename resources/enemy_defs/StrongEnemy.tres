@@ -14,10 +14,10 @@ frame_1/duration = 1.0
 [resource]
 script = ExtResource("1_1utgd")
 texture = SubResource("AnimatedTexture_dor")
-speed = 0.8
+speed = 0.85
 name = "Dorsz"
 health = 65.0
 armor = 5.5
-prize = 10
+prize = 8
 damage = 8.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"
