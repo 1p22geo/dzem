@@ -24,7 +24,7 @@ func _build_tower_buttons() -> void:
 		if tower_type.texture:
 			btn.icon = tower_type.texture
 			btn.expand_icon = true
-			btn.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			btn.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		btn.pressed.connect(_on_tower_button_pressed.bind(tower_type))
 		btn.disabled = not GameManager.can_afford(tower_type.cost)
 		list.add_child(btn)

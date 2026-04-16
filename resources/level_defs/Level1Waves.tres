@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://b8hytavd0u53f" path="res://scripts/resource_definitions/Waves.gd" id="1_vtv8u"]
 [ext_resource type="Script" uid="uid://l6lxydt36pwr" path="res://scripts/resource_definitions/Wave.gd" id="2_xys1k"]
 [ext_resource type="Resource" uid="uid://dkcv3whmf77pa" path="res://resources/wave_defs/simple_wave.tres" id="3_tcwmm"]
+[ext_resource type="Resource" uid="uid://dkcv3wh02lp5" path="res://resources/wave_defs/medium_wave.tres" id="4_medium"]
+[ext_resource type="Resource" uid="uid://dkcv3wh02lp6" path="res://resources/wave_defs/hard_wave.tres" id="5_hard"]
+[ext_resource type="Resource" uid="uid://dkcv3wh02lp7" path="res://resources/wave_defs/insane_wave.tres" id="6_insane"]
+[ext_resource type="Resource" uid="uid://dkcv3wh02lp8" path="res://resources/wave_defs/extreme_wave.tres" id="7_extreme"]
 
 [resource]
 script = ExtResource("1_vtv8u")
-waves = Array[ExtResource("2_xys1k")]([ExtResource("3_tcwmm"), ExtResource("3_tcwmm")])
+waves = Array[ExtResource("2_xys1k")]([ExtResource("3_tcwmm"), ExtResource("4_medium"), ExtResource("5_hard"), ExtResource("6_insane"), ExtResource("7_extreme")])
 preparation_time = 1.0
 initial_coins = 100
 metadata/_custom_type_script = "uid://b8hytavd0u53f"
