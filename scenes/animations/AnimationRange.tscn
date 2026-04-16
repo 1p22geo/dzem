@@ -7,7 +7,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationRange/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +24,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationRange/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,7 +40,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationRange/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,10 +57,12 @@ _data = {
 &"idle": SubResource("Animation_g8udh")
 }
 
-[node name="AnimationRange" type="AnimationPlayer" unique_id=1737592860]
+[node name="AnimationRange" type="Node2D" unique_id=1182494902]
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=1733820714]
 libraries/ = SubResource("AnimationLibrary_5hlqk")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=933570473]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1320758813]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_go0a8")
 hframes = 9
-frame = 1
