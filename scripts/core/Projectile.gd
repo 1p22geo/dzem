@@ -7,6 +7,8 @@ var speed:float;
 var damage:float;
 var parent_tower:Tower
 var flight_direction: Vector2 = Vector2.RIGHT
+var origin_pos: Vector2
+var max_range: float = 0.0
 const DESPAWN_MARGIN := 64.0
 
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +33,10 @@ func _process(delta: float) -> void:
 		return
 
 	global_position += flight_direction * speed * delta
+
+	if max_range > 0.0 and global_position.distance_to(origin_pos) > max_range:
+		remove_projectile()
+		return
 
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if not is_instance_valid(enemy):

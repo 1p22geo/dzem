@@ -6,6 +6,7 @@ class_name Tower
 
 var animationMeleeRef := load("res://scenes/animations/AnimationMelee.tscn")
 var animationRangeRef := load("res://scenes/animations/AnimationRange.tscn")
+var animationSniperRef := load("res://scenes/animations/AnimationSniper.tscn")
 
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
@@ -44,16 +45,20 @@ func _ready() -> void:
 	if tower.is_melee:
 		anim_scene = animationMeleeRef
 	else:
-		anim_scene = animationRangeRef
+		if tower.is_sniper:
+			anim_scene = animationSniperRef
+		else:
+			anim_scene = animationRangeRef
 
 	var anim_node := anim_scene.instantiate()
 	add_child(anim_node)
 	animation_player = anim_node.get_node("AnimPlayer") as AnimationPlayer
 	sprite = anim_node.get_node("Sprite2D") as Sprite2D
-	sprite.z_index = 5
 	sprite.position = Vector2.ZERO
 	animation_player.stop()
 	animation_player.play("idle")
+
+	z_index = int(global_position.y)
 
 	_setup_empty_button()
 	
@@ -315,6 +320,8 @@ func AttackEnemy(enemy:Enemy) -> void:
 		spawned_projectile.parent_tower = self
 		spawned_projectile.get_node("Sprite2D").texture = tower.projectile_texture
 		spawned_projectile.global_position = global_position
+		spawned_projectile.origin_pos = global_position
+		spawned_projectile.max_range = get_range()
 		spawned_projectile.z_index = 1
 		active_projectiles.append(spawned_projectile)
 		get_tree().current_scene.add_child(spawned_projectile)

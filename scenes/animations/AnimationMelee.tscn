@@ -62,6 +62,6 @@ _data = {
 libraries/ = SubResource("AnimationLibrary_5hlqk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1983319028]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 texture = ExtResource("1_pcp7e")
 hframes = 9
