@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cf6i7yrcf5dwt"]
+
+[ext_resource type="Texture2D" uid="uid://7bsb4kpwjlj1" path="res://sniper.png" id="1_yv8fj"]
+
+[sub_resource type="Animation" id="Animation_3iwcb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pcp7e"]
+resource_name = "attack"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10031414, 0.3, 0.4996858, 0.6663524, 0.7663524, 0.96635246, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_g8udh"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hlqk"]
+_data = {
+&"RESET": SubResource("Animation_3iwcb"),
+&"attack": SubResource("Animation_pcp7e"),
+&"idle": SubResource("Animation_g8udh")
+}
+
+[node name="AnimationSniper" type="Node2D" unique_id=1182494902]
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=1733820714]
+libraries/ = SubResource("AnimationLibrary_5hlqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1320758813]
+position = Vector2(-2, -43)
+scale = Vector2(1.33125, 1.33125)
+texture = ExtResource("1_yv8fj")
+hframes = 9
