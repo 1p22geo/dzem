@@ -9,20 +9,37 @@
 atlas = ExtResource("3_jknit")
 region = Rect2(0, 0, 1280, 160)
 
-[sub_resource type="Resource" id="SubResource_upg1"]
+[sub_resource type="Resource" id="SubResource_dmg1"]
 script = ExtResource("4_upg")
-name = "Sharp Blades"
-description = "Increases damage by 5"
+name = "Ostry jak brzytwa"
+description = "Zwiększa obrażenia o 5"
 damage_add = 5.0
 
-[sub_resource type="Resource" id="SubResource_upg2"]
+[sub_resource type="Resource" id="SubResource_dmg2"]
 script = ExtResource("4_upg")
-name = "Sharp Eye"
-description = "Increases damage by another 10"
+name = "Mistrz"
+description = "Zwiększa obrażenia o kolejne 10"
 cost = 100
 sell_value_bonus = 50
 damage_add = 10.0
-prerequisites = Array[ExtResource("4_upg")]([SubResource("SubResource_upg1")])
+prerequisites = Array[ExtResource("4_upg")]([SubResource("SubResource_dmg1")])
+
+[sub_resource type="Resource" id="SubResource_cap1"]
+script = ExtResource("4_upg")
+name = "Większe sieci"
+description = "Zwiększa pojemność o 10"
+cost = 40
+sell_value_bonus = 20
+capacity_add = 10
+
+[sub_resource type="Resource" id="SubResource_cap2"]
+script = ExtResource("4_upg")
+name = "Przemysłowe sieci"
+description = "Zwiększa pojemność o kolejne 20"
+cost = 80
+sell_value_bonus = 40
+capacity_add = 20
+prerequisites = Array[ExtResource("4_upg")]([SubResource("SubResource_cap1")])
 
 [resource]
 script = ExtResource("2_jknit")
@@ -36,4 +53,4 @@ attackRange = 128
 fire_delay = 0.5
 max_projectiles = 1
 is_melee = true
-upgrades = Array[ExtResource("4_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2")])
+upgrades = Array[ExtResource("4_upg")]([SubResource("SubResource_dmg1"), SubResource("SubResource_dmg2"), SubResource("SubResource_cap1"), SubResource("SubResource_cap2")])

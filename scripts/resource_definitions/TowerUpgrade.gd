@@ -9,6 +9,7 @@ class_name TowerUpgrade
 @export_group("Stat Changes")
 @export var damage_add: float = 0.0
 @export var range_add: int = 0
+@export var capacity_add: int = 0
 @export var fire_delay_mult: float = 1.0
 @export var projectile_speed_add: float = 0.0
 

@@ -40,13 +40,23 @@ theme_override_font_sizes/font_size = 18
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 
+[node name="CapacityLabel" type="Label" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Pojemność: 0/10"
+
+[node name="EmptyNetsButton" type="Button" parent="Margin/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 40)
+text = "Opróżnij sieci"
+
 [node name="UpgradeSep" type="HSeparator" parent="Margin/VBox"]
 layout_mode = 2
 
 [node name="UpgradeLabel" type="Label" parent="Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Upgrades"
+text = "Ulepszenia"
 horizontal_alignment = 1
 
 [node name="UpgradeList" type="VBoxContainer" parent="Margin/VBox"]

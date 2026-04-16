@@ -6,6 +6,8 @@ var current_tower: Node2D = null
 @onready var name_label: Label = $Margin/VBox/NameLabel
 @onready var range_label: Label = $Margin/VBox/RangeLabel
 @onready var damage_label: Label = $Margin/VBox/DamageLabel
+@onready var capacity_label: Label = $Margin/VBox/CapacityLabel
+@onready var empty_nets_btn: Button = $Margin/VBox/EmptyNetsButton
 @onready var upgrade_list: VBoxContainer = $Margin/VBox/UpgradeList
 @onready var upgrade_label: Label = $Margin/VBox/UpgradeLabel
 @onready var upgrade_sep: HSeparator = $Margin/VBox/UpgradeSep
@@ -15,9 +17,15 @@ var current_tower: Node2D = null
 func _ready() -> void:
 	visible = false
 	sell_btn.pressed.connect(_on_sell)
+	empty_nets_btn.pressed.connect(_on_empty_nets)
 	GameManager.placed_tower_selected.connect(_show)
 	GameManager.placed_tower_deselected.connect(_hide)
 	GameManager.scales_changed.connect(_on_scales_changed)
+
+
+func _on_empty_nets() -> void:
+	if current_tower and current_tower.has_method("empty_nets"):
+		current_tower.empty_nets()
 
 
 func _on_scales_changed(_new_scales: int) -> void:
@@ -34,7 +42,7 @@ func _update_upgrade_buttons() -> void:
 				child.disabled = not GameManager.can_afford(upg.cost)
 
 
-func _show(tower_node: Node2D) -> void:
+func _show(tower_node: Tower) -> void:
 	current_tower = tower_node
 	var tt: TowerType = tower_node.tower
 	icon.texture = tt.texture
@@ -49,6 +57,17 @@ func _show(tower_node: Node2D) -> void:
 		
 	range_label.text = "Zasieg: %d" % int(current_range)
 	damage_label.text = "Obrazenia: %d" % int(current_damage)
+	
+	if tower_node.has_method("get_capacity"):
+		var cap := tower_node.get_capacity()
+		var cur := tower_node.current_capacity
+		capacity_label.text = "Pojemność: %d/%d" % [cur, cap]
+		capacity_label.visible = true
+		empty_nets_btn.visible = true
+		empty_nets_btn.disabled = (cur == 0)
+	else:
+		capacity_label.visible = false
+		empty_nets_btn.visible = false
 	
 	var sell_price := int(tt.cost * 0.7)
 	if tower_node.has_method("get_sell_price"):
@@ -72,7 +91,7 @@ func _show(tower_node: Node2D) -> void:
 			available_upgrades += 1
 		elif tower_node.applied_upgrades.has(upg):
 			var lbl := Label.new()
-			lbl.text = "%s (Purchased)" % upg.name
+			lbl.text = "%s (Zakupiono)" % upg.name
 			lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			upgrade_list.add_child(lbl)
 	

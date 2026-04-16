@@ -12,6 +12,7 @@ var selected: bool = false
 
 var active_projectiles = []
 var applied_upgrades: Array[TowerUpgrade] = []
+var current_capacity: int = 0
 
 var _sweep_alpha: float = 0.0
 var _sweep_dir: Vector2 = Vector2.RIGHT
@@ -71,6 +72,20 @@ func get_projectile_speed() -> float:
 	for upg in applied_upgrades:
 		total += upg.projectile_speed_add
 	return total
+
+
+func get_capacity() -> int:
+	var total := tower.capacity
+	for upg in applied_upgrades:
+		total += upg.capacity_add
+	return total
+
+
+func empty_nets() -> void:
+	current_capacity = 0
+	# Re-emit selection to update UI if selected
+	if selected:
+		GameManager.placed_tower_selected.emit(self)
 
 
 func get_sell_price() -> int:
@@ -148,7 +163,7 @@ func _process(delta: float) -> void:
 		queue_redraw()
 
 	timer += delta
-	if timer > get_fire_delay():
+	if timer > get_fire_delay() and current_capacity < get_capacity():
 		timer = 0
 		var closestEnemy:Enemy = FindClosestEnemyToAttack()
 		if tower.is_melee:
@@ -216,6 +231,11 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 				final_damage = 1.0
 			enemy.hp -= final_damage
 			hit_count += 1
+	if hit_count > 0:
+		current_capacity = mini(current_capacity + 1, get_capacity())
+		# Re-emit selection to update UI if selected
+		if selected:
+			GameManager.placed_tower_selected.emit(self)
 	print("[MELEE SWEEP] hit ", hit_count, " enemies, angle=", rad_to_deg(half_angle * 2), "°, range=", attack_range)
 
 
@@ -240,3 +260,7 @@ func AttackEnemy(enemy:Enemy) -> void:
 		spawned_projectile.z_index = 1
 		active_projectiles.append(spawned_projectile)
 		get_tree().current_scene.add_child(spawned_projectile)
+		
+		current_capacity = mini(current_capacity + 1, get_capacity())
+		if selected:
+			GameManager.placed_tower_selected.emit(self)
