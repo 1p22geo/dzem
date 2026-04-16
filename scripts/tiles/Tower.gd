@@ -22,6 +22,7 @@ func _ready() -> void:
 	GameManager.placed_tower_deselected.connect(
 		_on_placed_tower_deselected
 	)
+	tower_sprite.hframes = 7
 
 
 func _on_placed_tower_selected(t: Node2D) -> void:

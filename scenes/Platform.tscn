@@ -1,19 +1,18 @@
 [gd_scene format=3 uid="uid://cgqpg3bl07ghk"]
 
-[ext_resource type="Script" path="res://scripts/core/Platform.gd" id="1_axdvg"]
-[ext_resource type="Script" path="res://scripts/core/Tower.gd" id="2_motb6"]
+[ext_resource type="Texture2D" uid="uid://i0kr37onl4fa" path="res://rangedF.png" id="2_motb6"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_wwpbi"]
-[ext_resource type="Texture2D" uid="uid://dmx1js61dcdpd" path="res://rybak.jpg" id="4_o1scf"]
 
 [node name="Platform" type="Node2D" unique_id=1084195734]
-script = ExtResource("1_axdvg")
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=1134841824]
 texture = ExtResource("3_wwpbi")
 
 [node name="Tower" type="Node2D" parent="." unique_id=1763446327]
-script = ExtResource("2_motb6")
 
 [node name="TowerSprite" type="Sprite2D" parent="Tower" unique_id=1234438872]
-scale = Vector2(0.30327868, 0.19202898)
-texture = ExtResource("4_o1scf")
+position = Vector2(-4, -6)
+scale = Vector2(2, 2)
+texture = ExtResource("2_motb6")
+hframes = 7
+frame = 1

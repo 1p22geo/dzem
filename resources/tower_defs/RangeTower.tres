@@ -3,12 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_x2oih"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_lqr8s"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2oih"]
+load_path = "res://.godot/imported/rangedF.png-1d00d5a48ec91efe516318bacfd4e675.ctex"
+
 [resource]
 script = ExtResource("2_lqr8s")
+texture = SubResource("CompressedTexture2D_x2oih")
 projectile_texture = ExtResource("1_x2oih")
 projectile_speed = 150.0
 damage = 1.0
 name = "RangeTower"
 cost = 50
-attackRange = 500
+attackRange = 200
 fire_delay = 1.5

@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func _build_tower_buttons() -> void:
 	var list: VBoxContainer = %TowerList
+	print ("tower types: ", tower_types)
 	for tower_type in tower_types:
 		var btn = Button.new()
 		btn.custom_minimum_size = Vector2(0, 100)
