@@ -138,6 +138,7 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 	_sweep_alpha = 1.0
 	queue_redraw()
 
+	var hit_count := 0
 	for enemy in controller.activeEnemies:
 		if not is_instance_valid(enemy):
 			continue
@@ -156,6 +157,8 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 			if final_damage < 1.0:
 				final_damage = 1.0
 			enemy.hp -= final_damage
+			hit_count += 1
+	print("[MELEE SWEEP] hit ", hit_count, " enemies, angle=", rad_to_deg(half_angle * 2), "°, range=", tower.attackRange)
 
 
 func AttackEnemy(enemy:Enemy) -> void:

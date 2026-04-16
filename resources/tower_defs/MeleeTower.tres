@@ -19,3 +19,5 @@ cost = 100
 attackRange = 128
 fire_delay = 0.5
 max_projectiles = 1
+is_melee = true
+sweep_angle = 120.0
