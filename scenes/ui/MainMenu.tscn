@@ -152,5 +152,5 @@ layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=350553687]
 stream = SubResource("AudioStreamPlaylist_ayd4e")
-volume_db = 16.137
+volume_db = 18.827
 autoplay = true

@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/GameOverScreen.tscn" id="19_gameover"]
 [ext_resource type="PackedScene" path="res://scenes/ui/VictoryScreen.tscn" id="20_victory"]
 [ext_resource type="AudioStream" uid="uid://capn50pgdvbak" path="res://assets/sounds/sfx/ambience.wav" id="21_6acuj"]
-[ext_resource type="AudioStream" uid="uid://kxunpoeinar7" path="res://assets/sounds/music/jazz_start.mp3" id="21_65av7"]
+[ext_resource type="AudioStream" uid="uid://bkgdyt83vbnh4" path="res://assets/sounds/music/ryby.mp3" id="21_65av7"]
 
 [sub_resource type="StyleBoxFlat" id="btn_normal"]
 content_margin_left = 12.0
@@ -250,4 +250,5 @@ bus = &"Env"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=159202404]
 stream = SubResource("AudioStreamPlaylist_oj4gw")
+volume_db = -2.39
 autoplay = true
