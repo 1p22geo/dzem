@@ -5,8 +5,8 @@ extends Control
 @onready var hp_bar: ProgressBar = $StatsPanel/VBox/HPRow/HPBar
 @onready var hp_label: Label = $StatsPanel/VBox/HPRow/HPLabel
 @onready var scales_label: Label = $StatsPanel/VBox/ScalesRow/ScalesLabel
-@onready var magic_label: Label = $StatsPanel/VBox/MagicRow/MagicLabel
-@onready var magic_purify_button: Button = $StatsPanel/VBox/MagicRow/MagicPurifyButton
+@onready var magic_label: Label = $MagicPanel/MagicRow/MagicLabel
+@onready var magic_purify_button: Button = $MagicPanel/MagicRow/MagicPurifyButton
 @onready var magic_message_label: Label = $MagicMessage
 @onready var magic_duration_label: Label = $MagicTimer
 

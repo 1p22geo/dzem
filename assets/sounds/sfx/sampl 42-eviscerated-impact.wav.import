@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://24kx7s63p1ar"
+path="res://.godot/imported/sampl 42-eviscerated-impact.wav-c5f4c797ee8429a2a8fcd07f102b0ed6.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/sampl 42-eviscerated-impact.wav"
+dest_files=["res://.godot/imported/sampl 42-eviscerated-impact.wav-c5f4c797ee8429a2a8fcd07f102b0ed6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
