@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://s3wy4tmgitlt"]
+[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://cexp75fkglor6"]
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_xwo6k"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_eobtj"]
@@ -47,7 +47,7 @@ texture = SubResource("CompressedTexture2D_x2oih")
 projectile_texture = ExtResource("1_xwo6k")
 projectile_speed = 1000.0
 damage = 50.0
-name = "RangeTower"
+name = "Harpoon Angler"
 cost = 250
 attackRange = 352
 fire_delay = 3.0

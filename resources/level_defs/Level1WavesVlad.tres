@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Waves" format=3 uid="uid://64keoivo8yne"]
+[gd_resource type="Resource" script_class="Waves" format=3 uid="uid://bvjehk8y5juqb"]
 
 [ext_resource type="Script" uid="uid://b8hytavd0u53f" path="res://scripts/resource_definitions/Waves.gd" id="1_g1ydl"]
 [ext_resource type="Script" uid="uid://l6lxydt36pwr" path="res://scripts/resource_definitions/Wave.gd" id="2_jfsab"]
