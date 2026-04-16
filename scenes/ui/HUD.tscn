@@ -2,87 +2,149 @@
 
 [ext_resource type="Script" uid="uid://bfqkor1t4655e" path="res://scripts/ui/HUD.gd" id="1_hud"]
 
-[node name="HUD" type="PanelContainer" unique_id=1844565930]
+[sub_resource type="StyleBoxFlat" id="panel_dark"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0.08, 0.06, 0.14, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.25, 0.55, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="panel_center"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1, 0.07, 0.18, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.3, 0.65, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="panel_right"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0.08, 0.06, 0.14, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.25, 0.55, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="HUD" type="Control" unique_id=2041422309]
+layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 offset_right = -256.0
-offset_bottom = 72.0
+offset_bottom = 80.0
 grow_horizontal = 2
 script = ExtResource("1_hud")
 
-[node name="Margin" type="MarginContainer" parent="." unique_id=1700770666]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
+[node name="WavePanel" type="PanelContainer" parent="." unique_id=74268479]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 66.0
+theme_override_styles/panel = SubResource("panel_dark")
 
-[node name="HBox" type="HBoxContainer" parent="Margin" unique_id=1269631730]
+[node name="WaveLabel" type="Label" parent="WavePanel" unique_id=722790528]
 layout_mode = 2
-theme_override_constants/separation = 32
-alignment = 1
-
-[node name="HPSection" type="HBoxContainer" parent="Margin/HBox" unique_id=991926287]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="HPIcon" type="Label" parent="Margin/HBox/HPSection" unique_id=921644706]
-layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 1, 1)
 theme_override_font_sizes/font_size = 28
-text = "HP:"
+text = "Fala: 1"
+horizontal_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="Margin/HBox/HPSection" unique_id=1978877646]
-custom_minimum_size = Vector2(200, 32)
+[node name="CountdownPanel" type="PanelContainer" parent="." unique_id=177193564]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 10.0
+offset_right = 160.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("panel_center")
+
+[node name="CountdownLabel" type="Label" parent="CountdownPanel" unique_id=784790865]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_font_sizes/font_size = 26
+text = "Nastepna fala za: 5"
+horizontal_alignment = 1
+
+[node name="StatsPanel" type="PanelContainer" parent="." unique_id=110216759]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 6.0
+offset_right = -12.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("panel_right")
+
+[node name="VBox" type="VBoxContainer" parent="StatsPanel" unique_id=386723340]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HPRow" type="HBoxContainer" parent="StatsPanel/VBox" unique_id=2054667564]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HPIcon" type="Label" parent="StatsPanel/VBox/HPRow" unique_id=936009435]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 20
+text = "HP"
+
+[node name="HPBar" type="ProgressBar" parent="StatsPanel/VBox/HPRow" unique_id=1764262795]
+custom_minimum_size = Vector2(120, 20)
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 100.0
 show_percentage = false
 
-[node name="HPLabel" type="Label" parent="Margin/HBox/HPSection" unique_id=848142582]
+[node name="HPLabel" type="Label" parent="StatsPanel/VBox/HPRow" unique_id=696230876]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "100 / 100"
-
-[node name="Sep1" type="VSeparator" parent="Margin/HBox" unique_id=137299901]
-layout_mode = 2
-
-[node name="ScalesSection" type="HBoxContainer" parent="Margin/HBox" unique_id=2049241873]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="ScalesIcon" type="Label" parent="Margin/HBox/ScalesSection" unique_id=1062753677]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Luski:"
-
-[node name="ScalesLabel" type="Label" parent="Margin/HBox/ScalesSection" unique_id=219407483]
-layout_mode = 2
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 18
 text = "100"
 
-[node name="Sep2" type="VSeparator" parent="Margin/HBox" unique_id=1968029691]
-layout_mode = 2
-
-[node name="WaveSection" type="HBoxContainer" parent="Margin/HBox" unique_id=1669713449]
+[node name="ScalesRow" type="HBoxContainer" parent="StatsPanel/VBox" unique_id=66166201]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="WaveIcon" type="Label" parent="Margin/HBox/WaveSection" unique_id=1204270744]
+[node name="ScalesIcon" type="Label" parent="StatsPanel/VBox/ScalesRow" unique_id=2139050573]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Fala:"
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "Luski"
 
-[node name="WaveLabel" type="Label" parent="Margin/HBox/WaveSection" unique_id=1202222962]
+[node name="ScalesLabel" type="Label" parent="StatsPanel/VBox/ScalesRow" unique_id=991128033]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "0 / 0"
-
-[node name="Sep3" type="VSeparator" parent="Margin/HBox"]
-layout_mode = 2
-
-[node name="StartWaveButton" type="Button" parent="Margin/HBox"]
-layout_mode = 2
-custom_minimum_size = Vector2(160, 0)
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
 theme_override_font_sizes/font_size = 22
-text = "Start Fali"
+text = "100"
+horizontal_alignment = 2
