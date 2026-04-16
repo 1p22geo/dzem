@@ -74,7 +74,7 @@ func FindClosestEnemyToAttack() -> Enemy:
 	if tower and controller:
 		var closestEnemy: Enemy
 		var tower_pos := tower_sprite.global_position
-		var min_diff = -1
+		var max_distsance = -1
 		for enemy in controller.activeEnemies:
 			if not is_instance_valid(enemy):
 				continue
@@ -82,9 +82,10 @@ func FindClosestEnemyToAttack() -> Enemy:
 				continue
 
 			var diff = tower_pos.distance_to(enemy.global_position)
+			var dist = enemy.distance
 			
-			if diff > min_diff && diff <= tower.attackRange:
-				min_diff = diff
+			if dist > max_distsance && diff <= tower.attackRange:
+				max_distsance = dist
 				closestEnemy = enemy
 		return closestEnemy
 	return null
