@@ -8,6 +8,12 @@ var animationMeleeRef := load("res://scenes/animations/AnimationMelee.tscn")
 var animationRangeRef := load("res://scenes/animations/AnimationRange.tscn")
 var animationSniperRef := load("res://scenes/animations/AnimationSniper.tscn")
 
+var audio_stream_player: AudioStreamPlayer
+
+var meleeAttackAudio := load("res://assets/sounds/sfx/sampl 31-ploinked-impact.wav")
+var whipAttackAudio := load("res://assets/sounds/sfx/sampl 40-whip.wav")
+var sniperAttackAudio := load("res://assets/sounds/sfx/sampl 43-poinked-swoosh.wav")
+
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
@@ -61,6 +67,19 @@ func _ready() -> void:
 	z_index = int(global_position.y)
 
 	_setup_empty_button()
+	
+	audio_stream_player = get_node("AttackAudioFX")
+	
+	if tower.is_melee:
+		audio_stream_player.stream = meleeAttackAudio
+	else:
+		if tower.is_sniper:
+			audio_stream_player.stream = sniperAttackAudio
+		else:
+			audio_stream_player.stream = whipAttackAudio
+		
+
+
 	
 func get_damage() -> float:
 	var total := tower.damage
@@ -244,6 +263,7 @@ func _face_target(target_pos: Vector2) -> void:
 
 
 func _play_attack() -> void:
+	audio_stream_player.play()
 	if animation_player and animation_player.has_animation("attack"):
 		animation_player.stop()
 		animation_player.speed_scale = 2.5
@@ -310,7 +330,7 @@ func AttackEnemy(enemy:Enemy) -> void:
 			return
 		if len(active_projectiles) >= tower.max_projectiles:
 			return
-			
+		
 		_face_target(enemy.global_position)
 		_play_attack()
 		var spawned_projectile:Projectile = projectile_scene.instantiate()

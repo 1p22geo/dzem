@@ -13,13 +13,17 @@
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="9_l2ejl"]
 [ext_resource type="Texture2D" uid="uid://4bb63vmhec1p" path="res://assets/tilemap.png" id="11_swakq"]
 [ext_resource type="Script" uid="uid://pgokkntkoywb" path="res://scripts/tiles/TileMapManager.gd" id="12_tilmgr"]
-[ext_resource type="PackedScene" uid="uid://g8leu0engxgr" path="res://scenes/ui/TowerContextMenu.tscn" id="13_ctxmenu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/TowerContextMenu.tscn" id="13_ctxmenu"]
 [ext_resource type="PackedScene" uid="uid://co27h8gocrjrx" path="res://scenes/ui/HUD.tscn" id="14_hud"]
-[ext_resource type="Script" uid="uid://cdpaswblgg26y" path="res://scripts/ui/StartWaveButton.gd" id="16_startbtn"]
+[ext_resource type="Script" path="res://scripts/ui/StartWaveButton.gd" id="16_startbtn"]
 [ext_resource type="Texture2D" uid="uid://b13qa6oo7y67r" path="res://assets/icons/play.svg" id="17_playicon"]
 [ext_resource type="Texture2D" uid="uid://1b0x2kvp1axo" path="res://assets/icons/pause.svg" id="18_pauseicon"]
 [ext_resource type="PackedScene" path="res://scenes/ui/GameOverScreen.tscn" id="19_gameover"]
 [ext_resource type="PackedScene" path="res://scenes/ui/VictoryScreen.tscn" id="20_victory"]
+[ext_resource type="AudioStream" uid="uid://capn50pgdvbak" path="res://assets/sounds/sfx/ambience.wav" id="21_6acuj"]
+[ext_resource type="AudioStream" uid="uid://cisxay8trbey3" path="res://assets/sounds/sfx/sampl 40-whip.wav" id="21_f3vv4"]
+[ext_resource type="AudioStream" uid="uid://c0f3c76sdlxds" path="res://assets/sounds/sfx/sampl 38-eviscerated.wav" id="22_gdv5s"]
+[ext_resource type="AudioStream" uid="uid://sj1u41qcgs5m" path="res://assets/sounds/sfx/sampl 43-poinked-swoosh.wav" id="23_ojvef"]
 
 [sub_resource type="StyleBoxFlat" id="btn_normal"]
 content_margin_left = 12.0
@@ -151,6 +155,11 @@ custom_data_layer_0/name = "tile_type"
 custom_data_layer_0/type = 4
 sources/1 = SubResource("TileSetAtlasSource_a2ovr")
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_6acuj"]
+fade_time = 0.5
+stream_count = 1
+stream_0 = ExtResource("21_6acuj")
+
 [node name="Level1" type="Node2D" unique_id=2039127057]
 
 [node name="EnemyController" type="Node" parent="." unique_id=1550518633 node_paths=PackedStringArray("spawner")]
@@ -229,3 +238,20 @@ position = Vector2(230, 418)
 
 [node name="Base" parent="tiles" unique_id=674030061 instance=ExtResource("8_ydmy2")]
 position = Vector2(1533, 420)
+
+[node name="WhipAttackSFX" type="AudioStreamPlayer" parent="." unique_id=678416837]
+stream = ExtResource("21_f3vv4")
+bus = &"SFX"
+
+[node name="MeleeAttackSFX" type="AudioStreamPlayer" parent="." unique_id=1461042539]
+stream = ExtResource("22_gdv5s")
+bus = &"SFX"
+
+[node name="SniperAttackSFX" type="AudioStreamPlayer" parent="." unique_id=679376772]
+stream = ExtResource("23_ojvef")
+bus = &"SFX"
+
+[node name="AmbientSound" type="AudioStreamPlayer" parent="." unique_id=1934398999]
+stream = SubResource("AudioStreamPlaylist_6acuj")
+autoplay = true
+bus = &"Env"
