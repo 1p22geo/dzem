@@ -17,7 +17,6 @@ var active_projectiles = []
 
 func _ready() -> void:
 	var scene_root := get_tree().current_scene
-<<<<<<< HEAD
 	controller = scene_root.find_child(
 		"EnemyController", true, false
 	) as EnemyController
@@ -29,7 +28,6 @@ func _ready() -> void:
 		_on_placed_tower_deselected
 	)
 	tower_sprite.hframes = 7
-=======
 	if scene_root != null:
 		controller = scene_root.find_child(
 			"EnemyController", true, false
@@ -40,7 +38,6 @@ func _ready() -> void:
 		GameManager.placed_tower_selected.connect(_on_placed_tower_selected)
 	if not GameManager.placed_tower_deselected.is_connected(_on_placed_tower_deselected):
 		GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
->>>>>>> edf85b8c67094e4e75eb15d7187d3961479ac845
 
 
 func _on_placed_tower_selected(t: Node2D) -> void:
