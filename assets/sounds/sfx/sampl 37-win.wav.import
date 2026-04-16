@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://jujods6lqw6h"
+path="res://.godot/imported/sampl 37-win.wav-5f3c49558de411bbab0da6959d43b317.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/sampl 37-win.wav"
+dest_files=["res://.godot/imported/sampl 37-win.wav-5f3c49558de411bbab0da6959d43b317.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://b1b7tg7klrlku"]
 
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_x2oih"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_lqr8s"]
 [ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="3_upg"]
 
@@ -46,10 +45,9 @@ prerequisites = Array[ExtResource("3_upg")]([SubResource("SubResource_cap1")])
 [resource]
 script = ExtResource("2_lqr8s")
 texture = SubResource("CompressedTexture2D_x2oih")
-projectile_texture = ExtResource("1_x2oih")
 projectile_speed = 400.0
 damage = 10.0
-name = "RangeTower"
+name = "Rybak"
 cost = 100
 attackRange = 188
 fire_delay = 0.8

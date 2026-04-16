@@ -2,12 +2,25 @@
 
 [ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_1utgd"]
 [ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/FastEnemy.tres" id="2_jfc50"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_vfune"]
 [ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="3_pyjji"]
+[ext_resource type="Texture2D" uid="uid://3ecsglqivn15" path="res://assets/sum-frames/dorsz-framesum-frame0000.png" id="4_f0"]
+[ext_resource type="Texture2D" uid="uid://dudlrsrgiy4lo" path="res://assets/sum-frames/dorsz-framesum-frame0001.png" id="5_f1"]
+[ext_resource type="Texture2D" uid="uid://bj37ana8ac2x4" path="res://assets/sum-frames/dorsz-framesum-frame0002.png" id="6_f2"]
+[ext_resource type="Texture2D" uid="uid://cj1i4k6w67t71" path="res://assets/sum-frames/dorsz-framesum-frame0003.png" id="7_f3"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_sum"]
+frames = 4
+frame_0/texture = ExtResource("4_f0")
+frame_1/texture = ExtResource("5_f1")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("6_f2")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("7_f3")
+frame_3/duration = 1.0
 
 [resource]
 script = ExtResource("1_1utgd")
-texture = ExtResource("2_vfune")
+texture = SubResource("AnimatedTexture_sum")
 speed = 0.4
 name = "Sum"
 health = 280.0
