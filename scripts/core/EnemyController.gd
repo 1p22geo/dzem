@@ -54,11 +54,18 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _is_initial_preparation():
+		return
+
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_Q:
 			GameManager.cast_magic()
 		elif event.keycode == KEY_R:
 			GameManager.purify_magic()
+
+
+func _is_initial_preparation() -> bool:
+	return wave_no == 0 and state != null and state.current_state is PreparationState
 
 
 func _on_magic_burst_casted(damage: float, slow_multiplier: float, slow_duration: float) -> void:

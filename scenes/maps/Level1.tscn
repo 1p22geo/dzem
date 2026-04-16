@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/VictoryScreen.tscn" id="20_victory"]
 [ext_resource type="AudioStream" uid="uid://capn50pgdvbak" path="res://assets/sounds/sfx/ambience.wav" id="21_6acuj"]
 [ext_resource type="AudioStream" uid="uid://bkgdyt83vbnh4" path="res://assets/sounds/music/ryby.mp3" id="21_65av7"]
+[ext_resource type="AudioStream" uid="uid://cisxay8trbey3" path="res://assets/sounds/sfx/sampl 40-whip.wav" id="21_f3vv4"]
+[ext_resource type="AudioStream" uid="uid://c0f3c76sdlxds" path="res://assets/sounds/sfx/sampl 38-eviscerated.wav" id="22_gdv5s"]
+[ext_resource type="AudioStream" uid="uid://sj1u41qcgs5m" path="res://assets/sounds/sfx/sampl 43-poinked-swoosh.wav" id="23_ojvef"]
 
 [sub_resource type="StyleBoxFlat" id="btn_normal"]
 content_margin_left = 12.0
@@ -242,6 +245,15 @@ position = Vector2(230, 418)
 [node name="Base" parent="tiles" unique_id=674030061 instance=ExtResource("8_ydmy2")]
 position = Vector2(1533, 420)
 
+[node name="WhipAttackSFX" type="AudioStreamPlayer" parent="." unique_id=678416837]
+stream = ExtResource("21_f3vv4")
+
+[node name="MeleeAttackSFX" type="AudioStreamPlayer" parent="." unique_id=1461042539]
+stream = ExtResource("22_gdv5s")
+
+[node name="SniperAttackSFX" type="AudioStreamPlayer" parent="." unique_id=679376772]
+stream = ExtResource("23_ojvef")
+
 [node name="AmbientSound" type="AudioStreamPlayer" parent="." unique_id=1934398999]
 stream = SubResource("AudioStreamPlaylist_6acuj")
 volume_db = -20.023
@@ -252,3 +264,4 @@ bus = &"Env"
 stream = SubResource("AudioStreamPlaylist_oj4gw")
 volume_db = -2.39
 autoplay = true
+bus = &"BG"

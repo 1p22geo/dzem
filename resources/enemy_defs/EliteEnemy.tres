@@ -25,9 +25,9 @@ frame_4/duration = 0.8
 [resource]
 script = ExtResource("1_1utgd")
 texture = SubResource("AnimatedTexture_8mpyn")
-speed = 0.4
+speed = 0.45
 name = "Jesiotr Zachodni"
-health = 400.0
+health = 420.0
 armor = 10.0
 prize = 25
 damage = 35.0
