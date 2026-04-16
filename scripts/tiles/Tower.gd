@@ -188,6 +188,8 @@ func _process(delta: float) -> void:
 	
 	if tower == null or controller == null or tower_sprite == null:
 		return
+	if GameManager.is_towers_frozen():
+		return
 	if _sweep_alpha > 0.0:
 		_sweep_alpha -= delta * 1.5
 		if _sweep_alpha <= 0.0:
