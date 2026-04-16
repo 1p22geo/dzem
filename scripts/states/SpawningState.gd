@@ -3,6 +3,7 @@ class_name SpawningState
 
 var timer: float = 0.0
 var controller: Node
+var _victory_emitted: bool = false
 
 
 func _ready() -> void:
@@ -12,6 +13,7 @@ func _ready() -> void:
 func Enter() -> void:
 	controller.enemies_spawned = 0
 	timer = 0.0
+	_victory_emitted = false
 
 
 func Update(delta: float) -> void:
@@ -25,6 +27,9 @@ func Update(delta: float) -> void:
 		return
 
 	if controller.wave_no >= controller.waveDefs.waves.size():
+		if not _victory_emitted and controller.activeEnemies.is_empty():
+			_victory_emitted = true
+			GameManager.victory.emit()
 		return
 
 	var wave: Wave = controller.waveDefs.waves[controller.wave_no]

@@ -1,0 +1,149 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/VictoryScreen.gd" id="1_vic"]
+
+[sub_resource type="StyleBoxFlat" id="panel_style"]
+content_margin_left = 60.0
+content_margin_top = 40.0
+content_margin_right = 60.0
+content_margin_bottom = 40.0
+bg_color = Color(0.02, 0.06, 0.08, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.75, 0.2, 0.9)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.8, 0.7, 0.0, 0.25)
+shadow_size = 16
+
+[sub_resource type="StyleBoxFlat" id="btn_normal"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.15, 0.4, 0.15, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.7, 0.3, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.2, 0.55, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.85, 0.4, 1.0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="btn_pressed"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.1, 0.3, 0.1, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.5, 0.2, 1.0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="VictoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+process_mode = 3
+script = ExtResource("1_vic")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.08, 0.0, 0.65)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1.0, 0.85, 0.15, 1.0)
+theme_override_font_sizes/font_size = 72
+text = "ZWYCIESTWO!"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.9, 0.6, 1.0)
+theme_override_font_sizes/font_size = 28
+text = "Wioska jest bezpieczna!"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 10)
+
+[node name="StatsLabel" type="Label" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.6, 1.0)
+theme_override_font_sizes/font_size = 24
+text = "HP: 100  |  Luski: 500"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="CenterContainer/Panel/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(280, 0)
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1.0, 0.95, 0.85, 1.0)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("btn_normal")
+theme_override_styles/hover = SubResource("btn_hover")
+theme_override_styles/pressed = SubResource("btn_pressed")
+text = "Menu Glowne"
