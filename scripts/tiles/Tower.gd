@@ -52,6 +52,7 @@ func _ready() -> void:
 	sprite = anim_node.get_node("Sprite2D") as Sprite2D
 	sprite.z_index = 5
 	sprite.position = Vector2.ZERO
+	animation_player.stop()
 	animation_player.play("idle")
 
 	_setup_empty_button()
@@ -232,9 +233,13 @@ func on_enemy_killed() -> void:
 
 func _play_attack() -> void:
 	if animation_player and animation_player.has_animation("attack"):
+		animation_player.stop()
+		animation_player.speed_scale = 2.5
 		animation_player.play("attack")
 		await animation_player.animation_finished
 		if is_instance_valid(self) and animation_player:
+			animation_player.stop()
+			animation_player.speed_scale = 1
 			animation_player.play("idle")
 
 
