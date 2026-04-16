@@ -168,9 +168,61 @@ delay_between_enemies = 1.8
 enemy_count = 10
 metadata/_custom_type_script = "uid://l6lxydt36pwr"
 
+[sub_resource type="Resource" id="Resource_g1ydl"]
+script = ExtResource("2_jfsab")
+start_delay = 7.0
+enemy_type = ExtResource("3_d8au5")
+delay_between_enemies = 0.2
+enemy_count = 60
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_ktgbt"]
+script = ExtResource("2_jfsab")
+start_delay = 7.0
+enemy_type = ExtResource("3_d8au5")
+delay_between_enemies = 0.2
+enemy_count = 70
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_wpw5s"]
+script = ExtResource("2_jfsab")
+start_delay = 7.0
+enemy_type = ExtResource("3_d8au5")
+delay_between_enemies = 0.2
+enemy_count = 80
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_wicyx"]
+script = ExtResource("2_jfsab")
+start_delay = 7.0
+enemy_type = ExtResource("4_vci53")
+delay_between_enemies = 0.6
+enemy_count = 40
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_m2bl2"]
+script = ExtResource("2_jfsab")
+start_delay = 7.0
+enemy_type = ExtResource("4_vci53")
+delay_between_enemies = 0.5
+enemy_count = 45
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_51mov"]
+script = ExtResource("2_jfsab")
+start_delay = 7.0
+enemy_type = ExtResource("4_vci53")
+delay_between_enemies = 0.45
+enemy_count = 50
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_qsoid"]
+script = ExtResource("2_jfsab")
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
 [resource]
 script = ExtResource("1_g1ydl")
-waves = Array[ExtResource("2_jfsab")]([SubResource("Resource_jfsab"), SubResource("Resource_hrclk"), SubResource("Resource_h70g7"), SubResource("Resource_kc8e4"), SubResource("Resource_ya7fw"), SubResource("Resource_d8au5"), SubResource("Resource_vci53"), SubResource("Resource_nv71o"), SubResource("Resource_3xeip"), SubResource("Resource_mmjk4"), SubResource("Resource_affm3"), SubResource("Resource_iec8s"), SubResource("Resource_i23sb"), SubResource("Resource_c1kdh"), SubResource("Resource_ingcb"), SubResource("Resource_u3cxn"), SubResource("Resource_xlorb"), SubResource("Resource_8b15c"), SubResource("Resource_3hkdn"), SubResource("Resource_pk6jk"), null])
+waves = Array[ExtResource("2_jfsab")]([SubResource("Resource_jfsab"), SubResource("Resource_hrclk"), SubResource("Resource_h70g7"), SubResource("Resource_kc8e4"), SubResource("Resource_ya7fw"), SubResource("Resource_d8au5"), SubResource("Resource_vci53"), SubResource("Resource_nv71o"), SubResource("Resource_3xeip"), SubResource("Resource_mmjk4"), SubResource("Resource_affm3"), SubResource("Resource_iec8s"), SubResource("Resource_i23sb"), SubResource("Resource_c1kdh"), SubResource("Resource_ingcb"), SubResource("Resource_u3cxn"), SubResource("Resource_xlorb"), SubResource("Resource_8b15c"), SubResource("Resource_3hkdn"), SubResource("Resource_pk6jk"), SubResource("Resource_g1ydl"), SubResource("Resource_ktgbt"), SubResource("Resource_wpw5s"), SubResource("Resource_wicyx"), SubResource("Resource_m2bl2"), SubResource("Resource_51mov"), SubResource("Resource_qsoid"), null, null, null, null, null, null, null, null])
 preparation_time = 1.0
 initial_coins = 250
 metadata/_custom_type_script = "uid://b8hytavd0u53f"
