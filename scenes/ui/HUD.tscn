@@ -148,3 +148,51 @@ theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
 theme_override_font_sizes/font_size = 22
 text = "100"
 horizontal_alignment = 2
+
+[node name="MagicRow" type="HBoxContainer" parent="StatsPanel/VBox" unique_id=1845210679]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MagicIcon" type="Label" parent="StatsPanel/VBox/MagicRow" unique_id=190833274]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Magia"
+
+[node name="MagicLabel" type="Label" parent="StatsPanel/VBox/MagicRow" unique_id=1520204652]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 16
+text = "Q Magia (35): GOTOWA"
+horizontal_alignment = 2
+
+[node name="MagicMessage" type="Label" parent="." unique_id=1976402901]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = 570.0
+offset_right = 60.0
+offset_bottom = 614.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.3999999, 2.8399975)
+theme_override_colors/font_color = Color(0.8, 0.95, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.07, 0.12, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 34
+text = "Magia aktywna!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MagicTimer" type="Label" parent="." unique_id=649937402]
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 21.0
+offset_right = 1266.0
+offset_bottom = 51.0

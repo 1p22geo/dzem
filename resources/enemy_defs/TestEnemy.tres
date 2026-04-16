@@ -9,6 +9,6 @@ texture = ExtResource("2_vfune")
 speed = 1.0
 name = "Płotka"
 health = 20.0
-prize = 5
+prize = 4
 damage = 0.5
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

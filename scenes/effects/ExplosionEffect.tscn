@@ -1,0 +1,80 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/effects/ExplosionEffect.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb1.png" id="2_f1"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb2.png" id="3_f2"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb3.png" id="4_f3"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb4.png" id="5_f4"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb5.png" id="6_f5"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb6.png" id="7_f6"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb7.png" id="8_f7"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb8.png" id="9_f8"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb9.png" id="10_f9"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb10.png" id="11_f10"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb11.png" id="12_f11"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb12.png" id="13_f12"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb13.png" id="14_f13"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb14.png" id="15_f14"]
+[ext_resource type="Texture2D" path="res://assets/FireBomb/Fire-bomb15.png" id="16_f15"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_exp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_f9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_f10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_f11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_f12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_f13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_f14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_f15")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 20.0
+}]
+
+[node name="ExplosionEffect" type="Node2D"]
+z_index = 10
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_exp")
+animation = &"explode"
