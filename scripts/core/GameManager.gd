@@ -109,6 +109,8 @@ var selected_tower: TowerType = null
 
 
 func select_tower(tower_type: TowerType) -> void:
+	if selected_placed_tower:
+		deselect_placed_tower()
 	selected_tower = tower_type
 	tower_selected.emit(tower_type)
 
