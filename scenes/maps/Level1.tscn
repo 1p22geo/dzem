@@ -242,7 +242,6 @@ position = Vector2(230, 418)
 [node name="Base" parent="tiles" unique_id=674030061 instance=ExtResource("8_ydmy2")]
 position = Vector2(1533, 420)
 
-<<<<<<< HEAD
 [node name="WhipAttackSFX" type="AudioStreamPlayer" parent="." unique_id=678416837]
 stream = ExtResource("21_f3vv4")
 
@@ -252,18 +251,13 @@ stream = ExtResource("22_gdv5s")
 [node name="SniperAttackSFX" type="AudioStreamPlayer" parent="." unique_id=679376772]
 stream = ExtResource("23_ojvef")
 
-=======
->>>>>>> 189ac375fe23419a75084a67bccdd0417e2316e9
 [node name="AmbientSound" type="AudioStreamPlayer" parent="." unique_id=1934398999]
 stream = SubResource("AudioStreamPlaylist_6acuj")
 volume_db = -20.023
 autoplay = true
-<<<<<<< HEAD
-=======
 bus = &"Env"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=159202404]
 stream = SubResource("AudioStreamPlaylist_oj4gw")
 volume_db = -2.39
 autoplay = true
->>>>>>> 189ac375fe23419a75084a67bccdd0417e2316e9
