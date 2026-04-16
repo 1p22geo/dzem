@@ -223,7 +223,6 @@ script = ExtResource("12_tilmgr")
 
 [node name="tiles" type="Node2D" parent="." unique_id=2032513428]
 visible = false
-position = Vector2(1632, 0)
 
 [node name="Spawner" parent="tiles" unique_id=1579113028 instance=ExtResource("3_nuvw0")]
 position = Vector2(230, 418)
