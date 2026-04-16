@@ -101,6 +101,7 @@ offset_left = -280.0
 offset_top = 6.0
 offset_right = -12.0
 offset_bottom = 68.0
+grow_horizontal = 0
 theme_override_styles/panel = SubResource("panel_right")
 
 [node name="VBox" type="VBoxContainer" parent="StatsPanel" unique_id=386723340]
@@ -154,10 +155,11 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -280.0
-offset_top = 76.0
-offset_right = -12.0
-offset_bottom = 124.0
+offset_left = -900.0
+offset_top = 67.0
+offset_right = -526.0
+offset_bottom = 115.0
+grow_horizontal = 0
 theme_override_styles/panel = SubResource("panel_right")
 
 [node name="MagicRow" type="HBoxContainer" parent="MagicPanel" unique_id=1845210679]
@@ -206,10 +208,3 @@ theme_override_font_sizes/font_size = 34
 text = "Magia aktywna!"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MagicTimer" type="Label" parent="." unique_id=649937402]
-layout_mode = 0
-offset_left = 1026.0
-offset_top = 21.0
-offset_right = 1266.0
-offset_bottom = 51.0
