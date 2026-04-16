@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://hi1s78l0h0a8"]
 
 [ext_resource type="Script" uid="uid://dnuio0tlnmiyl" path="res://scripts/core/EnemyController.gd" id="2_80hdt"]
-[ext_resource type="Resource" uid="uid://64keoivo8yne" path="res://resources/level_defs/Level1WavesVlad.tres" id="3_ayrwv"]
+[ext_resource type="Resource" uid="uid://b8xpuomma4xej" path="res://resources/level_defs/Level1_0WavesVlad.tres" id="2_x40c1"]
 [ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/tiles/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
 [ext_resource type="PackedScene" uid="uid://dsudxhw85s62" path="res://scenes/ui/TowerPanel.tscn" id="4_tower"]
@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://4bb63vmhec1p" path="res://assets/tilemap.png" id="11_swakq"]
 [ext_resource type="Script" uid="uid://pgokkntkoywb" path="res://scripts/tiles/TileMapManager.gd" id="12_tilmgr"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TowerContextMenu.tscn" id="13_ctxmenu"]
-[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="14_hud"]
-[ext_resource type="Script" path="res://scripts/ui/StartWaveButton.gd" id="16_startbtn"]
+[ext_resource type="PackedScene" uid="uid://co27h8gocrjrx" path="res://scenes/ui/HUD.tscn" id="14_hud"]
+[ext_resource type="Script" uid="uid://cdpaswblgg26y" path="res://scripts/ui/StartWaveButton.gd" id="16_startbtn"]
 [ext_resource type="Texture2D" uid="uid://b13qa6oo7y67r" path="res://assets/icons/play.svg" id="17_playicon"]
 [ext_resource type="Texture2D" uid="uid://1b0x2kvp1axo" path="res://assets/icons/pause.svg" id="18_pauseicon"]
 [ext_resource type="PackedScene" path="res://scenes/ui/GameOverScreen.tscn" id="19_gameover"]
@@ -156,7 +156,7 @@ sources/1 = SubResource("TileSetAtlasSource_a2ovr")
 unique_name_in_owner = true
 script = ExtResource("2_80hdt")
 spawner = NodePath("../tiles/Spawner")
-waveDefs = ExtResource("3_ayrwv")
+waveDefs = ExtResource("2_x40c1")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=442033062]
 layer = 10
