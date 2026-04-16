@@ -189,8 +189,15 @@ func _process(delta: float) -> void:
 	
 	if tower == null or controller == null or tower_sprite == null:
 		return
+	
 	if GameManager.is_towers_frozen():
+		if sprite:
+			sprite.modulate = Color(0.5, 0.7, 1.0, 1.0) # Blueish tint
 		return
+	else:
+		if sprite:
+			sprite.modulate = Color.WHITE
+
 	if _sweep_alpha > 0.0:
 		_sweep_alpha -= delta * 1.5
 		if _sweep_alpha <= 0.0:
