@@ -231,6 +231,11 @@ func on_enemy_killed() -> void:
 		GameManager.placed_tower_selected.emit(self)
 
 
+func _face_target(target_pos: Vector2) -> void:
+	if sprite:
+		sprite.flip_h = target_pos.x > global_position.x
+
+
 func _play_attack() -> void:
 	if animation_player and animation_player.has_animation("attack"):
 		animation_player.stop()
@@ -248,6 +253,7 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 		return
 	if not is_instance_valid(target_enemy):
 		return
+	_face_target(target_enemy.global_position)
 	_play_attack()
 
 	var tower_pos := tower_sprite.global_position
@@ -298,6 +304,7 @@ func AttackEnemy(enemy:Enemy) -> void:
 		if len(active_projectiles) >= tower.max_projectiles:
 			return
 			
+		_face_target(enemy.global_position)
 		_play_attack()
 		var spawned_projectile:Projectile = projectile_scene.instantiate()
 		spawned_projectile.damage = get_damage()
