@@ -9,10 +9,19 @@ signal placed_tower_selected(tower_node: Node2D)
 signal placed_tower_deselected
 signal wave_start_requested
 signal victory
+signal magic_burst_casted(damage: float, slow_multiplier: float, slow_duration: float)
+signal magic_cooldown_changed(time_left: float)
 
 @export var max_hp: int = 100
 var _hp: int = max_hp
 var _scales: int = 100
+
+@export var magic_cost: int = 35
+@export var magic_damage: float = 30.0
+@export var magic_slow_multiplier: float = 0.6
+@export var magic_slow_duration: float = 2.5
+@export var magic_cooldown: float = 12.0
+var _magic_cooldown_left: float = 0.0
 
 var hp: int:
 	get:
@@ -35,11 +44,21 @@ func _ready() -> void:
 	reset()
 
 
+func _process(delta: float) -> void:
+	if _magic_cooldown_left > 0.0:
+		_magic_cooldown_left -= delta
+		if _magic_cooldown_left < 0.0:
+			_magic_cooldown_left = 0.0
+		magic_cooldown_changed.emit(_magic_cooldown_left)
+
+
 func reset() -> void:
 	_hp = max_hp
 	_scales = 100
+	_magic_cooldown_left = 0.0
 	hp_changed.emit(_hp)
 	scales_changed.emit(_scales)
+	magic_cooldown_changed.emit(_magic_cooldown_left)
 
 
 func take_damage(amount: int) -> void:
@@ -65,10 +84,33 @@ func can_afford(amount: int) -> bool:
 	return _scales >= amount
 
 
+func can_cast_magic() -> bool:
+	return _magic_cooldown_left <= 0.0 and can_afford(magic_cost)
+
+
+func cast_magic() -> bool:
+	if not can_cast_magic():
+		return false
+
+	if not spend_scales(magic_cost):
+		return false
+
+	_magic_cooldown_left = magic_cooldown
+	magic_cooldown_changed.emit(_magic_cooldown_left)
+	magic_burst_casted.emit(magic_damage, magic_slow_multiplier, magic_slow_duration)
+	return true
+
+
+func get_magic_cooldown_left() -> float:
+	return _magic_cooldown_left
+
+
 var selected_tower: TowerType = null
 
 
 func select_tower(tower_type: TowerType) -> void:
+	if selected_placed_tower:
+		deselect_placed_tower()
 	selected_tower = tower_type
 	tower_selected.emit(tower_type)
 

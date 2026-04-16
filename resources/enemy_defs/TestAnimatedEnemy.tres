@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://8pyu70em6eae"]
+
+[ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_n0pil"]
+[ext_resource type="Texture2D" uid="uid://b5lbi0l5miky8" path="res://assets/wegorz-frames/wegorz-frame0000.png" id="2_60uq2"]
+[ext_resource type="Texture2D" uid="uid://b7o46o1h0nbb4" path="res://assets/wegorz-frames/wegorz-frame0001.png" id="3_8ctvk"]
+[ext_resource type="Texture2D" uid="uid://cu7supkundgj8" path="res://assets/wegorz-frames/wegorz-frame0010.png" id="4_ddy08"]
+[ext_resource type="Texture2D" uid="uid://bj5qjws23nvi0" path="res://assets/wegorz-frames/wegorz-frame0002.png" id="5_iitcv"]
+[ext_resource type="Texture2D" uid="uid://drr84uya307th" path="res://assets/wegorz-frames/wegorz-frame0003.png" id="6_jwjqd"]
+[ext_resource type="Texture2D" uid="uid://bdrg12bt1yigb" path="res://assets/wegorz-frames/wegorz-frame0004.png" id="7_oywy5"]
+[ext_resource type="Texture2D" uid="uid://bjd2a3ntd45hy" path="res://assets/wegorz-frames/wegorz-frame0005.png" id="8_od5rl"]
+[ext_resource type="Texture2D" uid="uid://dydu16j6gw1sg" path="res://assets/wegorz-frames/wegorz-frame0006.png" id="9_x5ij1"]
+[ext_resource type="Texture2D" uid="uid://btisnlq4ls12k" path="res://assets/wegorz-frames/wegorz-frame0007.png" id="10_6ldan"]
+[ext_resource type="Texture2D" uid="uid://dr2wtdif4mxni" path="res://assets/wegorz-frames/wegorz-frame0008.png" id="11_e285j"]
+[ext_resource type="Texture2D" uid="uid://c2stv126fmcxa" path="res://assets/wegorz-frames/wegorz-frame0009.png" id="12_l48aa"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_xrfn8"]
+frames = 11
+speed_scale = 1.4
+frame_0/texture = ExtResource("2_60uq2")
+frame_1/texture = ExtResource("3_8ctvk")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_iitcv")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_jwjqd")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("7_oywy5")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("8_od5rl")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("9_x5ij1")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("10_6ldan")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("11_e285j")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("12_l48aa")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("4_ddy08")
+frame_10/duration = 1.0
+
+[resource]
+script = ExtResource("1_n0pil")
+texture = SubResource("AnimatedTexture_xrfn8")
+speed = 1.0
+name = "Węgorz"
+health = 30.0
+prize = 10
+damage = 1.0
+metadata/_custom_type_script = "uid://bh7wtp2wdxlu"
