@@ -173,7 +173,7 @@ func _draw_sweep() -> void:
 func _setup_empty_button():
 	empty_button = TextureButton.new()
 	var size = Vector2(40,40)
-	empty_button.texture_normal = load("res://icon.svg")
+	empty_button.texture_normal = load("res://assets/overload-icon.png")
 	empty_button.custom_minimum_size = size
 	empty_button.ignore_texture_size = true
 	empty_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
