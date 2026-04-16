@@ -1,5 +1,7 @@
 extends Tile
 
+class_name Tower
+
 @export var tower:TowerType
 
 
@@ -7,6 +9,9 @@ var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
 var selected: bool = false
+
+var active_projectiles = []
+
 
 @onready var projectile_scene:PackedScene = load("res://scenes/entities/Projectile.tscn")
 
@@ -79,12 +84,16 @@ func AttackEnemy(enemy:Enemy) -> void:
 			return
 		if enemy.hp <= 0:
 			return
+		if len(active_projectiles) >= tower.max_projectiles:
+			return
 			
 		var spawned_projectile:Projectile = projectile_scene.instantiate()
 		spawned_projectile.damage = tower.damage
 		spawned_projectile.speed = tower.projectile_speed
 		spawned_projectile.target = enemy
+		spawned_projectile.parent_tower = self
 		spawned_projectile.get_node("Sprite2D").texture = tower.projectile_texture
 		spawned_projectile.global_position = global_position
 		spawned_projectile.z_index = 1
+		active_projectiles.append(spawned_projectile)
 		get_tree().current_scene.add_child(spawned_projectile)

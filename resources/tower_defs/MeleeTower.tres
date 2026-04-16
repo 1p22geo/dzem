@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://bvgh54daa5ods"]
+[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://c6bjmqjfvc6vl"]
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_oc2vy"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_jknit"]
@@ -12,3 +12,4 @@ name = "MaleeTower"
 cost = 50
 attackRange = 80
 fire_delay = 0.7
+max_projectiles = 1
