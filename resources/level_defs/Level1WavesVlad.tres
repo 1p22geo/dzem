@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="Waves" format=3 uid="uid://64keoivo8yne"]
+
+[ext_resource type="Script" uid="uid://b8hytavd0u53f" path="res://scripts/resource_definitions/Waves.gd" id="1_g1ydl"]
+[ext_resource type="Script" uid="uid://l6lxydt36pwr" path="res://scripts/resource_definitions/Wave.gd" id="2_jfsab"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="3_d8au5"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/FastEnemy.tres" id="4_vci53"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8iaa" path="res://resources/enemy_defs/StrongEnemy.tres" id="5_g1ydl"]
+
+[sub_resource type="Resource" id="Resource_jfsab"]
+script = ExtResource("2_jfsab")
+start_delay = 1.0
+enemy_type = ExtResource("3_d8au5")
+delay_between_enemies = 0.3
+enemy_count = 5
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_hrclk"]
+script = ExtResource("2_jfsab")
+start_delay = 10.0
+enemy_type = ExtResource("3_d8au5")
+delay_between_enemies = 0.3
+enemy_count = 10
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_h70g7"]
+script = ExtResource("2_jfsab")
+start_delay = 10.0
+enemy_type = ExtResource("4_vci53")
+delay_between_enemies = 0.8
+enemy_count = 6
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_kc8e4"]
+script = ExtResource("2_jfsab")
+start_delay = 10.0
+enemy_type = ExtResource("4_vci53")
+delay_between_enemies = 0.8
+enemy_count = 12
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[sub_resource type="Resource" id="Resource_ya7fw"]
+script = ExtResource("2_jfsab")
+start_delay = 10.0
+enemy_type = ExtResource("5_g1ydl")
+delay_between_enemies = 1.5
+enemy_count = 5
+metadata/_custom_type_script = "uid://l6lxydt36pwr"
+
+[resource]
+script = ExtResource("1_g1ydl")
+waves = Array[ExtResource("2_jfsab")]([SubResource("Resource_jfsab"), SubResource("Resource_hrclk"), SubResource("Resource_h70g7"), SubResource("Resource_kc8e4"), SubResource("Resource_ya7fw")])
+preparation_time = 1.0
+initial_coins = 250
+metadata/_custom_type_script = "uid://b8hytavd0u53f"

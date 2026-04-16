@@ -23,6 +23,7 @@ GameManager="*res://scripts/core/GameManager.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1344
+window/size/mode=4
 window/stretch/mode="canvas_items"
 
 [gui]
