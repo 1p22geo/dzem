@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c0f3c76sdlxds"
+path="res://.godot/imported/sampl 38-eviscerated.wav-2a10bb5db752e91bc226b82f95b75a1c.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/sampl 38-eviscerated.wav"
+dest_files=["res://.godot/imported/sampl 38-eviscerated.wav-2a10bb5db752e91bc226b82f95b75a1c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
