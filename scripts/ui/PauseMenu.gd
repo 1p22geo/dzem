@@ -17,26 +17,26 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		if visible:
-			_unpause()
+			unpause()
 		else:
-			_pause()
+			pause()
 		get_viewport().set_input_as_handled()
 
 
-func _pause() -> void:
+func pause() -> void:
 	settings_panel.hide()
 	main_buttons.show()
 	visible = true
 	get_tree().paused = true
 
 
-func _unpause() -> void:
+func unpause() -> void:
 	visible = false
 	get_tree().paused = false
 
 
 func _on_resume_pressed() -> void:
-	_unpause()
+	unpause()
 
 
 func _on_settings_pressed() -> void:
@@ -46,7 +46,7 @@ func _on_settings_pressed() -> void:
 
 
 func _on_main_menu_pressed() -> void:
-	_unpause()
+	unpause()
 	get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn")
 
 

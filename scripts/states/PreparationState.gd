@@ -1,8 +1,8 @@
 extends State
 class_name PreparationState
 
-var timer: float = 0.0
 var controller: Node
+var _started: bool = false
 
 
 func _ready() -> void:
@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func Enter() -> void:
-	timer = controller.waveDefs.preparation_time
+	_started = false
 	if not GameManager.wave_start_requested.is_connected(_on_wave_start):
 		GameManager.wave_start_requested.connect(_on_wave_start)
 
@@ -21,12 +21,10 @@ func Exit() -> void:
 
 
 func _on_wave_start() -> void:
-	timer = 0.0
+	_started = true
 
 
-func Update(delta: float) -> void:
-	timer -= delta
-	if timer <= 0.0:
-		timer = 0.0
+func Update(_delta: float) -> void:
+	if _started:
 		Change.emit(self, "WaitingForWaveState")
 		return

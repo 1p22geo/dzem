@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/core/GameManager.gd"
 
+[gui]
+
+theme/custom="res://resources/ui/default_theme.tres"
+
 [display]
 
 window/size/viewport_width=1920

@@ -14,6 +14,57 @@
 [ext_resource type="Script" uid="uid://pgokkntkoywb" path="res://scripts/tiles/TileMapManager.gd" id="12_tilmgr"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TowerContextMenu.tscn" id="13_ctxmenu"]
 [ext_resource type="PackedScene" uid="uid://co27h8gocrjrx" path="res://scenes/ui/HUD.tscn" id="14_hud"]
+[ext_resource type="Script" path="res://scripts/ui/StartWaveButton.gd" id="16_startbtn"]
+[ext_resource type="Texture2D" path="res://assets/icons/play.svg" id="17_playicon"]
+[ext_resource type="Texture2D" path="res://assets/icons/pause.svg" id="18_pauseicon"]
+
+[sub_resource type="StyleBoxFlat" id="btn_normal"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.08, 0.22, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.3, 0.6, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.18, 0.12, 0.32, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.4, 0.8, 1.0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="btn_pressed"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.25, 0.15, 0.4, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.65, 0.5, 0.9, 1.0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a2ovr"]
 texture = ExtResource("11_swakq")
@@ -118,6 +169,28 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 tower_types = Array[ExtResource("9_l2ejl")]([ExtResource("2_ry3nc"), ExtResource("6_716mq"), ExtResource("7_tllq5")])
+
+[node name="StartWaveButton" type="Button" parent="UILayer"]
+script = ExtResource("16_startbtn")
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_top = -84.0
+offset_right = -264.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("btn_normal")
+theme_override_styles/hover = SubResource("btn_hover")
+theme_override_styles/pressed = SubResource("btn_pressed")
+icon = ExtResource("17_playicon")
+icon_alignment = 1
+expand_icon = true
+play_icon = ExtResource("17_playicon")
+pause_icon = ExtResource("18_pauseicon")
 
 [node name="TowerContextMenu" parent="UILayer" unique_id=868620507 instance=ExtResource("13_ctxmenu")]
 
