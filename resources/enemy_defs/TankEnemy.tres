@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://cgfjljtye8h88"]
 
 [ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_1utgd"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/FastEnemy.tres" id="2_jfc50"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_vfune"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="3_pyjji"]
 
 [resource]
 script = ExtResource("1_1utgd")
@@ -10,5 +12,6 @@ speed = 0.4
 name = "Sum"
 health = 250.0
 prize = 50
-damage = 2.0
+damage = 20.0
+spawnedEnemies = Array[ExtResource("1_1utgd")]([ExtResource("2_jfc50"), ExtResource("3_pyjji"), ExtResource("3_pyjji"), ExtResource("3_pyjji")])
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

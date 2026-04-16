@@ -15,6 +15,8 @@ var prize: int = 0
 var prize_granted: bool = false
 const TILE_SIZE := 125.0
 
+@onready var fish_prefab:PackedScene = load("res://scenes/entities/Enemy.tscn")
+
 func _ready() -> void:
 	add_to_group("enemies")
 	if type != null:
@@ -29,6 +31,16 @@ func _process(delta: float) -> void:
 		if not prize_granted:
 			GameManager.add_scales(prize)
 			prize_granted = true
+			for fish_type in type.spawnedEnemies:
+				var fish:Enemy = fish_prefab.instantiate()
+				fish.type = fish_type
+				fish.global_position = global_position
+				fish.path = path
+				fish.path_index = path_index
+				fish.distance = distance
+				var controller:EnemyController = get_parent().get_node("EnemyController")
+				controller.register_enemy(fish)
+				get_parent().add_child(fish)
 		queue_free()
 		return
 
