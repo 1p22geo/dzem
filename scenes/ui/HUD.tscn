@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://j58hyp23oh3q"]
+[gd_scene format=3 uid="uid://co27h8gocrjrx"]
 
 [ext_resource type="Script" uid="uid://bfqkor1t4655e" path="res://scripts/ui/HUD.gd" id="1_hud"]
 
@@ -168,6 +168,7 @@ text = "Q Magia (35): GOTOWA"
 horizontal_alignment = 2
 
 [node name="MagicMessage" type="Label" parent="." unique_id=1976402901]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
