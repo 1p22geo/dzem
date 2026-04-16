@@ -2,8 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_xwo6k"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_eobtj"]
+
 [ext_resource type="Texture2D" uid="uid://7bsb4kpwjlj1" path="res://sniper.png" id="3_eobtj"]
+
 [ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="3_ow65o"]
+
 
 [sub_resource type="Resource" id="SubResource_dmg1"]
 script = ExtResource("3_ow65o")

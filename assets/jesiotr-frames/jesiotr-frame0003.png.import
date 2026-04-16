@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qv5vu50y25ws"
-path="res://.godot/imported/wegorz-frame0008.png-eee257ebd620a06fbaafca15e5e8fec9.ctex"
+uid="uid://dnx4x4qsbmx8d"
+path="res://.godot/imported/jesiotr-frame0003.png-809579870347919c965f2c421d4d2f5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wegorz-frames/wegorz-frame0008.png"
-dest_files=["res://.godot/imported/wegorz-frame0008.png-eee257ebd620a06fbaafca15e5e8fec9.ctex"]
+source_file="res://assets/jesiotr-frames/jesiotr-frame0003.png"
+dest_files=["res://.godot/imported/jesiotr-frame0003.png-809579870347919c965f2c421d4d2f5a.ctex"]
 
 [params]
 

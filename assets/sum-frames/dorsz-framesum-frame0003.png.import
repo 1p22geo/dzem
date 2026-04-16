@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qv5vu50y25ws"
-path="res://.godot/imported/wegorz-frame0008.png-eee257ebd620a06fbaafca15e5e8fec9.ctex"
+uid="uid://cj1i4k6w67t71"
+path="res://.godot/imported/dorsz-framesum-frame0003.png-af5818ec5f6609f426f8c14ff9708839.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wegorz-frames/wegorz-frame0008.png"
-dest_files=["res://.godot/imported/wegorz-frame0008.png-eee257ebd620a06fbaafca15e5e8fec9.ctex"]
+source_file="res://assets/sum-frames/dorsz-framesum-frame0003.png"
+dest_files=["res://.godot/imported/dorsz-framesum-frame0003.png-af5818ec5f6609f426f8c14ff9708839.ctex"]
 
 [params]
 

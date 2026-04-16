@@ -24,7 +24,8 @@ func _ready() -> void:
 	add_to_group("enemies")
 	if type != null:
 		$Sprite2D.texture = type.texture
-		$Sprite2D.apply_scale(Vector2(2,2))
+		$Sprite2D.apply_scale(Vector2(4,4))
+		$Sprite2D.flip_h = !$Sprite2D.flip_h
 		hp = type.health
 		damage = type.damage
 		prize = type.prize
