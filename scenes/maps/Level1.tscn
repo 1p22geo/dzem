@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/TowerContextMenu.tscn" id="13_ctxmenu"]
 [ext_resource type="PackedScene" uid="uid://co27h8gocrjrx" path="res://scenes/ui/HUD.tscn" id="14_hud"]
 [ext_resource type="Script" path="res://scripts/ui/StartWaveButton.gd" id="16_startbtn"]
-[ext_resource type="Texture2D" path="res://assets/icons/play.svg" id="17_playicon"]
-[ext_resource type="Texture2D" path="res://assets/icons/pause.svg" id="18_pauseicon"]
+[ext_resource type="Texture2D" uid="uid://b13qa6oo7y67r" path="res://assets/icons/play.svg" id="17_playicon"]
+[ext_resource type="Texture2D" uid="uid://1b0x2kvp1axo" path="res://assets/icons/pause.svg" id="18_pauseicon"]
 [ext_resource type="PackedScene" path="res://scenes/ui/GameOverScreen.tscn" id="19_gameover"]
 [ext_resource type="PackedScene" path="res://scenes/ui/VictoryScreen.tscn" id="20_victory"]
 
@@ -36,22 +36,6 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="btn_hover"]
-content_margin_left = 12.0
-content_margin_top = 8.0
-content_margin_right = 12.0
-content_margin_bottom = 8.0
-bg_color = Color(0.18, 0.12, 0.32, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.55, 0.4, 0.8, 1.0)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="StyleBoxFlat" id="btn_pressed"]
 content_margin_left = 12.0
 content_margin_top = 8.0
@@ -62,7 +46,23 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.65, 0.5, 0.9, 1.0)
+border_color = Color(0.65, 0.5, 0.9, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.18, 0.12, 0.32, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.4, 0.8, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -172,8 +172,7 @@ layout_mode = 2
 size_flags_vertical = 3
 tower_types = Array[ExtResource("9_l2ejl")]([ExtResource("2_ry3nc"), ExtResource("6_716mq"), ExtResource("7_tllq5")])
 
-[node name="StartWaveButton" type="Button" parent="UILayer"]
-script = ExtResource("16_startbtn")
+[node name="StartWaveButton" type="Button" parent="UILayer" unique_id=82627304]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -186,11 +185,12 @@ offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/normal = SubResource("btn_normal")
-theme_override_styles/hover = SubResource("btn_hover")
 theme_override_styles/pressed = SubResource("btn_pressed")
+theme_override_styles/hover = SubResource("btn_hover")
 icon = ExtResource("17_playicon")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("16_startbtn")
 play_icon = ExtResource("17_playicon")
 pause_icon = ExtResource("18_pauseicon")
 
@@ -198,9 +198,9 @@ pause_icon = ExtResource("18_pauseicon")
 
 [node name="PauseMenu" parent="UILayer" unique_id=95059361 instance=ExtResource("3_pause")]
 
-[node name="GameOverScreen" parent="UILayer" instance=ExtResource("19_gameover")]
+[node name="GameOverScreen" parent="UILayer" unique_id=1309436524 instance=ExtResource("19_gameover")]
 
-[node name="VictoryScreen" parent="UILayer" instance=ExtResource("20_victory")]
+[node name="VictoryScreen" parent="UILayer" unique_id=1322530806 instance=ExtResource("20_victory")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=497601702]
 position = Vector2(1664, 0)
