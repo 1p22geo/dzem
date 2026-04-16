@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://1ry7c3mbm2lt"]
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://8pyu70em6eae"]
 
 [ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_n0pil"]
 [ext_resource type="Texture2D" uid="uid://b5lbi0l5miky8" path="res://assets/wegorz-frames/wegorz-frame0000.png" id="2_60uq2"]
