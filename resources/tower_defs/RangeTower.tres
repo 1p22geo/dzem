@@ -2,9 +2,27 @@
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_x2oih"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_lqr8s"]
+[ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="3_upg"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2oih"]
 load_path = "res://.godot/imported/rangedF.png-1d00d5a48ec91efe516318bacfd4e675.ctex"
+
+[sub_resource type="Resource" id="SubResource_upg1"]
+script = ExtResource("3_upg")
+name = "Heavy Arrows"
+description = "Increases damage by 50"
+cost = 150
+sell_value_bonus = 75
+damage_add = 50.0
+
+[sub_resource type="Resource" id="SubResource_upg2"]
+script = ExtResource("3_upg")
+name = "Precision Bolts"
+description = "Increases damage by another 100"
+cost = 300
+sell_value_bonus = 150
+damage_add = 100.0
+prerequisites = Array[ExtResource("3_upg")]([SubResource("SubResource_upg1")])
 
 [resource]
 script = ExtResource("2_lqr8s")
@@ -17,3 +35,4 @@ cost = 250
 attackRange = 320
 fire_delay = 3.0
 max_projectiles = 1
+upgrades = Array[ExtResource("3_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2")])

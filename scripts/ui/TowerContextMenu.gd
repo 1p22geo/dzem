@@ -6,6 +6,9 @@ var current_tower: Node2D = null
 @onready var name_label: Label = $Margin/VBox/NameLabel
 @onready var range_label: Label = $Margin/VBox/RangeLabel
 @onready var damage_label: Label = $Margin/VBox/DamageLabel
+@onready var upgrade_list: VBoxContainer = $Margin/VBox/UpgradeList
+@onready var upgrade_label: Label = $Margin/VBox/UpgradeLabel
+@onready var upgrade_sep: HSeparator = $Margin/VBox/UpgradeSep
 @onready var sell_btn: Button = $Margin/VBox/SellButton
 
 
@@ -21,10 +24,45 @@ func _show(tower_node: Node2D) -> void:
 	var tt: TowerType = tower_node.tower
 	icon.texture = tt.texture
 	name_label.text = tt.name
-	range_label.text = "Zasieg: %d" % tt.attackRange
-	damage_label.text = "Obrazenia: %d" % int(tt.damage)
+	
+	var current_range := tt.attackRange
+	var current_damage := tt.damage
+	if tower_node.has_method("get_range"):
+		current_range = tower_node.get_range()
+	if tower_node.has_method("get_damage"):
+		current_damage = tower_node.get_damage()
+		
+	range_label.text = "Zasieg: %d" % int(current_range)
+	damage_label.text = "Obrazenia: %d" % int(current_damage)
+	
 	var sell_price := int(tt.cost * 0.7)
+	if tower_node.has_method("get_sell_price"):
+		sell_price = tower_node.get_sell_price()
 	sell_btn.text = "Sprzedaj ($%d)" % sell_price
+	
+	# Clear upgrades
+	for child in upgrade_list.get_children():
+		child.queue_free()
+	
+	var available_upgrades := 0
+	for upg in tt.upgrades:
+		if tower_node.is_upgrade_available(upg):
+			var btn := Button.new()
+			btn.text = "%s ($%d)" % [upg.name, upg.cost]
+			btn.tooltip_text = upg.description
+			btn.disabled = not GameManager.can_afford(upg.cost)
+			btn.pressed.connect(func(): tower_node.apply_upgrade(upg))
+			upgrade_list.add_child(btn)
+			available_upgrades += 1
+		elif tower_node.applied_upgrades.has(upg):
+			var lbl := Label.new()
+			lbl.text = "%s (Purchased)" % upg.name
+			lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			upgrade_list.add_child(lbl)
+	
+	upgrade_label.visible = (tt.upgrades.size() > 0)
+	upgrade_sep.visible = (tt.upgrades.size() > 0)
+	
 	visible = true
 
 
@@ -59,8 +97,12 @@ func _update_position() -> void:
 func _on_sell() -> void:
 	if current_tower == null:
 		return
-	var tt: TowerType = current_tower.tower
-	var sell_price := int(tt.cost * 0.7)
+	var sell_price := 0
+	if current_tower.has_method("get_sell_price"):
+		sell_price = current_tower.get_sell_price()
+	else:
+		sell_price = int(current_tower.tower.cost * 0.7)
+		
 	GameManager.add_scales(sell_price)
 	var scene_root := get_tree().current_scene
 	var tile_map := scene_root.find_child(

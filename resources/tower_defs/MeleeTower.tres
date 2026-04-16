@@ -3,10 +3,26 @@
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_oc2vy"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_jknit"]
 [ext_resource type="Texture2D" uid="uid://c2h4n1glawmco" path="res://maleeF.png" id="3_jknit"]
+[ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="4_upg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jknit"]
 atlas = ExtResource("3_jknit")
 region = Rect2(0, 0, 1280, 160)
+
+[sub_resource type="Resource" id="SubResource_upg1"]
+script = ExtResource("4_upg")
+name = "Sharp Blades"
+description = "Increases damage by 5"
+damage_add = 5.0
+
+[sub_resource type="Resource" id="SubResource_upg2"]
+script = ExtResource("4_upg")
+name = "Sharp Eye"
+description = "Increases damage by another 10"
+cost = 100
+sell_value_bonus = 50
+damage_add = 10.0
+prerequisites = Array[ExtResource("4_upg")]([SubResource("SubResource_upg1")])
 
 [resource]
 script = ExtResource("2_jknit")
@@ -20,3 +36,4 @@ attackRange = 128
 fire_delay = 0.5
 max_projectiles = 1
 is_melee = true
+upgrades = Array[ExtResource("4_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2")])

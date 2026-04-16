@@ -14,3 +14,4 @@ class_name TowerType
 @export var max_projectiles: int
 @export var is_melee: bool = false
 @export var sweep_angle: float = 120.0
+@export var upgrades: Array[TowerUpgrade] = []

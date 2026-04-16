@@ -11,6 +11,7 @@ var timer = 0
 var selected: bool = false
 
 var active_projectiles = []
+var applied_upgrades: Array[TowerUpgrade] = []
 
 var _sweep_alpha: float = 0.0
 var _sweep_dir: Vector2 = Vector2.RIGHT
@@ -44,6 +45,60 @@ func _ready() -> void:
 		GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
 
 
+func get_damage() -> float:
+	var total := tower.damage
+	for upg in applied_upgrades:
+		total += upg.damage_add
+	return total
+
+
+func get_range() -> float:
+	var total := float(tower.attackRange)
+	for upg in applied_upgrades:
+		total += float(upg.range_add)
+	return total
+
+
+func get_fire_delay() -> float:
+	var total := tower.fire_delay
+	for upg in applied_upgrades:
+		total *= upg.fire_delay_mult
+	return total
+
+
+func get_projectile_speed() -> float:
+	var total := tower.projectile_speed
+	for upg in applied_upgrades:
+		total += upg.projectile_speed_add
+	return total
+
+
+func get_sell_price() -> int:
+	var total := int(tower.cost * 0.7)
+	for upg in applied_upgrades:
+		total += upg.sell_value_bonus
+	return total
+
+
+func is_upgrade_available(upgrade: TowerUpgrade) -> bool:
+	if applied_upgrades.has(upgrade):
+		return false
+	for pre in upgrade.prerequisites:
+		if not applied_upgrades.has(pre):
+			return false
+	return true
+
+
+func apply_upgrade(upgrade: TowerUpgrade) -> void:
+	if not is_upgrade_available(upgrade):
+		return
+	if GameManager.spend_scales(upgrade.cost):
+		applied_upgrades.append(upgrade)
+		queue_redraw()
+		# Re-emit selection to update UI
+		GameManager.placed_tower_selected.emit(self)
+
+
 func _on_placed_tower_selected(t: Node2D) -> void:
 	selected = (t == self)
 	queue_redraw()
@@ -59,7 +114,7 @@ func _draw() -> void:
 		_draw_sweep()
 	if not selected or not tower:
 		return
-	var radius := float(tower.attackRange)
+	var radius := get_range()
 	draw_circle(Vector2.ZERO, radius, Color(0, 0, 0, 0.25))
 	draw_arc(
 		Vector2.ZERO, radius, 0, TAU, 64,
@@ -93,7 +148,7 @@ func _process(delta: float) -> void:
 		queue_redraw()
 
 	timer += delta
-	if timer > tower.fire_delay:
+	if timer > get_fire_delay():
 		timer = 0
 		var closestEnemy:Enemy = FindClosestEnemyToAttack()
 		if tower.is_melee:
@@ -106,6 +161,7 @@ func FindClosestEnemyToAttack() -> Enemy:
 		var closestEnemy: Enemy
 		var tower_pos := tower_sprite.global_position
 		var max_distsance = -1
+		var attack_range := get_range()
 		for enemy in controller.activeEnemies:
 			if not is_instance_valid(enemy):
 				continue
@@ -115,7 +171,7 @@ func FindClosestEnemyToAttack() -> Enemy:
 			var diff = tower_pos.distance_to(enemy.global_position)
 			var dist = enemy.distance
 			
-			if dist > max_distsance && diff <= tower.attackRange:
+			if dist > max_distsance && diff <= attack_range:
 				max_distsance = dist
 				closestEnemy = enemy
 		return closestEnemy
@@ -131,14 +187,16 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 	var tower_pos := tower_sprite.global_position
 	var dir_to_target := (target_enemy.global_position - tower_pos).normalized()
 	var half_angle := deg_to_rad(tower.sweep_angle * 0.5)
+	var attack_range := get_range()
 
 	_sweep_dir = dir_to_target
 	_sweep_half_angle = half_angle
-	_sweep_radius = float(tower.attackRange)
+	_sweep_radius = attack_range
 	_sweep_alpha = 1.0
 	queue_redraw()
 
 	var hit_count := 0
+	var damage := get_damage()
 	for enemy in controller.activeEnemies:
 		if not is_instance_valid(enemy):
 			continue
@@ -146,19 +204,19 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 			continue
 		var to_enemy := enemy.global_position - tower_pos
 		var dist := to_enemy.length()
-		if dist > tower.attackRange:
+		if dist > attack_range:
 			continue
 		var angle_diff := absf(dir_to_target.angle_to(to_enemy.normalized()))
 		if angle_diff <= half_angle:
 			var enemy_armor: float = 0.0
 			if enemy.type != null:
 				enemy_armor = enemy.type.armor
-			var final_damage: float = tower.damage - enemy_armor
+			var final_damage: float = damage - enemy_armor
 			if final_damage < 1.0:
 				final_damage = 1.0
 			enemy.hp -= final_damage
 			hit_count += 1
-	print("[MELEE SWEEP] hit ", hit_count, " enemies, angle=", rad_to_deg(half_angle * 2), "°, range=", tower.attackRange)
+	print("[MELEE SWEEP] hit ", hit_count, " enemies, angle=", rad_to_deg(half_angle * 2), "°, range=", attack_range)
 
 
 func AttackEnemy(enemy:Enemy) -> void:
@@ -173,8 +231,8 @@ func AttackEnemy(enemy:Enemy) -> void:
 			return
 			
 		var spawned_projectile:Projectile = projectile_scene.instantiate()
-		spawned_projectile.damage = tower.damage
-		spawned_projectile.speed = tower.projectile_speed
+		spawned_projectile.damage = get_damage()
+		spawned_projectile.speed = get_projectile_speed()
 		spawned_projectile.target = enemy
 		spawned_projectile.parent_tower = self
 		spawned_projectile.get_node("Sprite2D").texture = tower.projectile_texture
