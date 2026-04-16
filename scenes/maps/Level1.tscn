@@ -5,7 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://ctl27dic16wxy" path="res://scenes/tiles/Spawner.tscn" id="3_nuvw0"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="3_pause"]
 [ext_resource type="Resource" uid="uid://scxxwlbcc0d8" path="res://resources/level_defs/Level1Waves.tres" id="3_u1mbr"]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/TowerPanel.tscn" id="4_tower"]
+[ext_resource type="Resource" uid="uid://bvgh54daa5ods" path="res://resources/tower_defs/MeleeTower.tres" id="6_716mq"]
+[ext_resource type="Resource" uid="uid://cdoxoajgu1tf8" path="res://resources/tower_defs/RangeTower.tres" id="7_tllq5"]
+
 [ext_resource type="PackedScene" uid="uid://cdmfw6fpwo4yr" path="res://scenes/ui/TowerPanel.tscn" id="4_tower"]
+
 [ext_resource type="PackedScene" uid="uid://ktgw261ix4om" path="res://scenes/tiles/Base.tscn" id="8_ydmy2"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="9_l2ejl"]
 [ext_resource type="Texture2D" uid="uid://4bb63vmhec1p" path="res://assets/tilemap.png" id="11_swakq"]
@@ -166,7 +172,7 @@ layout_mode = 2
 [node name="TowerPanel" parent="UILayer/RightPanel/VBox" unique_id=1821714899 instance=ExtResource("4_tower")]
 layout_mode = 2
 size_flags_vertical = 3
-tower_types = Array[ExtResource("9_l2ejl")]([ExtResource("2_ry3nc")])
+tower_types = Array[ExtResource("9_l2ejl")]([ExtResource("2_ry3nc"), ExtResource("6_716mq"), ExtResource("7_tllq5")])
 
 [node name="StartWaveButton" type="Button" parent="UILayer"]
 script = ExtResource("16_startbtn")
@@ -202,7 +208,9 @@ tile_set = SubResource("TileSet_716mq")
 script = ExtResource("12_tilmgr")
 
 [node name="tiles" type="Node2D" parent="." unique_id=2032513428]
+
 visible = false
+
 
 [node name="Spawner" parent="tiles" unique_id=1579113028 instance=ExtResource("3_nuvw0")]
 position = Vector2(230, 418)

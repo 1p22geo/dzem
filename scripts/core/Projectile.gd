@@ -5,6 +5,7 @@ class_name Projectile
 var target:Enemy;
 var speed:float;
 var damage:float;
+var parent_tower:Tower
 var flight_direction: Vector2 = Vector2.RIGHT
 const DESPAWN_MARGIN := 64.0
 
@@ -12,6 +13,11 @@ const DESPAWN_MARGIN := 64.0
 func _ready() -> void:
 	pass # Replace with function body.
 
+func remove_projectile() -> void:
+	var index = parent_tower.active_projectiles.find(self)
+	if index >= 0:
+		parent_tower.active_projectiles.remove_at(index)
+	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -20,7 +26,7 @@ func _process(delta: float) -> void:
 		if target_vector != Vector2.ZERO:
 			flight_direction = target_vector.normalized()
 	else:
-		queue_free()
+		remove_projectile()
 		return
 
 	global_position += flight_direction * speed * delta
@@ -38,9 +44,9 @@ func _process(delta: float) -> void:
 			if final_damage < 1.0:
 				final_damage = 1.0
 			enemy.hp -= final_damage
-			queue_free()
+			remove_projectile()
 			return
 
 	var viewport_rect := get_viewport_rect().grow(DESPAWN_MARGIN)
 	if not viewport_rect.has_point(global_position):
-		queue_free()
+		remove_projectile()

@@ -11,3 +11,4 @@ class_name TowerType
 @export var cost: int
 @export var attackRange: int
 @export var fire_delay: float
+@export var max_projectiles: int

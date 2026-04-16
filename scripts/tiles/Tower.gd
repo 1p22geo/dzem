@@ -1,5 +1,7 @@
 extends Tile
 
+class_name Tower
+
 @export var tower:TowerType
 
 
@@ -8,10 +10,24 @@ var tower_sprite:Sprite2D;
 var timer = 0
 var selected: bool = false
 
-@onready var projectile_scene:PackedScene = load("res://scenes/Projectile.tscn")
+var active_projectiles = []
+
+
+@onready var projectile_scene:PackedScene = load("res://scenes/entities/Projectile.tscn")
 
 func _ready() -> void:
 	var scene_root := get_tree().current_scene
+	controller = scene_root.find_child(
+		"EnemyController", true, false
+	) as EnemyController
+	tower_sprite = get_node("TowerSprite")
+	GameManager.placed_tower_selected.connect(
+		_on_placed_tower_selected
+	)
+	GameManager.placed_tower_deselected.connect(
+		_on_placed_tower_deselected
+	)
+	tower_sprite.hframes = 7
 	if scene_root != null:
 		controller = scene_root.find_child(
 			"EnemyController", true, false
@@ -81,15 +97,16 @@ func AttackEnemy(enemy:Enemy) -> void:
 			return
 		if enemy.hp <= 0:
 			return
-		if projectile_scene == null:
-			push_warning("Tower projectile scene could not be loaded")
+		if len(active_projectiles) >= tower.max_projectiles:
 			return
 			
 		var spawned_projectile:Projectile = projectile_scene.instantiate()
 		spawned_projectile.damage = tower.damage
 		spawned_projectile.speed = tower.projectile_speed
 		spawned_projectile.target = enemy
+		spawned_projectile.parent_tower = self
 		spawned_projectile.get_node("Sprite2D").texture = tower.projectile_texture
 		spawned_projectile.global_position = global_position
 		spawned_projectile.z_index = 1
+		active_projectiles.append(spawned_projectile)
 		get_tree().current_scene.add_child(spawned_projectile)

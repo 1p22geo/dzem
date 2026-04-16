@@ -13,3 +13,4 @@ damage = 1.0
 name = "Test Tower"
 attackRange = 256
 fire_delay = 1.0
+max_projectiles = 1
