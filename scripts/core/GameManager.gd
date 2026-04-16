@@ -7,6 +7,7 @@ signal tower_selected(tower_type: TowerType)
 signal tower_deselected
 signal placed_tower_selected(tower_node: Node2D)
 signal placed_tower_deselected
+signal wave_start_requested
 
 @export var max_hp: int = 100
 var _hp: int = max_hp

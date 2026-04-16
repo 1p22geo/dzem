@@ -113,6 +113,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="TowerPanel" parent="UILayer/RightPanel/VBox" unique_id=1821714899 instance=ExtResource("4_tower")]
+layout_mode = 2
 size_flags_vertical = 3
 tower_types = Array[ExtResource("9_l2ejl")]([ExtResource("2_ry3nc")])
 
@@ -128,6 +129,7 @@ tile_set = SubResource("TileSet_716mq")
 script = ExtResource("12_tilmgr")
 
 [node name="tiles" type="Node2D" parent="." unique_id=2032513428]
+visible = false
 
 [node name="Spawner" parent="tiles" unique_id=1579113028 instance=ExtResource("3_nuvw0")]
 position = Vector2(230, 418)
