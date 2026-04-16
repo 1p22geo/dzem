@@ -16,27 +16,28 @@ damage_add = 50.0
 [sub_resource type="Resource" id="SubResource_dmg2"]
 script = ExtResource("3_ow65o")
 name = "Precyzyjne bełty"
-description = "Zwiększa obrażenia o kolejne 100"
+description = "Zwiększa obrażenia o kolejne 50"
 cost = 300
 sell_value_bonus = 150
-damage_add = 100.0
+damage_add = 50.0
 prerequisites = Array[ExtResource("3_ow65o")]([SubResource("SubResource_dmg1")])
 
 [sub_resource type="Resource" id="SubResource_cap1"]
 script = ExtResource("3_ow65o")
-name = "Sieci głębinowe"
-description = "Zwiększa pojemność o 5"
+name = "Luneta"
+description = "Zwiększa range o 2"
 cost = 100
-sell_value_bonus = 50
-capacity_add = 5
+sell_value_bonus = 80
+range_add = 128
 
 [sub_resource type="Resource" id="SubResource_cap2"]
 script = ExtResource("3_ow65o")
 name = "Sieci trałowe"
-description = "Zwiększa pojemność o kolejne 10"
-cost = 200
-sell_value_bonus = 100
-capacity_add = 10
+description = "Zwiększa range o 1 i drastycznie zwiększa prędkość ataku"
+cost = 250
+sell_value_bonus = 210
+range_add = 64
+fire_delay_mult = 0.65
 prerequisites = Array[ExtResource("3_ow65o")]([SubResource("SubResource_cap1")])
 
 [resource]
@@ -46,7 +47,7 @@ projectile_texture = ExtResource("1_xwo6k")
 projectile_speed = 1000.0
 damage = 50.0
 name = "Harpoon Angler"
-cost = 250
+cost = 200
 attackRange = 384
 fire_delay = 3.0
 max_projectiles = 1
