@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 			continue
 		if enemy.hp <= 0:
 			continue
-		if global_position.distance_to(enemy.global_position) <= 4.0:
+		if global_position.distance_to(enemy.global_position) <= 32.0:
 			var enemy_armor: float = 0.0
 			if enemy.type != null:
 				enemy_armor = enemy.type.armor
