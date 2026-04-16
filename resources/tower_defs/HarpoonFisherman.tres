@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://s3wy4tmgitlt"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_xwo6k"]
+[ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_eobtj"]
+[ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="3_ow65o"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2oih"]
+load_path = "res://.godot/imported/rangedF.png-1d00d5a48ec91efe516318bacfd4e675.ctex"
+
+[sub_resource type="Resource" id="SubResource_dmg1"]
+script = ExtResource("3_ow65o")
+name = "Ciężkie strzały"
+description = "Zwiększa obrażenia o 50"
+cost = 150
+sell_value_bonus = 75
+damage_add = 50.0
+
+[sub_resource type="Resource" id="SubResource_dmg2"]
+script = ExtResource("3_ow65o")
+name = "Precyzyjne bełty"
+description = "Zwiększa obrażenia o kolejne 100"
+cost = 300
+sell_value_bonus = 150
+damage_add = 100.0
+prerequisites = Array[ExtResource("3_ow65o")]([SubResource("SubResource_dmg1")])
+
+[sub_resource type="Resource" id="SubResource_cap1"]
+script = ExtResource("3_ow65o")
+name = "Sieci głębinowe"
+description = "Zwiększa pojemność o 5"
+cost = 100
+sell_value_bonus = 50
+capacity_add = 5
+
+[sub_resource type="Resource" id="SubResource_cap2"]
+script = ExtResource("3_ow65o")
+name = "Sieci trałowe"
+description = "Zwiększa pojemność o kolejne 10"
+cost = 200
+sell_value_bonus = 100
+capacity_add = 10
+prerequisites = Array[ExtResource("3_ow65o")]([SubResource("SubResource_cap1")])
+
+[resource]
+script = ExtResource("2_eobtj")
+texture = SubResource("CompressedTexture2D_x2oih")
+projectile_texture = ExtResource("1_xwo6k")
+projectile_speed = 1000.0
+damage = 50.0
+name = "RangeTower"
+cost = 250
+attackRange = 352
+fire_delay = 3.0
+max_projectiles = 1
+upgrades = Array[ExtResource("3_ow65o")]([SubResource("SubResource_dmg1"), SubResource("SubResource_dmg2"), SubResource("SubResource_cap1"), SubResource("SubResource_cap2")])
