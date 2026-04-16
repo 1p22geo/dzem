@@ -52,4 +52,5 @@ attackRange = 384
 fire_delay = 3.0
 max_projectiles = 1
 is_sniper = true
+capacity = 9
 upgrades = Array[ExtResource("3_ow65o")]([SubResource("SubResource_dmg1"), SubResource("SubResource_dmg2"), SubResource("SubResource_cap1"), SubResource("SubResource_cap2")])
