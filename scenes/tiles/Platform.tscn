@@ -3,7 +3,44 @@
 [ext_resource type="Script" uid="uid://dwsi0ikuowv6s" path="res://scripts/tiles/Platform.gd" id="1_axdvg"]
 [ext_resource type="Script" uid="uid://cd232hq41u81b" path="res://scripts/tiles/Tower.gd" id="2_motb6"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_wwpbi"]
-[ext_resource type="Texture2D" uid="uid://dmx1js61dcdpd" path="res://rybak.jpg" id="4_o1scf"]
+[ext_resource type="Texture2D" uid="uid://c2h4n1glawmco" path="res://maleeF.png" id="4_vdvr0"]
+
+[sub_resource type="Animation" id="Animation_8opdn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tower/TowerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n8q1t"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tower/TowerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.46446568, 0.99759156),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tc2jf"]
+_data = {
+&"RESET": SubResource("Animation_8opdn"),
+&"idle": SubResource("Animation_n8q1t")
+}
 
 [node name="Platform" type="Node2D" unique_id=1084195734]
 script = ExtResource("1_axdvg")
@@ -14,6 +51,13 @@ texture = ExtResource("3_wwpbi")
 [node name="Tower" type="Node2D" parent="." unique_id=1763446327]
 script = ExtResource("2_motb6")
 
-[node name="TowerSprite" type="Sprite2D" parent="Tower" unique_id=1234438872]
+[node name="TowerSprite" type="Sprite2D" parent="Tower" unique_id=1396660205]
+top_level = true
 scale = Vector2(0.30327868, 0.19202898)
-texture = ExtResource("4_o1scf")
+texture = ExtResource("4_vdvr0")
+
+[node name="AnimationMelee" type="AnimationPlayer" parent="Tower/TowerSprite" unique_id=1709916400]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_tc2jf")
+
+[node name="AnimationRange" type="AnimationPlayer" parent="Tower/TowerSprite" unique_id=129634932]

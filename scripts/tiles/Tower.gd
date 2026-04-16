@@ -4,11 +4,15 @@ class_name Tower
 
 @export var tower:TowerType
 
+var animationMeleeRef := load("res://scenes/animations/AnimationMelee.tscn")
+var animationRangeRef := load("res://scenes/animations/AnimationRange.tscn")
 
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
 var timer = 0
 var selected: bool = false
+var animation_player: AnimationPlayer
+var sprite: Sprite2D
 
 var active_projectiles = []
 var applied_upgrades: Array[TowerUpgrade] = []
@@ -31,11 +35,26 @@ func _ready() -> void:
 		) as EnemyController
 	if has_node("TowerSprite"):
 		tower_sprite = get_node("TowerSprite")
-		tower_sprite.hframes = 7
-	if not GameManager.placed_tower_selected.is_connected(_on_placed_tower_selected):
-		GameManager.placed_tower_selected.connect(_on_placed_tower_selected)
-	if not GameManager.placed_tower_deselected.is_connected(_on_placed_tower_deselected):
-		GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
+		tower_sprite.visible = false
+	GameManager.placed_tower_selected.connect(_on_placed_tower_selected)
+	GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
+
+	# dodawanie animacji - NIE zmieniaj nazwy noda, bo track paths sie zepsuja
+	var anim_scene: PackedScene
+	if tower.is_melee:
+		anim_scene = animationMeleeRef
+	else:
+		anim_scene = animationRangeRef
+
+	var anim_node := anim_scene.instantiate()
+	add_child(anim_node)
+	animation_player = anim_node.get_node("AnimPlayer") as AnimationPlayer
+	sprite = anim_node.get_node("Sprite2D") as Sprite2D
+	sprite.z_index = 5
+	sprite.position = Vector2.ZERO
+	animation_player.stop()
+	animation_player.play("idle")
+
 	_setup_empty_button()
 	
 func get_damage() -> float:
@@ -162,6 +181,7 @@ func _setup_empty_button():
 	add_child(empty_button)
 
 func _process(delta: float) -> void:
+	
 	if tower == null or controller == null or tower_sprite == null:
 		return
 	if GameManager.is_towers_frozen():
@@ -213,11 +233,30 @@ func on_enemy_killed() -> void:
 		GameManager.placed_tower_selected.emit(self)
 
 
+func _face_target(target_pos: Vector2) -> void:
+	if sprite:
+		sprite.flip_h = target_pos.x > global_position.x
+
+
+func _play_attack() -> void:
+	if animation_player and animation_player.has_animation("attack"):
+		animation_player.stop()
+		animation_player.speed_scale = 2.5
+		animation_player.play("attack")
+		await animation_player.animation_finished
+		if is_instance_valid(self) and animation_player:
+			animation_player.stop()
+			animation_player.speed_scale = 1
+			animation_player.play("idle")
+
+
 func MeleeAttack(target_enemy: Enemy) -> void:
 	if target_enemy == null:
 		return
 	if not is_instance_valid(target_enemy):
 		return
+	_face_target(target_enemy.global_position)
+	_play_attack()
 
 	var tower_pos := tower_sprite.global_position
 	var dir_to_target := (target_enemy.global_position - tower_pos).normalized()
@@ -267,6 +306,8 @@ func AttackEnemy(enemy:Enemy) -> void:
 		if len(active_projectiles) >= tower.max_projectiles:
 			return
 			
+		_face_target(enemy.global_position)
+		_play_attack()
 		var spawned_projectile:Projectile = projectile_scene.instantiate()
 		spawned_projectile.damage = get_damage()
 		spawned_projectile.speed = get_projectile_speed()
