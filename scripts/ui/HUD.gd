@@ -8,14 +8,22 @@ extends Control
 @onready var magic_label: Label = $MagicPanel/MagicRow/MagicLabel
 @onready var magic_purify_button: Button = $MagicPanel/MagicRow/MagicPurifyButton
 @onready var magic_message_label: Label = $MagicMessage
-@onready var magic_duration_label: Label = $MagicTimer
 
 
 var magic_message_time_left: float = 0.0
 var magic_effect_time_left: float = 0.0
+var is_fast_forward: bool = false
+var flash_rect: ColorRect
 
 
 func _ready() -> void:
+	# Add a flash overlay
+	flash_rect = ColorRect.new()
+	flash_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	flash_rect.color = Color(1, 0, 0, 0) # Start transparent red
+	flash_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(flash_rect)
+
 	GameManager.hp_changed.connect(_on_hp_changed)
 	GameManager.scales_changed.connect(_on_scales_changed)
 	GameManager.magic_cooldown_changed.connect(_on_magic_cooldown_changed)
@@ -30,13 +38,29 @@ func _ready() -> void:
 	_on_magic_rebellion_changed(GameManager.get_magic_rebellion_chance())
 	if magic_message_label:
 		magic_message_label.visible = false
-	if magic_duration_label:
-		magic_duration_label.visible = false
 	if magic_purify_button:
 		magic_purify_button.pressed.connect(_on_magic_purify_pressed)
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_F:
+			_toggle_fast_forward()
+
+
+func _toggle_fast_forward() -> void:
+	is_fast_forward = !is_fast_forward
+	Engine.time_scale = 3.0 if is_fast_forward else 1.0
+	if magic_message_label:
+		magic_message_label.text = "Przyspieszenie: x3" if is_fast_forward else "Normalna predkosc"
+		magic_message_label.visible = true
+		magic_message_time_left = 1.5
+
+
 func _process(delta: float) -> void:
+	if flash_rect.color.a > 0.0:
+		flash_rect.color.a = max(0.0, flash_rect.color.a - delta * 2.0)
+
 	if magic_message_time_left > 0.0:
 		magic_message_time_left -= delta
 		if magic_message_time_left <= 0.0:
@@ -48,9 +72,7 @@ func _process(delta: float) -> void:
 		magic_effect_time_left -= delta
 		if magic_effect_time_left < 0.0:
 			magic_effect_time_left = 0.0
-		_update_magic_duration_label()
-	elif magic_duration_label != null and magic_duration_label.visible:
-		magic_duration_label.visible = false
+	
 	_update_hud()
 
 
@@ -104,16 +126,16 @@ func _on_magic_burst_casted(_damage: float, _slow_multiplier: float, _slow_durat
 	magic_message_label.visible = true
 	magic_message_time_left = 3.0
 	magic_effect_time_left = _slow_duration
-	_update_magic_duration_label()
 
 
 func _on_magic_rebellion_triggered(_freeze_duration: float) -> void:
+	if flash_rect:
+		flash_rect.color = Color(0.8, 0.2, 0.2, 0.5) # Red flash
 	if magic_message_label == null:
 		return
 	magic_message_label.text = "Magia zbuntowana! Wieże zablokowane"
 	magic_message_label.visible = true
 	magic_message_time_left = 3.0
-	_update_magic_duration_label()
 
 
 func _update_magic_label() -> void:
@@ -139,20 +161,6 @@ func _update_magic_label() -> void:
 	else:
 		magic_label.text = "Q Magia (%d): BRAK LUSEK | CD %.1fs%s%s" % [GameManager.magic_cost, cd_total, rebellion_suffix, purify_suffix]
 		magic_label.modulate = Color(1.0, 0.7, 0.7, 1.0)
-func _update_magic_duration_label() -> void:
-	if magic_duration_label == null:
-		return
-	if GameManager.is_towers_frozen():
-		magic_duration_label.visible = true
-		magic_duration_label.text = "Wieże stop: %.1fs" % [GameManager.get_tower_freeze_left()]
-		return
-	if magic_effect_time_left <= 0.0:
-		magic_duration_label.visible = false
-		return
-
-	magic_duration_label.visible = true
-	magic_duration_label.text = "Magia: %.1fs" % [magic_effect_time_left]
-
 
 func _update_hud() -> void:
 	var scene_root := get_tree().current_scene

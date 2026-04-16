@@ -153,6 +153,11 @@ func place_tower(cell: Vector2i, tower_type: TowerType) -> void:
 	sprite.name = "TowerSprite"
 	sprite.texture = tower_type.texture
 	tower_node.add_child(sprite)
+	
+	var audio_stream_player: AudioStreamPlayer = AudioStreamPlayer.new()
+	audio_stream_player.name = "AttackAudioFX"
+	
+	tower_node.add_child(audio_stream_player)
 
 	tower_node.tower = tower_type
 	tower_node.global_position = cell_to_global(cell)

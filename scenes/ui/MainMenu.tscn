@@ -2,6 +2,50 @@
 
 [ext_resource type="Script" uid="uid://qqldbmwsq1cl" path="res://scripts/ui/MainMenu.gd" id="1_main"]
 [ext_resource type="PackedScene" uid="uid://dwsni7gitwbbw" path="res://scenes/ui/SettingsPanel.tscn" id="2_settings"]
+[ext_resource type="Texture2D" uid="uid://dpl2m23fl8bnj" path="res://assets/main-menu/main-menu-bg.png" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://bjt1hpv0g3xv" path="res://assets/main-menu/magical-fih-td-title.png" id="4_title"]
+[ext_resource type="Texture2D" uid="uid://dnp6ymbtxh15a" path="res://assets/main-menu/fih-animation/0000.png" id="5_f00"]
+[ext_resource type="Texture2D" uid="uid://kxmxw5kkj1me" path="res://assets/main-menu/fih-animation/0001.png" id="6_f01"]
+[ext_resource type="Texture2D" uid="uid://b1xl0adsi3ijg" path="res://assets/main-menu/fih-animation/0002.png" id="7_f02"]
+[ext_resource type="Texture2D" uid="uid://ixwx02v6lgct" path="res://assets/main-menu/fih-animation/0003.png" id="8_f03"]
+[ext_resource type="Texture2D" uid="uid://bncfndjfygfao" path="res://assets/main-menu/fih-animation/0004.png" id="9_f04"]
+[ext_resource type="Texture2D" uid="uid://duriidmiw83qb" path="res://assets/main-menu/fih-animation/0005.png" id="10_f05"]
+[ext_resource type="Texture2D" uid="uid://jmbo5jl4m2nu" path="res://assets/main-menu/fih-animation/0006.png" id="11_f06"]
+[ext_resource type="Texture2D" uid="uid://c0qxt7iud3mvy" path="res://assets/main-menu/fih-animation/0007.png" id="12_f07"]
+[ext_resource type="Texture2D" uid="uid://bfytabfvrsxsx" path="res://assets/main-menu/fih-animation/0008.png" id="13_f08"]
+[ext_resource type="Texture2D" uid="uid://c104u5l1fv6mf" path="res://assets/main-menu/fih-animation/0009.png" id="14_f09"]
+[ext_resource type="Texture2D" uid="uid://borqxp0inhuja" path="res://assets/main-menu/fih-animation/0010.png" id="15_f10"]
+[ext_resource type="Texture2D" uid="uid://o0ff0hlvqa27" path="res://assets/main-menu/fih-animation/0011.png" id="16_f11"]
+[ext_resource type="Texture2D" uid="uid://da253qegdhp7m" path="res://assets/main-menu/fih-animation/0012.png" id="17_f12"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_fish"]
+frames = 13
+speed_scale = 3.0
+frame_0/texture = ExtResource("5_f00")
+frame_1/texture = ExtResource("6_f01")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("7_f02")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("8_f03")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("9_f04")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("10_f05")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("11_f06")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("12_f07")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("13_f08")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("14_f09")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("15_f10")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("16_f11")
+frame_11/duration = 1.0
+frame_12/texture = ExtResource("17_f12")
+frame_12/duration = 1.0
 
 [node name="MainMenu" type="Control" unique_id=1289338016]
 layout_mode = 3
@@ -11,6 +55,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_main")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=562429134]
 layout_mode = 1
@@ -23,13 +78,45 @@ grow_vertical = 2
 [node name="MainButtons" type="VBoxContainer" parent="CenterContainer" unique_id=1855761655]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="CenterContainer/MainButtons" unique_id=2048386692]
+[node name="LogoArea" type="Control" parent="CenterContainer/MainButtons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "Fish Defense"
-horizontal_alignment = 1
+custom_minimum_size = Vector2(800, 500)
+
+[node name="FishSprite" type="TextureRect" parent="CenterContainer/MainButtons/LogoArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -250.0
+offset_right = 400.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_fish")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleImage" type="TextureRect" parent="CenterContainer/MainButtons/LogoArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -80.0
+offset_right = 350.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_title")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="PlayButton" type="Button" parent="CenterContainer/MainButtons" unique_id=1798243525]
 unique_name_in_owner = true

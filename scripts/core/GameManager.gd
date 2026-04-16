@@ -22,15 +22,20 @@ var _scales: int = 100
 @export var magic_cost: int = 35
 @export var magic_damage: float = 30.0
 @export var magic_slow_multiplier: float = 0.6
-@export var magic_slow_duration: float = 2.5
+@export var magic_slow_duration: float = 5.0
 @export var magic_cooldown: float = 12.0
 @export var magic_rebellion_start_chance: float = 0.05
 @export var magic_rebellion_chance_growth: float = 0.07
-@export var magic_rebellion_chance_cap: float = 0.65
-@export var magic_rebellion_wave_growth: float = 0.04
+@export var magic_rebellion_relief_on_rebellion: float = 0.12
+@export var magic_rebellion_chance_cap: float = 0.60
+@export var magic_rebellion_wave_growth: float = 0.03
 @export var magic_rebellion_freeze_duration: float = 5.0
 @export var magic_purify_cost: int = 20
+@export var magic_purify_min_cost: int = 10
+@export var magic_purify_cost_wave_discount: int = 1
 @export var magic_purify_reduction: float = 0.10
+@export var magic_purify_reduction_wave_bonus: float = 0.01
+@export var magic_purify_reduction_cap: float = 0.18
 var _magic_cooldown_left: float = 0.0
 var _magic_rebellion_corruption: float = 0.0
 var _tower_freeze_left: float = 0.0
@@ -151,21 +156,25 @@ func cast_magic() -> bool:
 	magic_cooldown_changed.emit(_magic_cooldown_left)
 	var rebel_chance := get_magic_rebellion_chance()
 	var rebelled := _magic_rng.randf() < rebel_chance
-	_magic_rebellion_corruption = min(
-		magic_rebellion_chance_cap,
-		_magic_rebellion_corruption + magic_rebellion_chance_growth
-	)
-	magic_rebellion_changed.emit(get_magic_rebellion_chance())
 	if rebelled:
+		_magic_rebellion_corruption = maxf(
+			0.0,
+			_magic_rebellion_corruption - magic_rebellion_relief_on_rebellion
+		)
 		_tower_freeze_left = magic_rebellion_freeze_duration
 		magic_rebellion_triggered.emit(magic_rebellion_freeze_duration)
 	else:
+		_magic_rebellion_corruption = min(
+			magic_rebellion_chance_cap,
+			_magic_rebellion_corruption + magic_rebellion_chance_growth
+		)
 		magic_burst_casted.emit(magic_damage, magic_slow_multiplier, magic_slow_duration)
+	magic_rebellion_changed.emit(get_magic_rebellion_chance())
 	return true
 
 
 func can_purify_magic() -> bool:
-	if not can_afford(magic_purify_cost):
+	if not can_afford(get_magic_purify_cost()):
 		return false
 	var base_chance := _get_magic_rebellion_base_chance()
 	return get_magic_rebellion_chance() - base_chance > 0.0001
@@ -173,16 +182,17 @@ func can_purify_magic() -> bool:
 
 func purify_magic() -> bool:
 	var before_chance := get_magic_rebellion_chance()
+	var purify_cost := get_magic_purify_cost()
 
 	if not can_purify_magic():
 		magic_purify_used.emit(false, before_chance, before_chance)
 		return false
 
-	if not spend_scales(magic_purify_cost):
+	if not spend_scales(purify_cost):
 		magic_purify_used.emit(false, before_chance, before_chance)
 		return false
 
-	_magic_rebellion_corruption = maxf(0.0, _magic_rebellion_corruption - magic_purify_reduction)
+	_magic_rebellion_corruption = maxf(0.0, _magic_rebellion_corruption - get_magic_purify_reduction())
 
 	# If we were clamped by the cap, force a visible drop when there is still reducible corruption.
 	var after_chance := get_magic_rebellion_chance()
@@ -196,7 +206,7 @@ func purify_magic() -> bool:
 
 	if after_chance >= before_chance:
 		# Safety rollback: do not charge if purification could not reduce current chance.
-		add_scales(magic_purify_cost)
+		add_scales(purify_cost)
 		magic_purify_used.emit(false, before_chance, before_chance)
 		return false
 
@@ -218,11 +228,13 @@ func get_tower_freeze_left() -> float:
 
 
 func get_magic_purify_cost() -> int:
-	return magic_purify_cost
+	var discounted_cost := magic_purify_cost - _current_wave_index * magic_purify_cost_wave_discount
+	return maxi(magic_purify_min_cost, discounted_cost)
 
 
 func get_magic_purify_reduction() -> float:
-	return magic_purify_reduction
+	var boosted_reduction := magic_purify_reduction + float(_current_wave_index) * magic_purify_reduction_wave_bonus
+	return minf(magic_purify_reduction_cap, boosted_reduction)
 
 
 var selected_tower: TowerType = null
