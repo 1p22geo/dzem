@@ -22,7 +22,11 @@ func _build_tower_buttons() -> void:
 		btn.text = "%s\n%d łusek" % [tower_type.name, tower_type.cost]
 		btn.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		if tower_type.texture:
-			btn.icon = tower_type.texture
+			var atlas = AtlasTexture.new()
+			atlas.atlas = tower_type.texture
+			var frame_width = tower_type.texture.get_width() / 7
+			atlas.region = Rect2(0, 0, frame_width, tower_type.texture.get_height())
+			btn.icon = atlas
 			btn.expand_icon = true
 			btn.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		btn.pressed.connect(_on_tower_button_pressed.bind(tower_type))
