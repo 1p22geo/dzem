@@ -4,11 +4,13 @@ extends PanelContainer
 @onready var hp_label: Label = $Margin/HBox/HPSection/HPLabel
 @onready var scales_label: Label = $Margin/HBox/ScalesSection/ScalesLabel
 @onready var wave_label: Label = $Margin/HBox/WaveSection/WaveLabel
+@onready var start_btn: Button = $Margin/HBox/StartWaveButton
 
 
 func _ready() -> void:
 	GameManager.hp_changed.connect(_on_hp_changed)
 	GameManager.scales_changed.connect(_on_scales_changed)
+	start_btn.pressed.connect(_on_start_wave)
 	hp_bar.max_value = GameManager.max_hp
 	_on_hp_changed(GameManager.hp)
 	_on_scales_changed(GameManager.scales)
@@ -34,6 +36,10 @@ func _on_scales_changed(new_scales: int) -> void:
 	scales_label.text = str(new_scales)
 
 
+func _on_start_wave() -> void:
+	GameManager.wave_start_requested.emit()
+
+
 func _update_wave() -> void:
 	var scene_root := get_tree().current_scene
 	if scene_root == null:
@@ -43,6 +49,6 @@ func _update_wave() -> void:
 	) as EnemyController
 	if ec and ec.waveDefs:
 		var total: int = ec.waveDefs.waves.size()
-		wave_label.text = "%d / %d" % [ec.wave_no, total]
+		wave_label.text = "%d / %d" % [ec.wave_no + 1, total + 1]
 	elif ec:
-		wave_label.text = str(ec.wave_no)
+		wave_label.text = str(ec.wave_no + 1)

@@ -12,6 +12,17 @@ func _ready() -> void:
 func Enter() -> void:
 	var wave: Wave = controller.waveDefs.waves[controller.wave_no]
 	timer = wave.start_delay
+	if not GameManager.wave_start_requested.is_connected(_on_wave_start):
+		GameManager.wave_start_requested.connect(_on_wave_start)
+
+
+func Exit() -> void:
+	if GameManager.wave_start_requested.is_connected(_on_wave_start):
+		GameManager.wave_start_requested.disconnect(_on_wave_start)
+
+
+func _on_wave_start() -> void:
+	timer = 0.0
 
 
 func Update(delta: float) -> void:

@@ -77,3 +77,12 @@ text = "Fala:"
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "0 / 0"
+
+[node name="Sep3" type="VSeparator" parent="Margin/HBox"]
+layout_mode = 2
+
+[node name="StartWaveButton" type="Button" parent="Margin/HBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 0)
+theme_override_font_sizes/font_size = 22
+text = "Start Fali"

@@ -16,6 +16,15 @@ func _process(_delta: float) -> void:
 
 
 func place_tower(tower_type: TowerType) -> void:
+	if tower_type == null:
+		return
+	if not has_node("Tower"):
+		push_warning("Platform: missing Tower node")
+		return
+	if not has_node("Tower/TowerSprite"):
+		push_warning("Platform: missing TowerSprite node")
+		return
+
 	tower = tower_type
 	has_tower = true
 	$Tower/TowerSprite.texture = tower.texture

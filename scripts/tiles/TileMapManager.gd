@@ -142,6 +142,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func place_tower(cell: Vector2i, tower_type: TowerType) -> void:
+	if tower_type == null:
+		push_warning("TileMapManager: tried to place a null tower type")
+		return
 	var tower_node := Node2D.new()
 	tower_node.set_script(load("res://scripts/tiles/Tower.gd"))
 
