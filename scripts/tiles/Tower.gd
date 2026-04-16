@@ -19,6 +19,8 @@ var _sweep_dir: Vector2 = Vector2.RIGHT
 var _sweep_half_angle: float = 0.0
 var _sweep_radius: float = 0.0
 
+var empty_button: TextureButton
+
 @onready var projectile_scene:PackedScene = load("res://scenes/entities/Projectile.tscn")
 
 func _ready() -> void:
@@ -34,8 +36,8 @@ func _ready() -> void:
 		GameManager.placed_tower_selected.connect(_on_placed_tower_selected)
 	if not GameManager.placed_tower_deselected.is_connected(_on_placed_tower_deselected):
 		GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
-
-
+	_setup_empty_button()
+	
 func get_damage() -> float:
 	var total := tower.damage
 	for upg in applied_upgrades:
@@ -74,6 +76,8 @@ func get_capacity() -> int:
 func empty_nets() -> void:
 	current_capacity = 0
 	# Re-emit selection to update UI if selected
+	if empty_button.visible == true:
+		empty_button.visible = false
 	if selected:
 		GameManager.placed_tower_selected.emit(self)
 
@@ -142,6 +146,20 @@ func _draw_sweep() -> void:
 	draw_colored_polygon(points, color_fill)
 	draw_arc(Vector2.ZERO, r, center_angle - half, center_angle + half, segments, color_edge, 4.0)
 
+func _setup_empty_button():
+	empty_button = TextureButton.new()
+	var size = Vector2(40,40)
+	empty_button.texture_normal = load("res://icon.svg")
+	empty_button.custom_minimum_size = size
+	empty_button.ignore_texture_size = true
+	empty_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+	
+	empty_button.position = Vector2(-size.x / 2, size.y + 100)
+	print(empty_button.position)
+	empty_button.visible = false
+	empty_button.z_index = 10
+	empty_button.pressed.connect(self.empty_nets)
+	add_child(empty_button)
 
 func _process(delta: float) -> void:
 	if tower == null or controller == null or tower_sprite == null:
@@ -160,6 +178,10 @@ func _process(delta: float) -> void:
 			MeleeAttack(closestEnemy)
 		else:
 			AttackEnemy(closestEnemy)
+	if current_capacity == get_capacity():
+		empty_button.visible = true
+	if empty_button.visible:
+		empty_button.position.y = -empty_button.size.y*2 + sin(Time.get_ticks_msec() * 0.005) * 5
 
 func FindClosestEnemyToAttack() -> Enemy:
 	if tower and controller:
@@ -230,7 +252,6 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 			if enemy.hp <= 0:
 				on_enemy_killed()
 			hit_count += 1
-	print("[MELEE SWEEP] hit ", hit_count, " enemies, angle=", rad_to_deg(half_angle * 2), "°, range=", attack_range)
 
 
 func AttackEnemy(enemy:Enemy) -> void:

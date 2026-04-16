@@ -65,6 +65,7 @@ func _show(tower_node: Tower) -> void:
 		capacity_label.visible = true
 		empty_nets_btn.visible = true
 		empty_nets_btn.disabled = (cur == 0)
+			
 	else:
 		capacity_label.visible = false
 		empty_nets_btn.visible = false
