@@ -29,55 +29,31 @@ var empty_button: TextureButton
 
 func _ready() -> void:
 	var scene_root := get_tree().current_scene
-	controller = scene_root.find_child(
-		"EnemyController", true, false
-	) as EnemyController
-	tower_sprite = get_node("TowerSprite")
-	GameManager.placed_tower_selected.connect(
-		_on_placed_tower_selected
-	)
-	GameManager.placed_tower_deselected.connect(
-		_on_placed_tower_deselected
-	)
-	
-	
-	tower_sprite.hframes = 9
-	
-	tower_sprite.visible = false
-	
-	# dodawanie animacji
-	if tower.is_melee:
-		animation_player = animationMeleeRef.instantiate()
-	else:
-		animation_player = animationRangeRef.instantiate()
-		
-	self.add_child(animation_player)
-	
-	animation_player.name = "PlayerAnimation"
-	
-	print_tree_pretty()
-	
-	sprite = get_node("PlayerAnimation/Sprite2D")
-	sprite.z_index = 100
-	sprite.hframes = 9
-	print(sprite.texture)
-	
-	animation_player = get_node("PlayerAnimation")
-	sprite.position = self.position
-	animation_player.play("idle")
-	print("powinno odpalic")
-	
 	if scene_root != null:
 		controller = scene_root.find_child(
 			"EnemyController", true, false
 		) as EnemyController
 	if has_node("TowerSprite"):
 		tower_sprite = get_node("TowerSprite")
-		tower_sprite.hframes = 7
-	if not GameManager.placed_tower_selected.is_connected(_on_placed_tower_selected):
-		GameManager.placed_tower_selected.connect(_on_placed_tower_selected)
-	if not GameManager.placed_tower_deselected.is_connected(_on_placed_tower_deselected):
-		GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
+		tower_sprite.visible = false
+	GameManager.placed_tower_selected.connect(_on_placed_tower_selected)
+	GameManager.placed_tower_deselected.connect(_on_placed_tower_deselected)
+
+	# dodawanie animacji - NIE zmieniaj nazwy noda, bo track paths sie zepsuja
+	var anim_scene: PackedScene
+	if tower.is_melee:
+		anim_scene = animationMeleeRef
+	else:
+		anim_scene = animationRangeRef
+
+	var anim_node := anim_scene.instantiate()
+	add_child(anim_node)
+	animation_player = anim_node.get_node("AnimPlayer") as AnimationPlayer
+	sprite = anim_node.get_node("Sprite2D") as Sprite2D
+	sprite.z_index = 5
+	sprite.position = Vector2.ZERO
+	animation_player.play("idle")
+
 	_setup_empty_button()
 	
 func get_damage() -> float:
@@ -254,11 +230,20 @@ func on_enemy_killed() -> void:
 		GameManager.placed_tower_selected.emit(self)
 
 
+func _play_attack() -> void:
+	if animation_player and animation_player.has_animation("attack"):
+		animation_player.play("attack")
+		await animation_player.animation_finished
+		if is_instance_valid(self) and animation_player:
+			animation_player.play("idle")
+
+
 func MeleeAttack(target_enemy: Enemy) -> void:
 	if target_enemy == null:
 		return
 	if not is_instance_valid(target_enemy):
 		return
+	_play_attack()
 
 	var tower_pos := tower_sprite.global_position
 	var dir_to_target := (target_enemy.global_position - tower_pos).normalized()
@@ -308,6 +293,7 @@ func AttackEnemy(enemy:Enemy) -> void:
 		if len(active_projectiles) >= tower.max_projectiles:
 			return
 			
+		_play_attack()
 		var spawned_projectile:Projectile = projectile_scene.instantiate()
 		spawned_projectile.damage = get_damage()
 		spawned_projectile.speed = get_projectile_speed()
