@@ -9,35 +9,36 @@ load_path = "res://.godot/imported/rangedF.png-1d00d5a48ec91efe516318bacfd4e675.
 
 [sub_resource type="Resource" id="SubResource_dmg1"]
 script = ExtResource("3_upg")
-name = "Ciężkie strzały"
-description = "Zwiększa obrażenia o 50"
-cost = 150
-sell_value_bonus = 75
-damage_add = 50.0
+name = "Stalowy spławik"
+description = "Zwiększa obrażenia o 8"
+sell_value_bonus = 40
+damage_add = 8.0
 
 [sub_resource type="Resource" id="SubResource_dmg2"]
 script = ExtResource("3_upg")
-name = "Precyzyjne bełty"
-description = "Zwiększa obrażenia o kolejne 100"
-cost = 300
-sell_value_bonus = 150
-damage_add = 100.0
+name = "Tytanowy spławik"
+description = "Zwiększa obrażenia o kolejne 12"
+cost = 100
+sell_value_bonus = 80
+damage_add = 12.0
 prerequisites = Array[ExtResource("3_upg")]([SubResource("SubResource_dmg1")])
 
 [sub_resource type="Resource" id="SubResource_cap1"]
 script = ExtResource("3_upg")
-name = "Sieci głębinowe"
-description = "Zwiększa pojemność o 5"
-cost = 100
-sell_value_bonus = 50
+name = "Zwiększony zapał"
+description = "Zwiększa pojemność o 5 i prędkość ataku o niewielką wartość"
+cost = 30
+sell_value_bonus = 20
 capacity_add = 5
+fire_delay_mult = 0.9
 
 [sub_resource type="Resource" id="SubResource_cap2"]
 script = ExtResource("3_upg")
-name = "Sieci trałowe"
-description = "Zwiększa pojemność o kolejne 10"
-cost = 200
-sell_value_bonus = 100
+name = "Pełny optymizm"
+description = "Zwiększa pojemność o kolejne 10 i range o 1 pole"
+cost = 100
+sell_value_bonus = 90
+range_add = 64
 capacity_add = 10
 prerequisites = Array[ExtResource("3_upg")]([SubResource("SubResource_cap1")])
 
@@ -50,6 +51,6 @@ damage = 10.0
 name = "RangeTower"
 cost = 100
 attackRange = 160
-fire_delay = 0.5
+fire_delay = 0.75
 max_projectiles = 1
 upgrades = Array[ExtResource("3_upg")]([SubResource("SubResource_dmg1"), SubResource("SubResource_dmg2"), SubResource("SubResource_cap1"), SubResource("SubResource_cap2")])

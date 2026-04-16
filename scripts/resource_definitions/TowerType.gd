@@ -13,6 +13,7 @@ class_name TowerType
 @export var fire_delay: float
 @export var max_projectiles: int
 @export var is_melee: bool = false
+@export var is_sniper: bool = false
 @export var sweep_angle: float = 120.0
 @export var capacity: int = 10
 @export var upgrades: Array[TowerUpgrade] = []

@@ -6,6 +6,7 @@ class_name Tower
 
 var animationMeleeRef := load("res://scenes/animations/AnimationMelee.tscn")
 var animationRangeRef := load("res://scenes/animations/AnimationRange.tscn")
+var animationSniperRef := load("res://scenes/animations/AnimationSniper.tscn")
 
 var controller:EnemyController;
 var tower_sprite:Sprite2D;
@@ -44,7 +45,10 @@ func _ready() -> void:
 	if tower.is_melee:
 		anim_scene = animationMeleeRef
 	else:
-		anim_scene = animationRangeRef
+		if tower.is_sniper:
+			anim_scene = animationSniperRef
+		else:
+			anim_scene = animationRangeRef
 
 	var anim_node := anim_scene.instantiate()
 	add_child(anim_node)
@@ -184,6 +188,8 @@ func _setup_empty_button():
 func _process(delta: float) -> void:
 	
 	if tower == null or controller == null or tower_sprite == null:
+		return
+	if GameManager.is_towers_frozen():
 		return
 	if _sweep_alpha > 0.0:
 		_sweep_alpha -= delta * 1.5

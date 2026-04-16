@@ -2,15 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_xwo6k"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_eobtj"]
+[ext_resource type="Texture2D" uid="uid://7bsb4kpwjlj1" path="res://sniper.png" id="3_eobtj"]
 [ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="3_ow65o"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2oih"]
-load_path = "res://.godot/imported/rangedF.png-1d00d5a48ec91efe516318bacfd4e675.ctex"
 
 [sub_resource type="Resource" id="SubResource_dmg1"]
 script = ExtResource("3_ow65o")
-name = "Ciężkie strzały"
-description = "Zwiększa obrażenia o 50"
+name = "Większy Harpun"
+description = "Zwiększa obrażenia o 25 i Cappacity o 2"
 cost = 150
 sell_value_bonus = 75
 damage_add = 50.0
@@ -43,13 +41,14 @@ prerequisites = Array[ExtResource("3_ow65o")]([SubResource("SubResource_cap1")])
 
 [resource]
 script = ExtResource("2_eobtj")
-texture = SubResource("CompressedTexture2D_x2oih")
+texture = ExtResource("3_eobtj")
 projectile_texture = ExtResource("1_xwo6k")
 projectile_speed = 1000.0
 damage = 50.0
 name = "Harpoon Angler"
 cost = 250
-attackRange = 352
+attackRange = 384
 fire_delay = 3.0
 max_projectiles = 1
+is_sniper = true
 upgrades = Array[ExtResource("3_ow65o")]([SubResource("SubResource_dmg1"), SubResource("SubResource_dmg2"), SubResource("SubResource_cap1"), SubResource("SubResource_cap2")])
