@@ -13,6 +13,7 @@ signal magic_burst_casted(damage: float, slow_multiplier: float, slow_duration: 
 signal magic_rebellion_triggered(freeze_duration: float)
 signal magic_cooldown_changed(time_left: float)
 signal magic_rebellion_changed(chance: float)
+signal magic_purify_used(success: bool, before_chance: float, after_chance: float)
 
 @export var max_hp: int = 100
 var _hp: int = max_hp
@@ -171,13 +172,16 @@ func can_purify_magic() -> bool:
 
 
 func purify_magic() -> bool:
+	var before_chance := get_magic_rebellion_chance()
+
 	if not can_purify_magic():
+		magic_purify_used.emit(false, before_chance, before_chance)
 		return false
 
 	if not spend_scales(magic_purify_cost):
+		magic_purify_used.emit(false, before_chance, before_chance)
 		return false
 
-	var before_chance := get_magic_rebellion_chance()
 	_magic_rebellion_corruption = maxf(0.0, _magic_rebellion_corruption - magic_purify_reduction)
 
 	# If we were clamped by the cap, force a visible drop when there is still reducible corruption.
@@ -193,9 +197,11 @@ func purify_magic() -> bool:
 	if after_chance >= before_chance:
 		# Safety rollback: do not charge if purification could not reduce current chance.
 		add_scales(magic_purify_cost)
+		magic_purify_used.emit(false, before_chance, before_chance)
 		return false
 
 	magic_rebellion_changed.emit(get_magic_rebellion_chance())
+	magic_purify_used.emit(true, before_chance, after_chance)
 	return true
 
 

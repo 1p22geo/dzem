@@ -22,6 +22,7 @@ func _ready() -> void:
 	GameManager.magic_burst_casted.connect(_on_magic_burst_casted)
 	GameManager.magic_rebellion_triggered.connect(_on_magic_rebellion_triggered)
 	GameManager.magic_rebellion_changed.connect(_on_magic_rebellion_changed)
+	GameManager.magic_purify_used.connect(_on_magic_purify_used)
 	hp_bar.max_value = GameManager.max_hp
 	_on_hp_changed(GameManager.hp)
 	_on_scales_changed(GameManager.scales)
@@ -79,6 +80,21 @@ func _on_magic_rebellion_changed(_chance: float) -> void:
 
 func _on_magic_purify_pressed() -> void:
 	GameManager.purify_magic()
+
+
+func _on_magic_purify_used(success: bool, before_chance: float, after_chance: float) -> void:
+	if magic_message_label == null:
+		return
+
+	if success:
+		var before_percent := int(round(before_chance * 100.0))
+		var after_percent := int(round(after_chance * 100.0))
+		magic_message_label.text = "Magia uspokojona: %d%% -> %d%%" % [before_percent, after_percent]
+	else:
+		magic_message_label.text = "Nie mozna teraz uspokoic magii"
+
+	magic_message_label.visible = true
+	magic_message_time_left = 3.0
 
 
 func _on_magic_burst_casted(_damage: float, _slow_multiplier: float, _slow_duration: float) -> void:
