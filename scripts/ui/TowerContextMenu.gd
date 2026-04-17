@@ -14,6 +14,7 @@ var current_tower: Node2D = null
 @onready var upgrade_sep: HSeparator = $Margin/VBox/UpgradeSep
 @onready var sell_btn: Button = $Margin/VBox/SellButton
 
+var targeting_selector: OptionButton
 
 func _ready() -> void:
 	visible = false
@@ -22,7 +23,32 @@ func _ready() -> void:
 	GameManager.placed_tower_selected.connect(_show)
 	GameManager.placed_tower_deselected.connect(_hide)
 	GameManager.scales_changed.connect(_on_scales_changed)
+	
+	_setup_targeting_ui()
 
+func _setup_targeting_ui() -> void:
+	var label = Label.new()
+	label.text = "Celowanie:"
+	label.add_theme_font_size_override("font_size", 18)
+	$Margin/VBox.add_child(label)
+	# Move after damage label
+	var damage_idx = damage_label.get_index()
+	$Margin/VBox.move_child(label, damage_idx + 1)
+	
+	targeting_selector = OptionButton.new()
+	targeting_selector.add_item("Pierwszy", Tower.TargetingMode.FIRST)
+	targeting_selector.add_item("Ostatni", Tower.TargetingMode.LAST)
+	targeting_selector.add_item("Najbliższy", Tower.TargetingMode.CLOSEST)
+	targeting_selector.add_item("Najsilniejszy", Tower.TargetingMode.STRONGEST)
+	targeting_selector.add_item("Najsłabszy", Tower.TargetingMode.WEAKEST)
+	targeting_selector.add_item("Losowy", Tower.TargetingMode.RANDOM)
+	targeting_selector.item_selected.connect(_on_targeting_selected)
+	$Margin/VBox.add_child(targeting_selector)
+	$Margin/VBox.move_child(targeting_selector, damage_idx + 2)
+
+func _on_targeting_selected(index: int) -> void:
+	if current_tower and "targeting_mode" in current_tower:
+		current_tower.targeting_mode = targeting_selector.get_item_id(index)
 
 func _on_empty_nets() -> void:
 	if current_tower and current_tower.has_method("empty_nets"):
@@ -58,6 +84,14 @@ func _show(tower_node: Tower) -> void:
 		
 	range_label.text = "Zasieg: %d" % int(current_range)
 	damage_label.text = "Obrazenia: %d" % int(current_damage)
+	
+	if "targeting_mode" in tower_node:
+		targeting_selector.selected = -1 # Clear selection first to be safe
+		for i in range(targeting_selector.item_count):
+			if targeting_selector.get_item_id(i) == tower_node.targeting_mode:
+				targeting_selector.selected = i
+				break
+	
 	total_damage_label.text = "Zadano: %d dmg" % int(tower_node.total_damage_dealt)
 	
 	if tower_node.has_method("get_capacity"):

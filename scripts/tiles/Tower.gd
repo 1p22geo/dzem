@@ -206,6 +206,9 @@ func _setup_empty_button():
 	empty_button.pressed.connect(self.empty_nets)
 	add_child(empty_button)
 
+enum TargetingMode { FIRST, LAST, CLOSEST, STRONGEST, WEAKEST, RANDOM }
+var targeting_mode: TargetingMode = TargetingMode.FIRST
+
 func _process(delta: float) -> void:
 	
 	if tower == null or controller == null or tower_sprite == null:
@@ -228,35 +231,79 @@ func _process(delta: float) -> void:
 	timer += delta
 	if timer > get_fire_delay() and current_capacity < get_capacity():
 		timer = 0
-		var closestEnemy:Enemy = FindClosestEnemyToAttack()
+		var target: Enemy = find_target()
 		if tower.is_melee:
-			MeleeAttack(closestEnemy)
+			MeleeAttack(target)
 		else:
-			AttackEnemy(closestEnemy)
+			AttackEnemy(target)
 	if current_capacity == get_capacity():
 		empty_button.visible = true
 	if empty_button.visible:
 		empty_button.position.y = -empty_button.size.y*2 + sin(Time.get_ticks_msec() * 0.005) * 5
 
-func FindClosestEnemyToAttack() -> Enemy:
-	if tower and controller:
-		var closestEnemy: Enemy
-		var tower_pos := tower_sprite.global_position
-		var max_distsance = -1
-		var attack_range := get_range()
-		for enemy in controller.activeEnemies:
-			if not is_instance_valid(enemy):
-				continue
-			if enemy.hp <= 0:
-				continue
-
-			var diff = tower_pos.distance_to(enemy.global_position)
-			var dist = enemy.distance
+func find_target() -> Enemy:
+	if not (tower and controller):
+		return null
+		
+	var targets: Array[Enemy] = []
+	var tower_pos := tower_sprite.global_position
+	var attack_range := get_range()
+	
+	for enemy in controller.activeEnemies:
+		if not is_instance_valid(enemy):
+			continue
+		if enemy.hp <= 0:
+			continue
+		
+		var dist_to_tower = tower_pos.distance_to(enemy.global_position)
+		if dist_to_tower <= attack_range:
+			targets.append(enemy)
 			
-			if dist > max_distsance && diff <= attack_range:
-				max_distsance = dist
-				closestEnemy = enemy
-		return closestEnemy
+	if targets.is_empty():
+		return null
+		
+	match targeting_mode:
+		TargetingMode.FIRST:
+			var best_target: Enemy = targets[0]
+			for i in range(1, targets.size()):
+				if targets[i].distance > best_target.distance:
+					best_target = targets[i]
+			return best_target
+			
+		TargetingMode.LAST:
+			var best_target: Enemy = targets[0]
+			for i in range(1, targets.size()):
+				if targets[i].distance < best_target.distance:
+					best_target = targets[i]
+			return best_target
+			
+		TargetingMode.CLOSEST:
+			var best_target: Enemy = targets[0]
+			var best_dist = tower_pos.distance_to(best_target.global_position)
+			for i in range(1, targets.size()):
+				var d = tower_pos.distance_to(targets[i].global_position)
+				if d < best_dist:
+					best_dist = d
+					best_target = targets[i]
+			return best_target
+			
+		TargetingMode.STRONGEST:
+			var best_target: Enemy = targets[0]
+			for i in range(1, targets.size()):
+				if targets[i].hp > best_target.hp:
+					best_target = targets[i]
+			return best_target
+			
+		TargetingMode.WEAKEST:
+			var best_target: Enemy = targets[0]
+			for i in range(1, targets.size()):
+				if targets[i].hp < best_target.hp:
+					best_target = targets[i]
+			return best_target
+			
+		TargetingMode.RANDOM:
+			return targets[randi() % targets.size()]
+			
 	return null
 
 
