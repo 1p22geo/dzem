@@ -1,0 +1,596 @@
+classDiagram
+    direction TB
+
+    class Button
+    class Control
+    class Node
+    class Node2D
+    class PanelContainer
+    class Resource
+    class TileMapLayer
+
+    class Enemy {
+        +type: EnemyType
+        +hp: float
+        +path: PackedVector2Array
+        +path_index: int
+        +distance: float
+        +damage: float
+        +prize: int
+        +prize_granted: bool
+        +const TILE_SIZE
+        +slow_multiplier: float
+        +slow_time_left: float
+        +_flash_time: float
+        +const FLASH_DURATION
+        +const FLASH_COLOR
+        +fish_prefab: PackedScene
+        +explosion_scene: PackedScene
+        +_ready(): void
+        +_process(delta: float): void
+        +_update_modulate(): void
+        +_get_target_color(): Color
+        +take_damage(amount: float): void
+        +_spawn_explosion(): void
+        +apply_magic_slow(multiplier: float, duration: float): void
+    }
+
+    class EnemyController {
+        +spawner: Spawner
+        +waveDefs: Waves
+        +wave_no: int
+        +enemies_spawned: int
+        +state: StateMachine
+        +activeEnemies: Array[Enemy]
+        +prepare_states(): void
+        +_ready(): void
+        +_process(_delta: float): void
+        +_unhandled_input(event: InputEvent): void
+        +_is_initial_preparation(): bool
+        +_on_magic_burst_casted(damage: float, slow_multiplier: float, slow_duration: float): void
+        +register_enemy(enemy: Enemy): void
+        +_on_enemy_removed(enemy: Enemy): void
+    }
+
+    class GameManager {
+        +max_hp: int
+        +_hp: int
+        +_scales: int
+        +magic_cost: int
+        +magic_damage: float
+        +magic_slow_multiplier: float
+        +magic_slow_duration: float
+        +magic_cooldown: float
+        +magic_rebellion_start_chance: float
+        +magic_rebellion_chance_growth: float
+        +magic_rebellion_relief_on_rebellion: float
+        +magic_rebellion_chance_cap: float
+        +magic_rebellion_wave_growth: float
+        +magic_rebellion_freeze_duration: float
+        +magic_purify_cost: int
+        +magic_purify_min_cost: int
+        +magic_purify_cost_wave_discount: int
+        +magic_purify_reduction: float
+        +magic_purify_reduction_wave_bonus: float
+        +magic_purify_reduction_cap: float
+        +_magic_cooldown_left: float
+        +_magic_rebellion_corruption: float
+        +_tower_freeze_left: float
+        +_current_wave_index: int
+        +_magic_rng
+        +hp: int
+        +scales: int
+        +selected_tower: TowerType
+        +selected_placed_tower: Node2D
+        +_ready(): void
+        +_process(delta: float): void
+        +reset(): void
+        +take_damage(amount: int): void
+        +heal(amount: int): void
+        +add_scales(amount: int): void
+        +spend_scales(amount: int): bool
+        +can_afford(amount: int): bool
+        +can_cast_magic(): bool
+        +set_current_wave_index(wave_index: int): void
+        +get_current_wave_index(): int
+        +get_magic_rebellion_chance(): float
+        +_get_magic_rebellion_base_chance(): float
+        +cast_magic(): bool
+        +can_purify_magic(): bool
+        +purify_magic(): bool
+        +get_magic_cooldown_left(): float
+        +is_towers_frozen(): bool
+        +get_tower_freeze_left(): float
+        +get_magic_purify_cost(): int
+        +get_magic_purify_reduction(): float
+        +select_tower(tower_type: TowerType): void
+        +deselect_tower(): void
+        +select_placed_tower(tower_node: Node2D): void
+        +deselect_placed_tower(): void
+    }
+
+    class ObjectPool {
+    }
+
+    class Projectile {
+        +target: Enemy
+        +speed: float
+        +damage: float
+        +parent_tower: Tower
+        +flight_direction: Vector2
+        +origin_pos: Vector2
+        +max_range: float
+        +const DESPAWN_MARGIN
+        +_ready(): void
+        +remove_projectile(): void
+        +_process(delta: float): void
+    }
+
+    class ProjectilePool {
+    }
+
+    class State {
+        +Enter()
+        +Exit()
+        +Update(_delta: float)
+        +Physics_Update(_delta: float)
+    }
+
+    class StateMachine {
+        +initial_state: State
+        +current_state: State
+        +_ready(): void
+        +_process(delta: float): void
+        +_physics_process(delta: float): void
+        +_on_state_change(from_state: State, new_state_name: String): void
+    }
+
+    class ExplosionEffect {
+        +sprite: AnimatedSprite2D
+        +_ready(): void
+        +_on_finished(): void
+    }
+
+    class EnemyType {
+        +texture: Texture
+        +speed: float
+        +name: String
+        +health: float
+        +armor: float
+        +prize: int
+        +damage: float
+        +spawnedEnemies: Array[EnemyType]
+    }
+
+    class TowerType {
+        +texture: Texture
+        +projectile_texture: Texture
+        +projectile_speed: float
+        +damage: float
+        +name: String
+        +cost: int
+        +attackRange: int
+        +fire_delay: float
+        +max_projectiles: int
+        +is_melee: bool
+        +is_sniper: bool
+        +sweep_angle: float
+        +capacity: int
+        +upgrades: Array[TowerUpgrade]
+    }
+
+    class TowerUpgrade {
+        +name: String
+        +description: String
+        +cost: int
+        +sell_value_bonus: int
+        +damage_add: float
+        +range_add: int
+        +capacity_add: int
+        +fire_delay_mult: float
+        +projectile_speed_add: float
+        +prerequisites: Array[TowerUpgrade]
+    }
+
+    class Wave {
+        +start_delay: float
+        +enemy_type: EnemyType
+        +delay_between_enemies: float
+        +enemy_count: int
+    }
+
+    class Waves {
+        +waves: Array[Wave]
+        +preparation_time: float
+        +initial_coins: int
+    }
+
+    class PreparationState {
+        +controller: Node
+        +_started: bool
+        +_ready(): void
+        +Enter(): void
+        +Exit(): void
+        +_on_wave_start(): void
+        +Update(_delta: float): void
+    }
+
+    class SpawningState {
+        +timer: float
+        +controller: Node
+        +_victory_emitted: bool
+        +_ready(): void
+        +Enter(): void
+        +Update(delta: float): void
+    }
+
+    class WaitingForWaveState {
+        +timer: float
+        +controller: Node
+        +_ready(): void
+        +Enter(): void
+        +Exit(): void
+        +_on_wave_start(): void
+        +Update(delta: float): void
+    }
+
+    class Base {
+        +enemies: Array[Enemy]
+        +_ready(): void
+    }
+
+    class Platform {
+        +tower: TowerType
+        +has_tower: bool
+        +_ready(): void
+        +_process(_delta: float): void
+        +place_tower(tower_type: TowerType): void
+        +_input(event): void
+    }
+
+    class Road {
+        +next: Road
+        +_ready(): void
+        +_process(_delta: float): void
+    }
+
+    class Spawner {
+        +enemy_template: PackedScene
+        +tile_map: TileMapManager
+        +base_position: Vector2
+        +_ready(): void
+        +spawn_enemy(enemy_type: EnemyType): Enemy
+    }
+
+    class Tile {
+        +_ready(): void
+        +_process(_delta: float): void
+    }
+
+    class TileMapManager {
+        +road_cells: Array[Vector2i]
+        +platform_cells: Array[Vector2i]
+        +astar: AStarGrid2D
+        +towers: Dictionary
+        +_ready(): void
+        +_classify_tiles(): void
+        +_setup_pathfinding(): void
+        +cell_to_global(cell: Vector2i): Vector2
+        +global_to_cell(pos: Vector2): Vector2i
+        +_nearest_road_cell(cell: Vector2i): Vector2i
+        +is_platform(cell: Vector2i): bool
+        +has_tower(cell: Vector2i): bool
+        +_unhandled_input(event: InputEvent): void
+        +place_tower(cell: Vector2i, tower_type: TowerType): void
+    }
+
+    class Tower {
+        +tower: TowerType
+        +animationMeleeRef
+        +animationRangeRef
+        +animationSniperRef
+        +audio_stream_player: AudioStreamPlayer
+        +meleeAttackAudio
+        +whipAttackAudio
+        +sniperAttackAudio
+        +controller: EnemyController
+        +tower_sprite: Sprite2D
+        +timer
+        +selected: bool
+        +animation_player: AnimationPlayer
+        +sprite: Sprite2D
+        +active_projectiles
+        +applied_upgrades: Array[TowerUpgrade]
+        +current_capacity: int
+        +total_damage_dealt: float
+        +_sweep_alpha: float
+        +_sweep_dir: Vector2
+        +_sweep_half_angle: float
+        +_sweep_radius: float
+        +empty_button: TextureButton
+        +projectile_scene: PackedScene
+        +targeting_mode: TargetingMode
+        +_ready(): void
+        +get_damage(): float
+        +get_range(): float
+        +get_fire_delay(): float
+        +get_projectile_speed(): float
+        +get_capacity(): int
+        +empty_nets(): void
+        +get_sell_price(): int
+        +is_upgrade_available(upgrade: TowerUpgrade): bool
+        +apply_upgrade(upgrade: TowerUpgrade): void
+        +_on_placed_tower_selected(t: Node2D): void
+        +_on_placed_tower_deselected(): void
+        +_draw(): void
+        +_draw_sweep(): void
+        +_setup_empty_button()
+        +_process(delta: float): void
+        +find_target(): Enemy
+        +on_enemy_killed(): void
+        +_face_target(target_pos: Vector2): void
+        +_play_attack(): void
+        +MeleeAttack(target_enemy: Enemy): void
+        +AttackEnemy(enemy: Enemy): void
+    }
+
+    class GameOverScreen {
+        +wave_info: Label
+        +retry_btn: Button
+        +menu_btn: Button
+        +title_label: Label
+        +subtitle_label: Label
+        +_ready(): void
+        +_on_game_over(): void
+        +_get_wave_text(): String
+        +_animate_in(): void
+        +_on_retry(): void
+        +_on_main_menu(): void
+    }
+
+    class HUD {
+        +wave_label: Label
+        +countdown_label: Label
+        +hp_bar: ProgressBar
+        +hp_label: Label
+        +scales_label: Label
+        +magic_label: Label
+        +magic_purify_button: Button
+        +magic_message_label: Label
+        +success_icon: TextureRect
+        +success_label: Label
+        +rebellion_icon: TextureRect
+        +rebellion_label: Label
+        +magic_message_time_left: float
+        +magic_effect_time_left: float
+        +is_fast_forward: bool
+        +flash_rect: ColorRect
+        +_ready(): void
+        +_unhandled_input(event: InputEvent): void
+        +_toggle_fast_forward(): void
+        +_process(delta: float): void
+        +_on_hp_changed(new_hp: int): void
+        +_on_scales_changed(new_scales: int): void
+        +_on_magic_cooldown_changed(_time_left: float): void
+        +_on_magic_rebellion_changed(_chance: float): void
+        +_on_magic_purify_pressed(): void
+        +_on_magic_purify_used(success: bool, before_chance: float, after_chance: float): void
+        +_on_magic_burst_casted(_damage: float, _slow_multiplier: float, _slow_duration: float): void
+        +_on_magic_rebellion_triggered(_freeze_duration: float): void
+        +_update_magic_label(): void
+        +_update_hud(): void
+    }
+
+    class IntroSlideshow {
+        +const SLIDE_DURATION
+        +const FADE_DURATION
+        +slides: Array[Dictionary]
+        +current_slide
+        +_timer
+        +_fade_timer
+        +_state: String
+        +bg: ColorRect
+        +slide_image: TextureRect
+        +title_label: Label
+        +body_label: RichTextLabel
+        +skip_label: Label
+        +slide_counter: Label
+        +icon_row: HBoxContainer
+        +_ready(): void
+        +_build_slides(): void
+        +_get_tower_idle_frame(path: String): Texture
+        +_get_icon_texture(icon_id: String): Texture
+        +_show_slide(index: int): void
+        +_next_slide(): void
+        +_process(delta: float): void
+        +_unhandled_input(event: InputEvent): void
+    }
+
+    class MainMenu {
+        +main_buttons: VBoxContainer
+        +settings_panel: PanelContainer
+        +logo_area: Control
+        +fish_sprite: TextureRect
+        +title_image: TextureRect
+        +reveal_sfx: AudioStreamPlayer
+        +menu_music: AudioStreamPlayer
+        +intro_scene
+        +_reveal_phase
+        +_reveal_timer
+        +const TITLE_SCALE_DURATION
+        +const FISH_FADE_DURATION
+        +const BUTTONS_FADE_DURATION
+        +_ready(): void
+        +_start_intro(): void
+        +_on_intro_finished(): void
+        +_process(delta: float): void
+        +_ease_out_back(t: float): float
+        +_on_play_pressed(): void
+        +_on_settings_pressed(): void
+        +_on_exit_pressed(): void
+        +_on_settings_back(): void
+    }
+
+    class PauseMenu {
+        +main_buttons: VBoxContainer
+        +settings_panel: PanelContainer
+        +_ready(): void
+        +_unhandled_input(event: InputEvent): void
+        +pause(): void
+        +unpause(): void
+        +_on_resume_pressed(): void
+        +_on_settings_pressed(): void
+        +_on_main_menu_pressed(): void
+        +_on_exit_pressed(): void
+        +_on_settings_back(): void
+    }
+
+    class SettingsPanel {
+        +volume_slider: HSlider
+        +sfx_slider: HSlider
+        +env_slider: HSlider
+        +bg_slider: HSlider
+        +fullscreen_check: CheckButton
+        +_ready(): void
+        +refresh(): void
+        +_on_back_pressed(): void
+        +_on_volume_changed(value: float): void
+        +_on_sfx_changed(value: float): void
+        +_on_env_changed(value: float): void
+        +_on_bg_changed(value: float): void
+        +_on_fullscreen_toggled(toggled_on: bool): void
+    }
+
+    class StartWaveButton {
+        +play_icon: Texture2D
+        +pause_icon: Texture2D
+        +_ready(): void
+        +_process(_delta: float): void
+        +_on_pressed(): void
+        +_is_spawning(): bool
+        +_get_pause_menu(): Control
+    }
+
+    class StatusPanel {
+        +hp_bar: ProgressBar
+        +scales_value: Label
+        +wave_value: Label
+        +_ready(): void
+        +_process(_delta: float): void
+        +_on_hp_changed(new_hp: int): void
+        +_on_scales_changed(new_scales: int): void
+        +_update_wave(): void
+    }
+
+    class TowerContextMenu {
+        +current_tower: Node2D
+        +icon: TextureRect
+        +name_label: Label
+        +range_label: Label
+        +damage_label: Label
+        +capacity_label: Label
+        +total_damage_label: Label
+        +empty_nets_btn: Button
+        +upgrade_list: VBoxContainer
+        +upgrade_label: Label
+        +upgrade_sep: HSeparator
+        +sell_btn: Button
+        +targeting_selector: OptionButton
+        +_ready(): void
+        +_setup_targeting_ui(): void
+        +_on_targeting_selected(index: int): void
+        +_on_empty_nets(): void
+        +_on_scales_changed(_new_scales: int): void
+        +_update_upgrade_buttons(): void
+        +_show(tower_node: Tower): void
+        +_hide(): void
+        +_process(_delta: float): void
+        +_update_position(): void
+        +_on_sell(): void
+    }
+
+    class TowerPanel {
+        +tower_types: Array[TowerType]
+        +_buttons: Dictionary
+        +_ready(): void
+        +_build_tower_buttons(): void
+        +_on_tower_button_pressed(tower_type: TowerType): void
+        +_on_tower_selected(_tower_type: TowerType): void
+        +_on_tower_deselected(): void
+        +_on_scales_changed(_new_scales: int): void
+        +_unhandled_input(event: InputEvent): void
+    }
+
+    class VictoryScreen {
+        +stats_label: Label
+        +menu_btn: Button
+        +title_label: Label
+        +subtitle_label: Label
+        +_ready(): void
+        +_on_victory(): void
+        +_animate_in(): void
+        +_on_main_menu(): void
+    }
+
+    Button <|-- StartWaveButton
+    Control <|-- GameOverScreen
+    Control <|-- HUD
+    Control <|-- IntroSlideshow
+    Control <|-- MainMenu
+    Control <|-- PauseMenu
+    Control <|-- VictoryScreen
+    Node <|-- EnemyController
+    Node <|-- GameManager
+    Node <|-- State
+    Node <|-- StateMachine
+    Node2D <|-- Base
+    Node2D <|-- Enemy
+    Node2D <|-- ExplosionEffect
+    Node2D <|-- Projectile
+    Node2D <|-- Spawner
+    Node2D <|-- Tile
+    PanelContainer <|-- SettingsPanel
+    PanelContainer <|-- StatusPanel
+    PanelContainer <|-- TowerContextMenu
+    PanelContainer <|-- TowerPanel
+    Resource <|-- EnemyType
+    Resource <|-- TowerType
+    Resource <|-- TowerUpgrade
+    Resource <|-- Wave
+    Resource <|-- Waves
+    State <|-- PreparationState
+    State <|-- SpawningState
+    State <|-- WaitingForWaveState
+    Tile <|-- Platform
+    Tile <|-- Road
+    Tile <|-- Tower
+    TileMapLayer <|-- TileMapManager
+    Base --> Enemy
+    Enemy --> EnemyType
+    EnemyController --> Enemy
+    EnemyController --> PreparationState
+    EnemyController --> Spawner
+    EnemyController --> SpawningState
+    EnemyController --> StateMachine
+    EnemyController --> WaitingForWaveState
+    EnemyController --> Waves
+    GameManager --> TowerType
+    Platform --> TowerType
+    Projectile --> Enemy
+    Projectile --> Tower
+    ProjectilePool --> ObjectPool
+    Spawner --> Enemy
+    Spawner --> EnemyType
+    Spawner --> TileMapManager
+    StateMachine --> State
+    TileMapManager --> Tower
+    TileMapManager --> TowerType
+    Tower --> Enemy
+    Tower --> EnemyController
+    Tower --> TowerType
+    Tower --> TowerUpgrade
+    TowerContextMenu --> Tower
+    TowerPanel --> TowerType
+    TowerType --> TowerUpgrade
+    Wave --> EnemyType
+    Waves --> Wave
