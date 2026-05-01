@@ -207,7 +207,10 @@ func _update_hud() -> void:
 
 	if ec.waveDefs:
 		var total: int = ec.waveDefs.waves.size()
-		wave_label.text = "Fala: %d / %d" % [ec.wave_no + 1, total + 1] 
+		if ec.is_endless_mode():
+			wave_label.text = "Fala: %d / ∞" % [ec.wave_no + 1]
+		else:
+			wave_label.text = "Fala: %d / %d" % [ec.wave_no + 1, total + 1]
 	else:
 		wave_label.text = "Fala: %d" % [ec.wave_no + 1]
 

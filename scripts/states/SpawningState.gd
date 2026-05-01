@@ -26,7 +26,7 @@ func Update(delta: float) -> void:
 		push_warning("SpawningState: controller.spawner is null")
 		return
 
-	if controller.wave_no >= controller.waveDefs.waves.size():
+	if not controller.ensure_wave_exists(controller.wave_no):
 		if not _victory_emitted and controller.activeEnemies.is_empty():
 			_victory_emitted = true
 			GameManager.victory.emit()
@@ -41,6 +41,6 @@ func Update(delta: float) -> void:
 		timer = wave.delay_between_enemies
 	else:
 		controller.wave_no += 1
-		if controller.wave_no < controller.waveDefs.waves.size():
+		if controller.ensure_wave_exists(controller.wave_no):
 			Change.emit(self, "WaitingForWaveState")
 			return

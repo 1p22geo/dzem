@@ -18,6 +18,7 @@ const BUTTONS_FADE_DURATION := 0.4
 
 func _ready() -> void:
 	%PlayButton.pressed.connect(_on_play_pressed)
+	%EndlessButton.pressed.connect(_on_endless_pressed)
 	%SettingsButton.pressed.connect(_on_settings_pressed)
 	%ExitButton.pressed.connect(_on_exit_pressed)
 	settings_panel.back_pressed.connect(_on_settings_back)
@@ -28,6 +29,7 @@ func _ready() -> void:
 	main_buttons.modulate = Color(1, 1, 1, 0)
 	fish_sprite.modulate = Color.TRANSPARENT
 	%PlayButton.modulate = Color.TRANSPARENT
+	%EndlessButton.modulate = Color.TRANSPARENT
 	%SettingsButton.modulate = Color.TRANSPARENT
 	%ExitButton.modulate = Color.TRANSPARENT
 
@@ -94,10 +96,13 @@ func _process(delta: float) -> void:
 			)
 			%PlayButton.modulate = Color(1, 1, 1, t)
 			%SettingsButton.modulate = Color(
+				1, 1, 1, clampf(t - 0.3, 0.0, 1.0) / 0.7
+			)
+			%EndlessButton.modulate = Color(
 				1, 1, 1, clampf(t - 0.15, 0.0, 1.0) / 0.85
 			)
 			%ExitButton.modulate = Color(
-				1, 1, 1, clampf(t - 0.3, 0.0, 1.0) / 0.7
+				1, 1, 1, clampf(t - 0.45, 0.0, 1.0) / 0.55
 			)
 			main_buttons.modulate = Color.WHITE
 			if t >= 1.0:
@@ -112,6 +117,10 @@ func _ease_out_back(t: float) -> float:
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/maps/Level1.tscn")
+
+
+func _on_endless_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/maps/EndlessMode.tscn")
 
 
 func _on_settings_pressed() -> void:

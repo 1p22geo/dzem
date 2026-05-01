@@ -68,6 +68,18 @@ func _is_initial_preparation() -> bool:
 	return wave_no == 0 and state != null and state.current_state is PreparationState
 
 
+func ensure_wave_exists(wave_index: int) -> bool:
+	if waveDefs == null:
+		return false
+	if wave_index < 0:
+		return false
+	return wave_index < waveDefs.waves.size()
+
+
+func is_endless_mode() -> bool:
+	return false
+
+
 func _on_magic_burst_casted(damage: float, slow_multiplier: float, slow_duration: float) -> void:
 	for enemy in activeEnemies:
 		if not is_instance_valid(enemy):

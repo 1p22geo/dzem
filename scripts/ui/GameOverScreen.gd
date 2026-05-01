@@ -31,6 +31,8 @@ func _get_wave_text() -> String:
 		"EnemyController", true, false
 	) as EnemyController
 	if ec and ec.waveDefs:
+		if ec.is_endless_mode():
+			return "Przetrwales do fali %d" % [ec.wave_no + 1]
 		var total: int = ec.waveDefs.waves.size()
 		return "Dotarles do fali %d z %d" % [ec.wave_no + 1, total]
 	return ""

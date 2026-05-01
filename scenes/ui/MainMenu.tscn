@@ -135,6 +135,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Graj"
 
+[node name="EndlessButton" type="Button" parent="CenterContainer/MainButtons" unique_id=2003881734]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Tryb Nieskończony"
+
 [node name="SettingsButton" type="Button" parent="CenterContainer/MainButtons" unique_id=1425045838]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 80)
