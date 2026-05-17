@@ -105,6 +105,9 @@ func register_enemy(enemy: Enemy) -> void:
 	if enemy == null:
 		return
 
+	if is_endless_mode():
+		enemy.health_multiplier = pow(1.1, floor(wave_no / 5.0))
+
 	activeEnemies.append(enemy)
 	enemy.tree_exited.connect(_on_enemy_removed.bind(enemy))
 

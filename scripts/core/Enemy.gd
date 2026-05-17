@@ -6,6 +6,8 @@ class_name Enemy
 
 signal reached_base(enemy: Enemy)
 var hp: float
+var health_multiplier: float = 1.0
+
 
 var path: PackedVector2Array
 var path_index: int = 0
@@ -29,7 +31,7 @@ func _ready() -> void:
 		$Sprite2D.texture = type.texture
 		$Sprite2D.apply_scale(Vector2(4,4))
 		$Sprite2D.flip_h = !$Sprite2D.flip_h
-		hp = type.health
+		hp = type.health * health_multiplier
 		damage = type.damage
 		prize = type.prize
 
