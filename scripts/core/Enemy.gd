@@ -22,6 +22,10 @@ var _flash_time: float = 0.0
 const FLASH_DURATION := 0.35
 const FLASH_COLOR := Color(10.0, 1.0, 1.0, 1.0)
 
+var _bleed_stacks: Array[Dictionary] = [] # { "duration": float, "damage_per_tick": float }
+var _stun_timer: float = 0.0
+var _initial_hp: float = 0.0
+
 @onready var fish_prefab:PackedScene = load("res://scenes/entities/Enemy.tscn")
 @onready var explosion_scene:PackedScene = load("res://scenes/effects/ExplosionEffect.tscn")
 
@@ -32,6 +36,7 @@ func _ready() -> void:
 		$Sprite2D.apply_scale(Vector2(4,4))
 		$Sprite2D.flip_h = !$Sprite2D.flip_h
 		hp = type.health * health_multiplier
+		_initial_hp = hp
 		damage = type.damage
 		prize = type.prize
 
@@ -58,6 +63,14 @@ func _process(delta: float) -> void:
 			_update_modulate()
 		else:
 			_update_modulate()
+	
+	_process_bleed(delta)
+	
+	if _stun_timer > 0.0:
+		_stun_timer -= delta
+		_update_modulate()
+		if _stun_timer <= 0.0:
+			_update_modulate()
 
 	if hp <= 0:
 		if not prize_granted:
@@ -83,6 +96,9 @@ func _process(delta: float) -> void:
 		queue_free()
 		return
 
+	if _stun_timer > 0.0:
+		return
+
 	var speed := 0.0
 	if type != null:
 		speed = type.speed * TILE_SIZE * slow_multiplier
@@ -103,8 +119,12 @@ func _update_modulate() -> void:
 
 
 func _get_target_color() -> Color:
+	if _stun_timer > 0.0:
+		return Color(1.0, 1.0, 0.5, 1.0) # Yellowish stun tint
 	if slow_time_left > 0.0:
 		return Color(0.6, 0.8, 1.0, 1.0) # Blueish slow tint
+	if not _bleed_stacks.is_empty():
+		return Color(1.0, 0.4, 0.4, 1.0) # Reddish bleed tint
 	return Color.WHITE
 
 
@@ -119,6 +139,8 @@ func _spawn_explosion() -> void:
 	var fx := explosion_scene.instantiate()
 	fx.global_position = global_position
 	get_tree().current_scene.add_child(fx)
+
+
 func apply_magic_slow(multiplier: float, duration: float) -> void:
 	if multiplier <= 0.0:
 		return
@@ -128,3 +150,38 @@ func apply_magic_slow(multiplier: float, duration: float) -> void:
 
 	if duration > slow_time_left:
 		slow_time_left = duration
+
+
+func apply_bleed(duration: float, damage_percent: float) -> void:
+	var damage_per_sec = _initial_hp * (damage_percent / 100.0)
+	_bleed_stacks.append({
+		"duration": duration,
+		"damage_per_sec": damage_per_sec
+	})
+	_update_modulate()
+
+
+func apply_stun(duration: float) -> void:
+	if duration > _stun_timer:
+		_stun_timer = duration
+	_update_modulate()
+
+
+func _process_bleed(delta: float) -> void:
+	if _bleed_stacks.is_empty():
+		return
+		
+	var total_damage = 0.0
+	var i = _bleed_stacks.size() - 1
+	while i >= 0:
+		var stack = _bleed_stacks[i]
+		total_damage += stack.damage_per_sec * delta
+		stack.duration -= delta
+		if stack.duration <= 0:
+			_bleed_stacks.remove_at(i)
+		i -= 1
+	
+	if total_damage > 0:
+		hp -= total_damage
+		if _bleed_stacks.is_empty():
+			_update_modulate()

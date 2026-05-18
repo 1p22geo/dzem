@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://c6bjmqjfvc6vl"]
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_oc2vy"]
+[ext_resource type="Resource" path="res://resources/tower_defs/Defender.tres" id="1_evolve"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_jknit"]
 [ext_resource type="Texture2D" uid="uid://c2h4n1glawmco" path="res://maleeF.png" id="3_jknit"]
 [ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="4_upg"]
@@ -60,3 +61,4 @@ fire_delay = 1.0
 max_projectiles = 1
 is_melee = true
 upgrades = Array[ExtResource("4_upg")]([SubResource("SubResource_dmg1"), SubResource("SubResource_dmg2"), SubResource("SubResource_cap1"), SubResource("SubResource_cap2")])
+evolutions = Array[ExtResource("2_jknit")]([ExtResource("1_evolve")])

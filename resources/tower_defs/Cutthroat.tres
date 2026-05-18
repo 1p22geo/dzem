@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="TowerType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
+[ext_resource type="Script" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
+[ext_resource type="Texture2D" path="res://rangedF.png" id="3_tex"]
+
+[sub_resource type="Resource" id="SubResource_upg1"]
+script = ExtResource("2_upg")
+name = "Sharpening"
+description = "+8dmg"
+cost = 150
+damage_add = 8.0
+
+[sub_resource type="Resource" id="SubResource_upg2"]
+script = ExtResource("2_upg")
+name = "Ferocious slashes"
+description = "+12dmg"
+cost = 250
+damage_add = 12.0
+prerequisites = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1")])
+
+[sub_resource type="Resource" id="SubResource_upg3"]
+script = ExtResource("2_upg")
+name = "Keen eye"
+description = "+10% crit Chance"
+cost = 200
+crit_chance_add = 0.1
+
+[sub_resource type="Resource" id="SubResource_upg4"]
+script = ExtResource("2_upg")
+name = "Keen Instinct"
+description = "+20% crit chance"
+cost = 250
+crit_chance_add = 0.2
+prerequisites = Array[ExtResource("2_upg")]([SubResource("SubResource_upg3")])
+
+[resource]
+script = ExtResource("1_type")
+texture = ExtResource("3_tex")
+projectile_speed = 600.0
+damage = 40.0
+name = "Cutthroat"
+cost = 450
+attackRange = 128
+fire_delay = 0.5
+max_projectiles = 1
+capacity = 18
+evolution_id = "cutthroat"
+crit_chance = 0.2
+crit_multiplier = 2.0
+applies_bleed = true
+has_active_ability = true
+ability_name = "Stop Time"
+ability_description = "Stop time for 10s"
+ability_cooldown_waves = 3
+upgrades = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2"), SubResource("SubResource_upg3"), SubResource("SubResource_upg4")])

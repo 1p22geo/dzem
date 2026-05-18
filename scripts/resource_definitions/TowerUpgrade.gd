@@ -12,6 +12,10 @@ class_name TowerUpgrade
 @export var capacity_add: int = 0
 @export var fire_delay_mult: float = 1.0
 @export var projectile_speed_add: float = 0.0
+@export var max_projectiles_add: int = 0
+@export var crit_chance_add: float = 0.0
+@export var ability_damage_add: float = 0.0
+@export var sweep_angle_add: float = 0.0
 
 @export_group("Prerequisites")
 @export var prerequisites: Array[TowerUpgrade] = []

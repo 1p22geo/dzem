@@ -14,10 +14,13 @@ signal magic_rebellion_triggered(freeze_duration: float)
 signal magic_cooldown_changed(time_left: float)
 signal magic_rebellion_changed(chance: float)
 signal magic_purify_used(success: bool, before_chance: float, after_chance: float)
+signal active_ability_status_changed(tower: Node2D, ready: bool)
 
 @export var max_hp: int = 100
 var _hp: int = max_hp
 var _scales: int = 100
+
+var _active_evolutions: Dictionary = {} # evolution_id -> tower_node
 
 @export var magic_cost: int = 35
 @export var magic_damage: float = 30.0
@@ -268,3 +271,22 @@ func deselect_placed_tower() -> void:
 	if selected_placed_tower:
 		selected_placed_tower = null
 		placed_tower_deselected.emit()
+
+
+func register_evolution(evolution_id: String, tower_node: Node2D) -> bool:
+	if evolution_id == "":
+		return true
+	if _active_evolutions.has(evolution_id) and is_instance_valid(_active_evolutions[evolution_id]):
+		return false
+	_active_evolutions[evolution_id] = tower_node
+	return true
+
+
+func unregister_evolution(evolution_id: String) -> void:
+	if evolution_id == "" or not _active_evolutions.has(evolution_id):
+		return
+	_active_evolutions.erase(evolution_id)
+
+
+func is_evolution_on_map(evolution_id: String) -> bool:
+	return _active_evolutions.has(evolution_id) and is_instance_valid(_active_evolutions[evolution_id])

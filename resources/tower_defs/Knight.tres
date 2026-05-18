@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="TowerType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
+[ext_resource type="Script" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
+[ext_resource type="Texture2D" path="res://rangedF.png" id="3_tex"]
+
+[sub_resource type="Resource" id="SubResource_upg1"]
+script = ExtResource("2_upg")
+name = "Reflex training"
+description = "x0.93 delay"
+cost = 120
+fire_delay_mult = 0.93
+
+[sub_resource type="Resource" id="SubResource_upg2"]
+script = ExtResource("2_upg")
+name = "Lightspeed slash"
+description = "x0.89 delay"
+cost = 180
+fire_delay_mult = 0.89
+prerequisites = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1")])
+
+[sub_resource type="Resource" id="SubResource_upg3"]
+script = ExtResource("2_upg")
+name = "Fish reserves"
+description = "+3 cap"
+cost = 120
+capacity_add = 3
+
+[sub_resource type="Resource" id="SubResource_upg4"]
+script = ExtResource("2_upg")
+name = "Fisherman squire"
+description = "+5 cap"
+cost = 150
+capacity_add = 5
+prerequisites = Array[ExtResource("2_upg")]([SubResource("SubResource_upg3")])
+
+[resource]
+script = ExtResource("1_type")
+texture = ExtResource("3_tex")
+projectile_speed = 800.0
+damage = 20.0
+name = "Knight"
+cost = 500
+attackRange = 256
+fire_delay = 0.72
+max_projectiles = 1
+capacity = 12
+evolution_id = "knight"
+kill_bonus_dmg = 10.0
+max_kill_bonus_dmg = 50.0
+upgrades = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2"), SubResource("SubResource_upg3"), SubResource("SubResource_upg4")])

@@ -15,6 +15,10 @@ var current_tower: Node2D = null
 @onready var sell_btn: Button = $Margin/VBox/SellButton
 
 var targeting_selector: OptionButton
+var ability_btn: Button
+var evolution_list: VBoxContainer
+var evolution_label: Label
+var evolution_sep: HSeparator
 
 func _ready() -> void:
 	visible = false
@@ -25,6 +29,8 @@ func _ready() -> void:
 	GameManager.scales_changed.connect(_on_scales_changed)
 	
 	_setup_targeting_ui()
+	_setup_ability_ui()
+	_setup_evolution_ui()
 
 func _setup_targeting_ui() -> void:
 	var label = Label.new()
@@ -46,6 +52,33 @@ func _setup_targeting_ui() -> void:
 	$Margin/VBox.add_child(targeting_selector)
 	$Margin/VBox.move_child(targeting_selector, damage_idx + 2)
 
+func _setup_ability_ui() -> void:
+	ability_btn = Button.new()
+	ability_btn.text = "Użyj umiejętności"
+	ability_btn.add_theme_font_size_override("font_size", 18)
+	ability_btn.pressed.connect(_on_ability_pressed)
+	$Margin/VBox.add_child(ability_btn)
+	# Position before upgrades
+	var upg_label_idx = upgrade_label.get_index()
+	$Margin/VBox.move_child(ability_btn, upg_label_idx)
+
+func _setup_evolution_ui() -> void:
+	evolution_sep = HSeparator.new()
+	$Margin/VBox.add_child(evolution_sep)
+	
+	evolution_label = Label.new()
+	evolution_label.text = "Ewolucje:"
+	evolution_label.add_theme_font_size_override("font_size", 20)
+	$Margin/VBox.add_child(evolution_label)
+	
+	evolution_list = VBoxContainer.new()
+	$Margin/VBox.add_child(evolution_list)
+
+func _on_ability_pressed() -> void:
+	if current_tower and current_tower.has_method("use_active_ability"):
+		if current_tower.use_active_ability():
+			_show(current_tower)
+
 func _on_targeting_selected(index: int) -> void:
 	if current_tower and "targeting_mode" in current_tower:
 		current_tower.targeting_mode = targeting_selector.get_item_id(index)
@@ -59,6 +92,7 @@ func _on_scales_changed(_new_scales: int) -> void:
 	if not visible or current_tower == null:
 		return
 	_update_upgrade_buttons()
+	_update_evolution_buttons()
 
 
 func _update_upgrade_buttons() -> void:
@@ -67,6 +101,14 @@ func _update_upgrade_buttons() -> void:
 			var upg: TowerUpgrade = child.get_meta("upgrade")
 			if upg:
 				child.disabled = not GameManager.can_afford(upg.cost)
+
+func _update_evolution_buttons() -> void:
+	for child in evolution_list.get_children():
+		if child is Button:
+			var et: TowerType = child.get_meta("evolution")
+			if et:
+				var already_exists = GameManager.is_evolution_on_map(et.evolution_id)
+				child.disabled = not GameManager.can_afford(et.cost) or already_exists
 
 
 func _show(tower_node: Tower) -> void:
@@ -106,6 +148,26 @@ func _show(tower_node: Tower) -> void:
 		capacity_label.visible = false
 		empty_nets_btn.visible = false
 	
+	# Ability Button
+	if tt.has_active_ability:
+		ability_btn.visible = true
+		ability_btn.text = tt.ability_name
+		ability_btn.tooltip_text = tt.ability_description
+		
+		# Cooldown check
+		var last_used = tower_node.get("_ability_last_used_wave")
+		var cooldown = tt.ability_cooldown_waves
+		var current_wave = GameManager.get_current_wave_index()
+		var waves_passed = current_wave - last_used
+		
+		if waves_passed < cooldown:
+			ability_btn.disabled = true
+			ability_btn.text = "%s (%d fal)" % [tt.ability_name, cooldown - waves_passed]
+		else:
+			ability_btn.disabled = false
+	else:
+		ability_btn.visible = false
+
 	var sell_price := int(tt.cost * 0.7)
 	if tower_node.has_method("get_sell_price"):
 		sell_price = tower_node.get_sell_price()
@@ -134,6 +196,29 @@ func _show(tower_node: Tower) -> void:
 	
 	upgrade_label.visible = (tt.upgrades.size() > 0)
 	upgrade_sep.visible = (tt.upgrades.size() > 0)
+	
+	# Evolutions
+	for child in evolution_list.get_children():
+		child.queue_free()
+		
+	if tt.evolutions.is_empty():
+		evolution_label.visible = false
+		evolution_sep.visible = false
+		evolution_list.visible = false
+	else:
+		evolution_label.visible = true
+		evolution_sep.visible = true
+		evolution_list.visible = true
+		for et in tt.evolutions:
+			var btn := Button.new()
+			btn.text = "Ewolucja: %s ($%d)" % [et.name, et.cost]
+			btn.set_meta("evolution", et)
+			var already_exists = GameManager.is_evolution_on_map(et.evolution_id)
+			btn.disabled = not GameManager.can_afford(et.cost) or already_exists
+			if already_exists:
+				btn.text += " (Max 1)"
+			btn.pressed.connect(func(): tower_node.evolve_into(et))
+			evolution_list.add_child(btn)
 	
 	visible = true
 
