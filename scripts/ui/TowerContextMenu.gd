@@ -107,8 +107,16 @@ func _update_evolution_buttons() -> void:
 		if child is Button:
 			var et: TowerType = child.get_meta("evolution")
 			if et:
+				var is_max = current_tower.is_max_upgraded()
 				var already_exists = GameManager.is_evolution_on_map(et.evolution_id)
-				child.disabled = not GameManager.can_afford(et.cost) or already_exists
+				child.disabled = not GameManager.can_afford(et.cost) or already_exists or not is_max
+				
+				var btn_text = "Ewolucja: %s ($%d)" % [et.name, et.cost]
+				if not is_max:
+					btn_text += " (Wymaga ulepszeń)"
+				elif already_exists:
+					btn_text += " (Max 1)"
+				child.text = btn_text
 
 
 func _show(tower_node: Tower) -> void:
@@ -209,14 +217,20 @@ func _show(tower_node: Tower) -> void:
 		evolution_label.visible = true
 		evolution_sep.visible = true
 		evolution_list.visible = true
+		var is_max = tower_node.is_max_upgraded()
 		for et in tt.evolutions:
 			var btn := Button.new()
-			btn.text = "Ewolucja: %s ($%d)" % [et.name, et.cost]
 			btn.set_meta("evolution", et)
 			var already_exists = GameManager.is_evolution_on_map(et.evolution_id)
-			btn.disabled = not GameManager.can_afford(et.cost) or already_exists
-			if already_exists:
-				btn.text += " (Max 1)"
+			btn.disabled = not GameManager.can_afford(et.cost) or already_exists or not is_max
+			
+			var btn_text = "Ewolucja: %s ($%d)" % [et.name, et.cost]
+			if not is_max:
+				btn_text += " (Wymaga ulepszeń)"
+			elif already_exists:
+				btn_text += " (Max 1)"
+			btn.text = btn_text
+			
 			btn.pressed.connect(func(): tower_node.evolve_into(et))
 			evolution_list.add_child(btn)
 	

@@ -213,6 +213,15 @@ func is_upgrade_available(upgrade: TowerUpgrade) -> bool:
 	return true
 
 
+func is_max_upgraded() -> bool:
+	if not tower:
+		return false
+	for upg in tower.upgrades:
+		if not applied_upgrades.has(upg):
+			return false
+	return true
+
+
 func apply_upgrade(upgrade: TowerUpgrade) -> void:
 	if not is_upgrade_available(upgrade):
 		return
