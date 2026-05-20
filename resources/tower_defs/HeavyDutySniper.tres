@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
-[ext_resource type="Texture2D" path="res://sniper.png" id="3_tex"]
+[ext_resource type="Texture2D" path="res://assets/fish-fear-me/heavy_duty.png" id="3_tex"]
 
 [sub_resource type="Resource" id="SubResource_upg1"]
 script = ExtResource("2_upg")

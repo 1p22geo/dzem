@@ -75,6 +75,7 @@ func _ready() -> void:
 	add_child(anim_node)
 	animation_player = anim_node.get_node("AnimPlayer") as AnimationPlayer
 	sprite = anim_node.get_node("Sprite2D") as Sprite2D
+	sprite.texture = tower.texture
 	sprite.position = Vector2.ZERO
 	animation_player.stop()
 	animation_player.play("idle")
@@ -237,22 +238,56 @@ func evolve_into(new_type: TowerType) -> void:
 		if tower.evolution_id != "":
 			GameManager.unregister_evolution(tower.evolution_id)
 		
+		var old_melee = tower.is_melee
+		var old_sniper = tower.is_sniper
+		
 		tower = new_type
 		
 		if tower.evolution_id != "":
 			GameManager.register_evolution(tower.evolution_id, self)
 			
-		# Refresh animation and audio if needed
-		# For now, we assume sprites are same, but we might need to refresh stats
 		_kill_bonus = 0.0
 		applied_upgrades.clear()
 		
-		# Re-instantiate animation node if type changed (e.g. melee to sniper)
-		# ... (logic from _ready) ...
-		# To keep it simple, I'll just refresh the current tower instance.
-		
 		# Reset cooldowns
 		_ability_last_used_wave = -3
+		
+		# Refresh visuals if needed
+		if tower.is_melee != old_melee or tower.is_sniper != old_sniper:
+			# Type changed, need to re-instantiate animation node
+			if animation_player and is_instance_valid(animation_player.get_parent()):
+				animation_player.get_parent().queue_free()
+			
+			var anim_scene: PackedScene
+			if tower.is_melee:
+				anim_scene = animationMeleeRef
+			else:
+				if tower.is_sniper:
+					anim_scene = animationSniperRef
+				else:
+					anim_scene = animationRangeRef
+
+			var anim_node := anim_scene.instantiate()
+			add_child(anim_node)
+			animation_player = anim_node.get_node("AnimPlayer") as AnimationPlayer
+			sprite = anim_node.get_node("Sprite2D") as Sprite2D
+			sprite.texture = tower.texture
+			sprite.position = Vector2.ZERO
+			animation_player.stop()
+			animation_player.play("idle")
+		else:
+			# Just update the texture if the base animation type is the same
+			if sprite:
+				sprite.texture = tower.texture
+		
+		# Refresh audio
+		if tower.is_melee:
+			audio_stream_player.stream = meleeAttackAudio
+		else:
+			if tower.is_sniper:
+				audio_stream_player.stream = sniperAttackAudio
+			else:
+				audio_stream_player.stream = whipAttackAudio
 		
 		queue_redraw()
 		GameManager.placed_tower_selected.emit(self)

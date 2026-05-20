@@ -2,11 +2,9 @@
 
 [ext_resource type="Resource" path="res://resources/tower_defs/Cutthroat.tres" id="1_evolve1"]
 [ext_resource type="Resource" path="res://resources/tower_defs/Knight.tres" id="2_evolve2"]
+[ext_resource type="Texture2D" uid="uid://i0kr37onl4fa" path="res://rangedF.png" id="2_tex"]
 [ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="2_lqr8s"]
 [ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="3_upg"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2oih"]
-load_path = "res://.godot/imported/rangedF.png-1d00d5a48ec91efe516318bacfd4e675.ctex"
 
 [sub_resource type="Resource" id="SubResource_dmg1"]
 script = ExtResource("3_upg")
@@ -46,7 +44,7 @@ prerequisites = Array[ExtResource("3_upg")]([SubResource("SubResource_cap1")])
 
 [resource]
 script = ExtResource("2_lqr8s")
-texture = SubResource("CompressedTexture2D_x2oih")
+texture = ExtResource("2_tex")
 projectile_speed = 400.0
 damage = 10.0
 name = "Rybak"

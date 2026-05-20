@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
-[ext_resource type="Texture2D" path="res://rangedF.png" id="3_tex"]
+[ext_resource type="Texture2D" path="res://assets/fish-fear-me/cutthroat.png" id="3_tex"]
+[ext_resource type="Texture2D" path="res://assets/fish-fear-me/cutthroat_projectile.png" id="4_ptex"]
 
 [sub_resource type="Resource" id="SubResource_upg1"]
 script = ExtResource("2_upg")
@@ -37,6 +38,7 @@ prerequisites = Array[ExtResource("2_upg")]([SubResource("SubResource_upg3")])
 [resource]
 script = ExtResource("1_type")
 texture = ExtResource("3_tex")
+projectile_texture = ExtResource("4_ptex")
 projectile_speed = 600.0
 damage = 40.0
 name = "Cutthroat"
