@@ -50,10 +50,7 @@ func _process(delta: float) -> void:
 			continue
 			
 		if global_position.distance_to(enemy.global_position) <= 32.0:
-			var enemy_armor: float = 0.0
-			if enemy.type != null:
-				enemy_armor = enemy.type.armor
-			var final_damage: float = damage - enemy_armor
+			var final_damage: float = damage - enemy.get_total_armor()
 			if final_damage < 1.0:
 				final_damage = 1.0
 			

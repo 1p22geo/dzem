@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b8hytavd0u53f" path="res://scripts/resource_definitions/Waves.gd" id="1_g1ydl"]
 [ext_resource type="Script" uid="uid://l6lxydt36pwr" path="res://scripts/resource_definitions/Wave.gd" id="2_jfsab"]
-[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="3_d8au5"]
-[ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/FastEnemy.tres" id="4_vci53"]
-[ext_resource type="Resource" uid="uid://cgfjljtye8iaa" path="res://resources/enemy_defs/StrongEnemy.tres" id="5_g1ydl"]
-[ext_resource type="Resource" uid="uid://cgfjljtye8h88" path="res://resources/enemy_defs/TankEnemy.tres" id="6_g1ydl"]
-[ext_resource type="Resource" uid="uid://cgfjljtye8h8a" path="res://resources/enemy_defs/EliteEnemy.tres" id="7_jfsab"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/Plotka.tres" id="3_d8au5"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/Wegorz.tres" id="4_vci53"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8iaa" path="res://resources/enemy_defs/Dorsz.tres" id="5_g1ydl"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h88" path="res://resources/enemy_defs/Sum.tres" id="6_g1ydl"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h8a" path="res://resources/enemy_defs/JesiotrZachodni.tres" id="7_jfsab"]
 
 [sub_resource type="Resource" id="Resource_jfsab"]
 script = ExtResource("2_jfsab")

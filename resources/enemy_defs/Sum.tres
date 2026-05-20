@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://cgfjljtye8h88"]
 
 [ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_1utgd"]
-[ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/FastEnemy.tres" id="2_jfc50"]
-[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/TestEnemy.tres" id="3_pyjji"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h87" path="res://resources/enemy_defs/Wegorz.tres" id="2_jfc50"]
+[ext_resource type="Resource" uid="uid://cgfjljtye8h86" path="res://resources/enemy_defs/Plotka.tres" id="3_pyjji"]
 [ext_resource type="Texture2D" uid="uid://3ecsglqivn15" path="res://assets/sum-frames/dorsz-framesum-frame0000.png" id="4_f0"]
 [ext_resource type="Texture2D" uid="uid://dudlrsrgiy4lo" path="res://assets/sum-frames/dorsz-framesum-frame0001.png" id="5_f1"]
 [ext_resource type="Texture2D" uid="uid://bj37ana8ac2x4" path="res://assets/sum-frames/dorsz-framesum-frame0002.png" id="6_f2"]

@@ -44,6 +44,6 @@ texture = SubResource("AnimatedTexture_weg")
 speed = 2.3
 name = "Wegorz"
 health = 30.0
-prize = 10
+prize = 9
 damage = 5.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

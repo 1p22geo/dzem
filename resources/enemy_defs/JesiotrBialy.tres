@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://jesiotrbialy01"]
+
+[ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_1utgd"]
+[ext_resource type="Resource" uid="uid://lososczerwony01" path="res://resources/enemy_defs/LososCzerwony.tres" id="2_spawn"]
+[ext_resource type="Texture2D" uid="uid://jesiotrb0" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0000.png" id="3_f0"]
+[ext_resource type="Texture2D" uid="uid://jesiotrb1" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0001.png" id="4_f1"]
+[ext_resource type="Texture2D" uid="uid://jesiotrb2" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0002.png" id="5_f2"]
+[ext_resource type="Texture2D" uid="uid://jesiotrb3" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0003.png" id="6_f3"]
+[ext_resource type="Texture2D" uid="uid://jesiotrb4" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0004.png" id="7_f4"]
+[ext_resource type="Texture2D" uid="uid://jesiotrb5" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0005.png" id="8_f5"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_jesiotrb"]
+frames = 6
+speed_scale = 3.0
+frame_0/texture = ExtResource("3_f0")
+frame_1/texture = ExtResource("4_f1")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_f2")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_f3")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("7_f4")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("8_f5")
+frame_5/duration = 1.0
+
+[resource]
+script = ExtResource("1_1utgd")
+texture = SubResource("AnimatedTexture_jesiotrb")
+speed = 0.4
+name = "Jesiotr biały"
+health = 600.0
+armor = 16.0
+prize = 25
+damage = 40.0
+spawnedEnemies = Array[ExtResource("1_1utgd")]([ExtResource("2_spawn"), ExtResource("2_spawn"), ExtResource("2_spawn"), ExtResource("2_spawn")])
+metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

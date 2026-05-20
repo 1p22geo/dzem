@@ -108,13 +108,16 @@ func _update_evolution_buttons() -> void:
 			var et: TowerType = child.get_meta("evolution")
 			if et:
 				var is_max = current_tower.is_max_upgraded()
+				if not is_max:
+					child.visible = false
+					continue
+				
+				child.visible = true
 				var already_exists = GameManager.is_evolution_on_map(et.evolution_id)
-				child.disabled = not GameManager.can_afford(et.cost) or already_exists or not is_max
+				child.disabled = not GameManager.can_afford(et.cost) or already_exists
 				
 				var btn_text = "Ewolucja: %s ($%d)" % [et.name, et.cost]
-				if not is_max:
-					btn_text += " (Wymaga ulepszeń)"
-				elif already_exists:
+				if already_exists:
 					btn_text += " (Max 1)"
 				child.text = btn_text
 
@@ -185,31 +188,42 @@ func _show(tower_node: Tower) -> void:
 	for child in upgrade_list.get_children():
 		child.queue_free()
 	
-	var available_upgrades := 0
-	for upg in tt.upgrades:
-		if tower_node.is_upgrade_available(upg):
-			var btn := Button.new()
-			btn.text = "%s ($%d)" % [upg.name, upg.cost]
-			btn.tooltip_text = upg.description
-			btn.set_meta("upgrade", upg)
-			btn.disabled = not GameManager.can_afford(upg.cost)
-			btn.pressed.connect(func(): tower_node.apply_upgrade(upg))
-			upgrade_list.add_child(btn)
-			available_upgrades += 1
-		elif tower_node.applied_upgrades.has(upg):
-			var lbl := Label.new()
-			lbl.text = "%s (Zakupiono)" % upg.name
-			lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			upgrade_list.add_child(lbl)
+	var all_upgrades_purchased := true
+	var show_upgrade_section := false
 	
-	upgrade_label.visible = (tt.upgrades.size() > 0)
-	upgrade_sep.visible = (tt.upgrades.size() > 0)
+	if tt.upgrades.size() > 0:
+		for upg in tt.upgrades:
+			if tower_node.is_upgrade_available(upg):
+				var btn := Button.new()
+				btn.text = "%s ($%d)" % [upg.name, upg.cost]
+				btn.tooltip_text = upg.description
+				btn.set_meta("upgrade", upg)
+				btn.disabled = not GameManager.can_afford(upg.cost)
+				btn.pressed.connect(func(): tower_node.apply_upgrade(upg))
+				upgrade_list.add_child(btn)
+				all_upgrades_purchased = false
+				show_upgrade_section = true
+			elif tower_node.applied_upgrades.has(upg):
+				# Already purchased
+				pass
+			else:
+				# Locked prerequisite
+				all_upgrades_purchased = false
+				show_upgrade_section = true
+	
+	var is_max = tower_node.is_max_upgraded()
+	upgrade_label.visible = show_upgrade_section
+	upgrade_sep.visible = show_upgrade_section
+	upgrade_list.visible = show_upgrade_section
 	
 	# Evolutions
 	for child in evolution_list.get_children():
 		child.queue_free()
 		
-	if tt.evolutions.is_empty():
+	# Only show evolutions if tower is max upgraded and is NOT an evolution itself (evolution_id == "")
+	# Wait, if it's already an evolution, evolution_id is NOT empty. 
+	# User says: "Menu items for evolved tower: Ulepszenia ... <evolutions no longer shown>"
+	if tt.evolutions.is_empty() or not is_max or tt.evolution_id != "":
 		evolution_label.visible = false
 		evolution_sep.visible = false
 		evolution_list.visible = false
@@ -217,17 +231,14 @@ func _show(tower_node: Tower) -> void:
 		evolution_label.visible = true
 		evolution_sep.visible = true
 		evolution_list.visible = true
-		var is_max = tower_node.is_max_upgraded()
 		for et in tt.evolutions:
 			var btn := Button.new()
 			btn.set_meta("evolution", et)
 			var already_exists = GameManager.is_evolution_on_map(et.evolution_id)
-			btn.disabled = not GameManager.can_afford(et.cost) or already_exists or not is_max
+			btn.disabled = not GameManager.can_afford(et.cost) or already_exists
 			
 			var btn_text = "Ewolucja: %s ($%d)" % [et.name, et.cost]
-			if not is_max:
-				btn_text += " (Wymaga ulepszeń)"
-			elif already_exists:
+			if already_exists:
 				btn_text += " (Max 1)"
 			btn.text = btn_text
 			

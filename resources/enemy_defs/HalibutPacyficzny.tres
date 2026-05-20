@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://halibut01"]
+
+[ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_1utgd"]
+[ext_resource type="Texture2D" uid="uid://halibut0" path="res://assets/nowe-ryby/halibut/halibut0000.png" id="2_f0"]
+[ext_resource type="Texture2D" uid="uid://halibut1" path="res://assets/nowe-ryby/halibut/halibut0001.png" id="3_f1"]
+[ext_resource type="Texture2D" uid="uid://halibut2" path="res://assets/nowe-ryby/halibut/halibut0002.png" id="4_f2"]
+[ext_resource type="Texture2D" uid="uid://halibut3" path="res://assets/nowe-ryby/halibut/halibut0003.png" id="5_f3"]
+[ext_resource type="Texture2D" uid="uid://halibut4" path="res://assets/nowe-ryby/halibut/halibut0004.png" id="6_f4"]
+[ext_resource type="Texture2D" uid="uid://halibut5" path="res://assets/nowe-ryby/halibut/halibut0005.png" id="7_f5"]
+[ext_resource type="Texture2D" uid="uid://halibut6" path="res://assets/nowe-ryby/halibut/halibut0006.png" id="8_f6"]
+[ext_resource type="Texture2D" uid="uid://halibut7" path="res://assets/nowe-ryby/halibut/halibut0007.png" id="9_f7"]
+[ext_resource type="Texture2D" uid="uid://halibut8" path="res://assets/nowe-ryby/halibut/halibut0008.png" id="10_f8"]
+[ext_resource type="Texture2D" uid="uid://halibut9" path="res://assets/nowe-ryby/halibut/halibut0009.png" id="11_f9"]
+[ext_resource type="Texture2D" uid="uid://halibut10" path="res://assets/nowe-ryby/halibut/halibut0010.png" id="12_f10"]
+[ext_resource type="Texture2D" uid="uid://halibut11" path="res://assets/nowe-ryby/halibut/halibut0011.png" id="13_f11"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_halibut"]
+frames = 12
+speed_scale = 6.0
+frame_0/texture = ExtResource("2_f0")
+frame_1/texture = ExtResource("3_f1")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_f2")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_f3")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("6_f4")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("7_f5")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("8_f6")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("9_f7")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("10_f8")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("11_f9")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("12_f10")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("13_f11")
+frame_11/duration = 1.0
+
+[resource]
+script = ExtResource("1_1utgd")
+texture = SubResource("AnimatedTexture_halibut")
+speed = 0.35
+name = "Halibut pacyficzny"
+health = 550.0
+armor = 20.0
+prize = 25
+damage = 30.0
+metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

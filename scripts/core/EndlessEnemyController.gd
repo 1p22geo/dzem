@@ -43,28 +43,43 @@ func _ready() -> void:
 func _setup_enemy_pool() -> void:
 	# Płotka
 	_enemy_pool.append(EnemyDef.new(
-		preload("res://resources/enemy_defs/TestEnemy.tres"),
+		preload("res://resources/enemy_defs/Plotka.tres"),
 		5, 0, [0.3, 0.3, 0.25, 0.2, 0.15, 0.1, 0.1, 0.1], 29
 	))
 	# Węgorz
 	_enemy_pool.append(EnemyDef.new(
-		preload("res://resources/enemy_defs/FastEnemy.tres"),
+		preload("res://resources/enemy_defs/Wegorz.tres"),
 		15, 4, [1.0, 0.8, 0.7, 0.6, 0.5, 0.25, 0.2, 0.1]
 	))
 	# Dorsz
 	_enemy_pool.append(EnemyDef.new(
-		preload("res://resources/enemy_defs/StrongEnemy.tres"),
-		28, 7, [0.0, 1.5, 0.9, 0.8, 0.7, 0.6, 0.4, 0.3] # 0.0 means not available
+		preload("res://resources/enemy_defs/Dorsz.tres"),
+		28, 7, [0.0, 1.5, 0.9, 0.8, 0.7, 0.6, 0.4, 0.3]
+	))
+	# Łosoś czerwony
+	_enemy_pool.append(EnemyDef.new(
+		preload("res://resources/enemy_defs/LososCzerwony.tres"),
+		35, 10, [0.0, 0.0, 1.2, 1.0, 0.8, 0.6, 0.4, 0.3]
 	))
 	# Sum
 	_enemy_pool.append(EnemyDef.new(
-		preload("res://resources/enemy_defs/TankEnemy.tres"),
+		preload("res://resources/enemy_defs/Sum.tres"),
 		95, 11, [0.0, 0.0, 2.0, 1.7, 1.2, 0.9, 0.6, 0.5]
 	))
-	# Jesiotr
+	# Jesiotr Zachodni
 	_enemy_pool.append(EnemyDef.new(
-		preload("res://resources/enemy_defs/EliteEnemy.tres"),
+		preload("res://resources/enemy_defs/JesiotrZachodni.tres"),
 		220, 17, [0.0, 0.0, 0.0, 3.0, 2.5, 1.8, 1.5, 0.9]
+	))
+	# Halibut pacyficzny
+	_enemy_pool.append(EnemyDef.new(
+		preload("res://resources/enemy_defs/HalibutPacyficzny.tres"),
+		350, 25, [0.0, 0.0, 0.0, 0.0, 0.0, 5.0, 4.0, 3.0]
+	))
+	# Jesiotr biały
+	_enemy_pool.append(EnemyDef.new(
+		preload("res://resources/enemy_defs/JesiotrBialy.tres"),
+		550, 35, [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 8.0]
 	))
 
 

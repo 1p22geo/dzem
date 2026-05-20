@@ -18,6 +18,8 @@ var prize_granted: bool = false
 const TILE_SIZE := 125.0
 var slow_multiplier: float = 1.0
 var slow_time_left: float = 0.0
+var extra_armor: float = 0.0
+var _aura_timer: float = 0.0
 var _flash_time: float = 0.0
 const FLASH_DURATION := 0.35
 const FLASH_COLOR := Color(10.0, 1.0, 1.0, 1.0)
@@ -32,6 +34,8 @@ var _initial_hp: float = 0.0
 func _ready() -> void:
 	add_to_group("enemies")
 	if type != null:
+		if type.name == "Halibut pacyficzny":
+			add_to_group("halibuts")
 		$Sprite2D.texture = type.texture
 		$Sprite2D.apply_scale(Vector2(4,4))
 		$Sprite2D.flip_h = !$Sprite2D.flip_h
@@ -72,6 +76,9 @@ func _process(delta: float) -> void:
 		if _stun_timer <= 0.0:
 			_update_modulate()
 
+	# Special Abilities
+	_process_auras(delta)
+
 	if hp <= 0:
 		if not prize_granted:
 			GameManager.add_scales(prize)
@@ -101,7 +108,11 @@ func _process(delta: float) -> void:
 
 	var speed := 0.0
 	if type != null:
-		speed = type.speed * TILE_SIZE * slow_multiplier
+		speed = type.speed
+		# Łosoś czerwony: speed = 2.8 when HP < 50%
+		if type.name == "Łosoś czerwony" and hp < _initial_hp * 0.5:
+			speed = 2.8
+		speed = speed * TILE_SIZE * slow_multiplier
 
 	var target_pos := path[path_index]
 	global_position = global_position.move_toward(
@@ -111,6 +122,29 @@ func _process(delta: float) -> void:
 
 	if global_position.distance_to(target_pos) <= 4.0:
 		path_index += 1
+
+
+func _process_auras(_delta: float) -> void:
+	extra_armor = 0.0
+	var aura_range := TILE_SIZE # 1 tile
+	
+	# Any fish near a Halibut gets +5 armor
+	var halibuts = get_tree().get_nodes_in_group("halibuts")
+	for h in halibuts:
+		if h == self:
+			continue
+		if not is_instance_valid(h):
+			continue
+		if global_position.distance_to(h.global_position) <= aura_range:
+			extra_armor = 5.0
+			break
+
+
+func get_total_armor() -> float:
+	var base_armor := 0.0
+	if type != null:
+		base_armor = type.armor
+	return base_armor + extra_armor
 
 
 func _update_modulate() -> void:

@@ -625,10 +625,7 @@ func MeleeAttack(target_enemy: Enemy) -> void:
 					damage *= tower.crit_multiplier
 					is_crit = true
 			
-			var enemy_armor: float = 0.0
-			if enemy.type != null:
-				enemy_armor = enemy.type.armor
-			var final_damage: float = damage - enemy_armor
+			var final_damage: float = damage - enemy.get_total_armor()
 			if final_damage < 1.0:
 				final_damage = 1.0
 			
