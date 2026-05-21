@@ -48,6 +48,6 @@ speed = 0.35
 name = "Halibut pacyficzny"
 health = 550.0
 armor = 20.0
-prize = 20
+prize = 22
 damage = 30.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

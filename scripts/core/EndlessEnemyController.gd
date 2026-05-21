@@ -64,22 +64,22 @@ func _setup_enemy_pool() -> void:
 	# Sum
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/Sum.tres"),
-		70, 9, [0.0, 2.0, 2.0, 1.7, 1.2, 0.9, 0.6, 0.5]
+		75, 9, [0.0, 2.0, 2.0, 1.7, 1.2, 0.9, 0.6, 0.5]
 	))
 	# Jesiotr Zachodni
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/JesiotrZachodni.tres"),
-		125, 13, [0.0, 0.0, 3.2, 3.0, 2.5, 1.8, 1.5, 0.9]
+		135, 13, [0.0, 0.0, 3.2, 3.0, 2.5, 1.8, 1.5, 0.9]
 	))
 	# Jesiotr biały
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/JesiotrBialy.tres"),
-		170, 17, [0.0, 0.0, 0.0, 3.1, 2.7, 1.9, 1.5, 1.1]
+		175, 17, [0.0, 0.0, 0.0, 3.1, 2.7, 1.9, 1.5, 1.1]
 	))
 	# Halibut pacyficzny
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/HalibutPacyficzny.tres"),
-		180, 19, [0.0, 0.0, 0.0, 2.5, 2.0, 1.5, 1.2, 1.0]
+		185, 19, [0.0, 0.0, 0.0, 2.5, 2.0, 1.5, 1.2, 1.0]
 	))
 
 

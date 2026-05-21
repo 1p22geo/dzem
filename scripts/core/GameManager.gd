@@ -259,11 +259,13 @@ func get_tower_cost(tower_type: TowerType) -> int:
 	var count = _tower_counts.get(tower_type.name, 0)
 	var base_cost = tower_type.cost
 	
-	if count >= 3:
+	if count >= 5:
 		if tower_type.name == "Rybak": # Angler
-			return base_cost + (count - 2) * 15
-		elif tower_type.name == "MaleeTower" or tower_type.name == "Harpoon Angler":
-			return base_cost + (count - 2) * 30
+			return base_cost + (count - 4) * 15
+		elif tower_type.name == "MaleeTower":
+			return base_cost + (count - 4) * 20
+		elif tower_type.name == "Harpoon Angler":
+			return base_cost + (count - 4) * 25
 			
 	return base_cost
 
