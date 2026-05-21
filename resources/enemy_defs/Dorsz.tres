@@ -18,6 +18,6 @@ speed = 0.85
 name = "Dorsz"
 health = 75.0
 armor = 5.5
-prize = 8
+prize = 9
 damage = 8.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"
