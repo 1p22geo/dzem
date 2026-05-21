@@ -89,6 +89,7 @@ func reset() -> void:
 	_magic_rebellion_corruption = 0.0
 	_tower_freeze_left = 0.0
 	_current_wave_index = 0
+	_tower_counts.clear()
 	hp_changed.emit(_hp)
 	scales_changed.emit(_scales)
 	magic_cooldown_changed.emit(_magic_cooldown_left)

@@ -116,11 +116,14 @@ func _ease_out_back(t: float) -> float:
 
 
 func _on_play_pressed() -> void:
+	GameManager.reset()
 	get_tree().change_scene_to_file("res://scenes/maps/Level1.tscn")
 
 
 func _on_endless_pressed() -> void:
+	GameManager.reset()
 	get_tree().change_scene_to_file("res://scenes/maps/EndlessMode.tscn")
+
 
 
 func _on_settings_pressed() -> void:
