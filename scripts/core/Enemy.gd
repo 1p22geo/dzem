@@ -38,7 +38,12 @@ func _ready() -> void:
 			add_to_group("halibuts")
 		$Sprite2D.texture = type.texture
 		$Sprite2D.apply_scale(Vector2(4,4))
-		$Sprite2D.flip_h = !$Sprite2D.flip_h
+		
+		# Only flip old fish. New fish (nowe-ryby) face the correct way.
+		var new_fish_names = ["Jesiotr biały", "Łosoś czerwony", "Halibut pacyficzny"]
+		if not type.name in new_fish_names:
+			$Sprite2D.flip_h = !$Sprite2D.flip_h
+		
 		hp = type.health * health_multiplier
 		_initial_hp = hp
 		damage = type.damage
