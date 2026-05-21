@@ -87,6 +87,17 @@ func is_endless_mode() -> bool:
 	return true
 
 
+func register_enemy(enemy: Enemy) -> void:
+	if enemy == null:
+		return
+	
+	# Apply health multiplier using endless mode scaling (wave 40+ gets x1.2 per 5 waves)
+	enemy.health_multiplier = get_health_multiplier(wave_no)
+	
+	activeEnemies.append(enemy)
+	enemy.tree_exited.connect(_on_enemy_removed.bind(enemy))
+
+
 func ensure_wave_exists(wave_index: int) -> bool:
 	if wave_index < 0:
 		return false
@@ -142,7 +153,10 @@ func _build_wave(wave_index: int) -> Wave:
 		var entry = WaveEntry.new()
 		entry.enemy_type = ed.type
 		entry.count = count
-		entry.delay_between = ed.delays[delay_idx]
+		var base_delay = ed.delays[delay_idx]
+		# Apply delay reduction for waves 40+
+		var delay_reduction = get_delay_reduction(wave_index)
+		entry.delay_between = maxf(0.1, base_delay - delay_reduction)
 		wave.entries.append(entry)
 		i = j
 			
@@ -197,3 +211,21 @@ func get_start_delay(wave_index: int) -> float:
 		return 5.0
 	
 	return 4.0 # Wave 31+
+
+
+func get_delay_reduction(wave_index: int) -> float:
+	# Starting from wave 40, every 5 waves reduce delays by 0.1s (min 0.1s)
+	if wave_index < 40:
+		return 0.0
+	# Count how many 5-wave intervals from wave 40 we've passed (inclusive)
+	var intervals = (wave_index - 40) / 5
+	return float(intervals + 1) * 0.1
+
+
+func get_health_multiplier(wave_index: int) -> float:
+	# Starting from wave 40, every 5 waves apply x1.2 multiplier
+	if wave_index < 40:
+		return pow(1.1, floor(wave_index / 5.0))
+	# At wave 40+, count 5-wave intervals from wave 40
+	var intervals = (wave_index - 40) / 5
+	return pow(1.2, float(intervals + 1))
