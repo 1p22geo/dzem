@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="TowerType" format=3]
+[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://dj62jqb2utfq8"]
 
-[ext_resource type="Script" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
-[ext_resource type="Script" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
-[ext_resource type="Texture2D" path="res://assets/fish-fear-me/cutthroat.png" id="3_tex"]
-[ext_resource type="Texture2D" path="res://assets/fish-fear-me/cutthroat_projectile.png" id="4_ptex"]
+[ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
+[ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
+[ext_resource type="Texture2D" uid="uid://bu1n64imien74" path="res://assets/fish-fear-me/cutthroat.png" id="3_tex"]
+[ext_resource type="Texture2D" uid="uid://w8v8fu4k1uew" path="res://assets/fish-fear-me/cutthroat_projectile.png" id="4_ptex"]
 
 [sub_resource type="Resource" id="SubResource_upg1"]
 script = ExtResource("2_upg")
@@ -47,12 +47,10 @@ attackRange = 128
 fire_delay = 0.5
 max_projectiles = 1
 capacity = 18
+upgrades = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2"), SubResource("SubResource_upg3"), SubResource("SubResource_upg4")])
 evolution_id = "cutthroat"
 crit_chance = 0.2
-crit_multiplier = 2.0
 applies_bleed = true
 has_active_ability = true
 ability_name = "Stop Time"
 ability_description = "Stop time for 10s"
-ability_cooldown_waves = 3
-upgrades = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2"), SubResource("SubResource_upg3"), SubResource("SubResource_upg4")])

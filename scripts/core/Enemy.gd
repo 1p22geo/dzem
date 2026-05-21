@@ -131,7 +131,7 @@ func _process(delta: float) -> void:
 
 func _process_auras(_delta: float) -> void:
 	extra_armor = 0.0
-	var aura_range := TILE_SIZE # 1 tile
+	var aura_range := TILE_SIZE * 1.5 # 1.5 fields
 	
 	# Any fish near a Halibut gets +5 armor
 	var halibuts = get_tree().get_nodes_in_group("halibuts")

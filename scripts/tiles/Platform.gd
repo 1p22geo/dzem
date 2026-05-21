@@ -50,6 +50,7 @@ func _input(event) -> void:
 		return
 
 	var selected = GameManager.selected_tower
-	if GameManager.spend_scales(selected.cost):
+	var cost = GameManager.get_tower_cost(selected)
+	if GameManager.spend_scales(cost):
 		place_tower(selected)
 		GameManager.deselect_tower()

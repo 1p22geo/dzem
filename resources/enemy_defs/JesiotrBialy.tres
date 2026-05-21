@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://jesiotrbialy01"]
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://blu2m8rc3fyeu"]
 
 [ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_1utgd"]
-[ext_resource type="Resource" uid="uid://lososczerwony01" path="res://resources/enemy_defs/LososCzerwony.tres" id="2_spawn"]
-[ext_resource type="Texture2D" uid="uid://jesiotrb0" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0000.png" id="3_f0"]
-[ext_resource type="Texture2D" uid="uid://jesiotrb1" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0001.png" id="4_f1"]
-[ext_resource type="Texture2D" uid="uid://jesiotrb2" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0002.png" id="5_f2"]
-[ext_resource type="Texture2D" uid="uid://jesiotrb3" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0003.png" id="6_f3"]
-[ext_resource type="Texture2D" uid="uid://jesiotrb4" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0004.png" id="7_f4"]
-[ext_resource type="Texture2D" uid="uid://jesiotrb5" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0005.png" id="8_f5"]
+[ext_resource type="Resource" uid="uid://cfoqg1wbigwa" path="res://resources/enemy_defs/LososCzerwony.tres" id="2_spawn"]
+[ext_resource type="Texture2D" uid="uid://cqrbfufb4epb4" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0000.png" id="3_f0"]
+[ext_resource type="Texture2D" uid="uid://c4rdm1bwxyd3r" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0001.png" id="4_f1"]
+[ext_resource type="Texture2D" uid="uid://usjvw1wsec4d" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0002.png" id="5_f2"]
+[ext_resource type="Texture2D" uid="uid://cc85qlb4ii4f1" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0003.png" id="6_f3"]
+[ext_resource type="Texture2D" uid="uid://div2o5fvtq0ff" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0004.png" id="7_f4"]
+[ext_resource type="Texture2D" uid="uid://cf6whf6mvqu4" path="res://assets/nowe-ryby/jesiotr-bialy/jesotr-bialy0005.png" id="8_f5"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_jesiotrb"]
 frames = 6
@@ -31,7 +31,7 @@ speed = 0.4
 name = "Jesiotr biały"
 health = 600.0
 armor = 16.0
-prize = 25
+prize = 15
 damage = 40.0
 spawnedEnemies = Array[ExtResource("1_1utgd")]([ExtResource("2_spawn"), ExtResource("2_spawn"), ExtResource("2_spawn"), ExtResource("2_spawn")])
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

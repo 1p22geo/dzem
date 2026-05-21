@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://lososczerwony01"]
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://cfoqg1wbigwa"]
 
 [ext_resource type="Script" uid="uid://bh7wtp2wdxlu" path="res://scripts/resource_definitions/EnemyType.gd" id="1_1utgd"]
-[ext_resource type="Texture2D" uid="uid://losos0" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0000.png" id="2_f0"]
-[ext_resource type="Texture2D" uid="uid://losos1" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0001.png" id="3_f1"]
-[ext_resource type="Texture2D" uid="uid://losos2" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0002.png" id="4_f2"]
-[ext_resource type="Texture2D" uid="uid://losos3" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0003.png" id="5_f3"]
-[ext_resource type="Texture2D" uid="uid://losos4" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0004.png" id="6_f4"]
+[ext_resource type="Texture2D" uid="uid://dtwfbgv2bvx16" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0000.png" id="2_f0"]
+[ext_resource type="Texture2D" uid="uid://bniqy2sbtua75" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0001.png" id="3_f1"]
+[ext_resource type="Texture2D" uid="uid://dyqouyjr76efd" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0002.png" id="4_f2"]
+[ext_resource type="Texture2D" uid="uid://bs61aafxs0u8x" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0003.png" id="5_f3"]
+[ext_resource type="Texture2D" uid="uid://dqh7jmveiirbl" path="res://assets/nowe-ryby/losos-czerwony/losos-czerwony0004.png" id="6_f4"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_losos"]
 frames = 5
@@ -25,7 +25,7 @@ script = ExtResource("1_1utgd")
 texture = SubResource("AnimatedTexture_losos")
 speed = 1.2
 name = "Łosoś czerwony"
-health = 60.0
-prize = 12
+health = 70.0
+prize = 10
 damage = 8.0
 metadata/_custom_type_script = "uid://bh7wtp2wdxlu"

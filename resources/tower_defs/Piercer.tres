@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="TowerType" format=3]
+[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://cbphblls6kw8t"]
 
-[ext_resource type="Script" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
-[ext_resource type="Script" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
-[ext_resource type="Texture2D" path="res://assets/fish-fear-me/gunner.png" id="3_tex"]
+[ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
+[ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
+[ext_resource type="Texture2D" uid="uid://b1fuhfxviyqec" path="res://assets/fish-fear-me/gunner.png" id="3_tex"]
 
 [sub_resource type="Resource" id="SubResource_upg1"]
 script = ExtResource("2_upg")
@@ -45,10 +45,9 @@ attackRange = 448
 fire_delay = 1.0
 max_projectiles = 3
 capacity = 12
+upgrades = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2"), SubResource("SubResource_upg3"), SubResource("SubResource_upg4")])
 evolution_id = "piercer"
 is_piercing = true
 has_active_ability = true
 ability_name = "Bullet Burst"
 ability_description = "8-direction piercing shot"
-ability_cooldown_waves = 3
-upgrades = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2"), SubResource("SubResource_upg3"), SubResource("SubResource_upg4")])

@@ -43,6 +43,7 @@ var _magic_cooldown_left: float = 0.0
 var _magic_rebellion_corruption: float = 0.0
 var _tower_freeze_left: float = 0.0
 var _current_wave_index: int = 0
+var _tower_counts: Dictionary = {} # String (tower name) -> int
 
 var _magic_rng := RandomNumberGenerator.new()
 
@@ -238,6 +239,32 @@ func get_magic_purify_cost() -> int:
 func get_magic_purify_reduction() -> float:
 	var boosted_reduction := magic_purify_reduction + float(_current_wave_index) * magic_purify_reduction_wave_bonus
 	return minf(magic_purify_reduction_cap, boosted_reduction)
+
+
+func register_tower(tower_name: String) -> void:
+	_tower_counts[tower_name] = _tower_counts.get(tower_name, 0) + 1
+	scales_changed.emit(_scales) # Refresh UI costs
+
+
+func unregister_tower(tower_name: String) -> void:
+	if _tower_counts.has(tower_name):
+		_tower_counts[tower_name] = maxi(0, _tower_counts[tower_name] - 1)
+		scales_changed.emit(_scales)
+
+
+func get_tower_cost(tower_type: TowerType) -> int:
+	if not tower_type:
+		return 0
+	var count = _tower_counts.get(tower_type.name, 0)
+	var base_cost = tower_type.cost
+	
+	if count >= 3:
+		if tower_type.name == "Rybak": # Angler
+			return base_cost + (count - 2) * 15
+		elif tower_type.name == "MaleeTower" or tower_type.name == "Harpoon Angler":
+			return base_cost + (count - 2) * 30
+			
+	return base_cost
 
 
 var selected_tower: TowerType = null

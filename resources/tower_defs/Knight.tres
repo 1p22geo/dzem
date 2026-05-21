@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="TowerType" format=3]
+[gd_resource type="Resource" script_class="TowerType" format=3 uid="uid://dhm50t67ro3w4"]
 
-[ext_resource type="Script" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
-[ext_resource type="Script" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
-[ext_resource type="Texture2D" path="res://assets/fish-fear-me/knight.png" id="3_tex"]
+[ext_resource type="Script" uid="uid://nbalaemva10s" path="res://scripts/resource_definitions/TowerType.gd" id="1_type"]
+[ext_resource type="Script" uid="uid://ck4yc6xy6nnyf" path="res://scripts/resource_definitions/TowerUpgrade.gd" id="2_upg"]
+[ext_resource type="Texture2D" uid="uid://1e8p048gc7s8" path="res://assets/fish-fear-me/knight.png" id="3_tex"]
 
 [sub_resource type="Resource" id="SubResource_upg1"]
 script = ExtResource("2_upg")
@@ -45,7 +45,7 @@ attackRange = 256
 fire_delay = 0.72
 max_projectiles = 1
 capacity = 12
+upgrades = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2"), SubResource("SubResource_upg3"), SubResource("SubResource_upg4")])
 evolution_id = "knight"
 kill_bonus_dmg = 10.0
 max_kill_bonus_dmg = 50.0
-upgrades = Array[ExtResource("2_upg")]([SubResource("SubResource_upg1"), SubResource("SubResource_upg2"), SubResource("SubResource_upg3"), SubResource("SubResource_upg4")])

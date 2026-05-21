@@ -42,6 +42,8 @@ var _ability_last_used_wave: int = -3
 
 func _ready() -> void:
 	add_to_group("towers")
+	if tower:
+		GameManager.register_tower(tower.name)
 	var scene_root := get_tree().current_scene
 	if scene_root != null:
 		controller = scene_root.find_child(

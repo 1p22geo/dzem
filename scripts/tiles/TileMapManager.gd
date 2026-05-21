@@ -136,7 +136,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	var sel := GameManager.selected_tower
-	if GameManager.spend_scales(sel.cost):
+	var cost := GameManager.get_tower_cost(sel)
+	if GameManager.spend_scales(cost):
 		place_tower(cell, sel)
 		GameManager.deselect_tower()
 		get_viewport().set_input_as_handled()

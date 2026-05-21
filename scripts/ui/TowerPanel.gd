@@ -19,7 +19,8 @@ func _build_tower_buttons() -> void:
 		var btn = Button.new()
 		btn.custom_minimum_size = Vector2(0, 100)
 		btn.add_theme_font_size_override("font_size", 24)
-		btn.text = "%s\n%d łusek" % [tower_type.name, tower_type.cost]
+		var current_cost = GameManager.get_tower_cost(tower_type)
+		btn.text = "%s\n%d łusek" % [tower_type.name, current_cost]
 		btn.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		if tower_type.texture:
 			var atlas = AtlasTexture.new()
@@ -30,7 +31,7 @@ func _build_tower_buttons() -> void:
 			btn.expand_icon = true
 			btn.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		btn.pressed.connect(_on_tower_button_pressed.bind(tower_type))
-		btn.disabled = not GameManager.can_afford(tower_type.cost)
+		btn.disabled = not GameManager.can_afford(current_cost)
 		list.add_child(btn)
 		_buttons[tower_type] = btn
 
@@ -39,7 +40,8 @@ func _on_tower_button_pressed(tower_type: TowerType) -> void:
 	if GameManager.selected_tower == tower_type:
 		GameManager.deselect_tower()
 	else:
-		if GameManager.can_afford(tower_type.cost):
+		var current_cost = GameManager.get_tower_cost(tower_type)
+		if GameManager.can_afford(current_cost):
 			GameManager.select_tower(tower_type)
 
 
@@ -58,7 +60,9 @@ func _on_tower_deselected() -> void:
 func _on_scales_changed(_new_scales: int) -> void:
 	for tt in _buttons:
 		var btn: Button = _buttons[tt]
-		btn.disabled = not GameManager.can_afford(tt.cost)
+		var current_cost = GameManager.get_tower_cost(tt)
+		btn.text = "%s\n%d łusek" % [tt.name, current_cost]
+		btn.disabled = not GameManager.can_afford(current_cost)
 
 
 func _unhandled_input(event: InputEvent) -> void:

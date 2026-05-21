@@ -44,42 +44,42 @@ func _setup_enemy_pool() -> void:
 	# Płotka
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/Plotka.tres"),
-		5, 0, [0.3, 0.3, 0.25, 0.2, 0.15, 0.1, 0.1, 0.1], 29
+		4, 0, [0.3, 0.3, 0.25, 0.2, 0.1, 0.1, 0.1, 0.1], 24
 	))
 	# Węgorz
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/Wegorz.tres"),
-		15, 4, [1.0, 0.8, 0.7, 0.6, 0.5, 0.25, 0.2, 0.1]
+		14, 4, [1.0, 0.8, 0.7, 0.6, 0.5, 0.25, 0.2, 0.1]
 	))
 	# Dorsz
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/Dorsz.tres"),
-		28, 7, [0.0, 1.5, 0.9, 0.8, 0.7, 0.6, 0.4, 0.3]
+		23, 6, [0.0, 1.5, 0.9, 0.8, 0.7, 0.6, 0.4, 0.3]
 	))
 	# Łosoś czerwony
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/LososCzerwony.tres"),
-		35, 10, [0.0, 0.0, 1.2, 1.0, 0.8, 0.6, 0.4, 0.3]
+		27, 7, [0.0, 1.6, 1.0, 0.9, 0.8, 0.7, 0.6, 0.35]
 	))
 	# Sum
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/Sum.tres"),
-		95, 11, [0.0, 0.0, 2.0, 1.7, 1.2, 0.9, 0.6, 0.5]
+		70, 9, [0.0, 2.0, 2.0, 1.7, 1.2, 0.9, 0.6, 0.5]
 	))
 	# Jesiotr Zachodni
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/JesiotrZachodni.tres"),
-		220, 17, [0.0, 0.0, 0.0, 3.0, 2.5, 1.8, 1.5, 0.9]
-	))
-	# Halibut pacyficzny
-	_enemy_pool.append(EnemyDef.new(
-		preload("res://resources/enemy_defs/HalibutPacyficzny.tres"),
-		350, 25, [0.0, 0.0, 0.0, 0.0, 0.0, 5.0, 4.0, 3.0]
+		125, 13, [0.0, 0.0, 3.2, 3.0, 2.5, 1.8, 1.5, 0.9]
 	))
 	# Jesiotr biały
 	_enemy_pool.append(EnemyDef.new(
 		preload("res://resources/enemy_defs/JesiotrBialy.tres"),
-		550, 35, [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 8.0]
+		170, 17, [0.0, 0.0, 0.0, 3.1, 2.7, 1.9, 1.5, 1.1]
+	))
+	# Halibut pacyficzny
+	_enemy_pool.append(EnemyDef.new(
+		preload("res://resources/enemy_defs/HalibutPacyficzny.tres"),
+		180, 19, [0.0, 0.0, 0.0, 2.5, 2.0, 1.5, 1.2, 1.0]
 	))
 
 
@@ -103,7 +103,7 @@ func _build_wave(wave_index: int) -> Wave:
 	
 	wave.start_delay = get_start_delay(wave_index)
 	
-	var chosen_enemies := {} # EnemyDef -> Count
+	var sequence: Array[EnemyDef] = []
 	
 	# Available enemies for this wave
 	var available: Array[EnemyDef] = []
@@ -126,28 +126,49 @@ func _build_wave(wave_index: int) -> Wave:
 			break
 			
 		var picked = affordable[_wave_rng.randi() % affordable.size()]
-		chosen_enemies[picked] = chosen_enemies.get(picked, 0) + 1
+		sequence.append(picked)
 		current_points += picked.points
 
-	# Create WaveEntry sorted by enemy index in _enemy_pool (as a proxy for type sorting)
-	for i in range(_enemy_pool.size()):
-		var ed = _enemy_pool[i]
-		if chosen_enemies.has(ed):
-			var entry = WaveEntry.new()
-			entry.enemy_type = ed.type
-			entry.count = chosen_enemies[ed]
-			entry.delay_between = ed.delays[delay_idx]
-			wave.entries.append(entry)
+	# Group identical consecutive enemies into WaveEntry to minimize node count
+	var i = 0
+	while i < sequence.size():
+		var ed = sequence[i]
+		var count = 1
+		var j = i + 1
+		while j < sequence.size() and sequence[j] == ed:
+			count += 1
+			j += 1
+		
+		var entry = WaveEntry.new()
+		entry.enemy_type = ed.type
+		entry.count = count
+		entry.delay_between = ed.delays[delay_idx]
+		wave.entries.append(entry)
+		i = j
 			
 	return wave
 
 
 func get_points_pool(wave_index: int) -> int:
+	var base_points := 0
 	if wave_index < _wave_pools.size():
-		return _wave_pools[wave_index]
+		base_points = _wave_pools[wave_index]
 	else:
 		# After 36-th wave (index 35), increase by 300 each wave
-		return 6600 + (wave_index - 35) * 300
+		base_points = 6600 + (wave_index - 35) * 300
+	
+	# Bonuses:
+	# Od 15 do 20 (index 14 to 18) + 100
+	# Od 20 do 30 (index 19 to 28) + 150
+	# Od 30 (index 29+) + 200
+	if wave_index >= 29:
+		base_points += 200
+	elif wave_index >= 19:
+		base_points += 150
+	elif wave_index >= 14:
+		base_points += 100
+		
+	return base_points
 
 
 func get_start_delay(wave_index: int) -> float:
